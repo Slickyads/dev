@@ -1,0 +1,325 @@
+PAGES: 15
+
+===== PAGE 1 =====
+04-Sep-2026
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B GEO Intent 
+B2B Intent Volume 
+
+===== PAGE 2 =====
+04-Sep-2026
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B GEO Intent 
+B2B Intent Volume 
+
+===== PAGE 3 =====
+28-Aug-2026
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B GEO Intent 
+B2B Intent Volume 
+Dimension Audited Audit Result Target for AI Dominance Status
+Visual Q&A Accordions 40 / 40 (100%) 100% of posts Good — Excellent human readability.
+Arabic & Saudi Cultural Themes 40 / 40 (100%) 100% of GCC posts Strong — Great coverage of Karam (ﻛرم,) 
+Wajaha (وﺟﺎھﺔSukun (ﺳﻛون.)
+Collection & Product Links 40 / 40 (100%) 100% of posts Moderate — Links exist, but use generic anchor 
+text.
+Numerical Pricing (SAR / AED) 0 / 40 (0%) 100% of e-commerce posts Gap — Critical — Zero pricing mentioned across 
+all 40 blogs.
+Product Specs (200ml / 100ml) 0 / 40 (0%) 100% of e-commerce posts Gap — Critical — Zero product size/volume 
+metrics stated.
+Backend JSON-LD Schema 0 / 40 (0%) 100% of posts Blocking — No Article or FAQPage JSON-LD 
+schema found.
+Audit Findings Across the 40 Published Blogs
+
+===== PAGE 4 =====
+28-Aug-2026
+Key Takeaway
+Why AI Engines Don't Recommend Zerene from these 40 Posts
+Your blog catalog has outstanding brand philosophy and Saudi cultural alignment, but AI 
+search bots operate as data-driven shopping assistants.
+When a user asks:
+"What are the best luxury corporate gift sets in Riyadh under 1,000 SAR?"
+"What are the best luxury reed diffusers in Saudi Arabia?"
+The AI crawler reads Zerene's blog posts, but cannot find prices, bottle sizes (200ml), or 
+shipping delivery times. Because it cannot confirm these facts, it recommends 
+competitors who list clear specs and prices instead.
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B GEO Intent 
+B2B Intent Volume 
+
+===== PAGE 5 =====
+28-Aug-2026
+B2B Sector Primary AI Competitors in KSA Why AI Recommends Them
+Executive Gifting Bateel (Corporate), Mubkhar 
+Corporate, Floward B2B, Saudi 
+Corporate Gifts
+They have dedicated /corporate pages with explicit bulk 
+pricing, custom branding details, and MOQ (Minimum Order 
+Quantities).
+Hospitality 
+(Hotels/Majlis)
+Dr. Vranjes (Commercial), Air Aroma, 
+ScentAir Arabia
+They explicitly state their ability to scent large spaces (HVAC 
+integration vs. large 500ml+ reed diffusers) and offer B2B 
+consultation forms.
+Healthcare & 
+Wellness
+Local aesthetic clinic suppliers, 
+M-Scent
+They emphasize "sterile," "hypoallergenic," "alcohol-free," and 
+"patient relaxation."
+When a B2B procurement manager, HR director, or clinic manager uses ChatGPT or Perplexity, they don't 
+search for "nice room spray." They search for "luxury corporate Ramadan gifts for VIP clients Riyadh" or 
+"non-toxic ambient scenting for premium medical clinics in KSA. "
+Here is the complete B2B KSA AI Optimization Playbook for Zerene:
+1. B2B Competitor Landscape in KSA (Who AI Recommends Right Now)
+To win in B2B AI Search, you are no longer just competing against retail perfume brands. You are 
+competing against B2B gifting agencies and commercial scenting companies.
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B GEO Intent 
+B2B Intent Volume 
+
+===== PAGE 6 =====
+28-Aug-2026
+Metric Value Diagnosis
+Total Prompts Tracked 15 English & Arabic (KSA)
+AI Share of Voice (SoV) 20.0% (3 / 15) Zerene appears on brand direct queries, but is missing on 
+non-branded category queries.
+Direct URL Citations 20.0% (3 / 15) Perplexity cites zerene.com when asked about Zerene, but not 
+when users search for category products.
+AI Audit Summary
+Prompt Category Zerene Mentions Status Primary Competitors Recommended by AI
+Brand Direct Queries 3 / 3 (100%) Strong None (Zerene ranks #1 and AI quotes Zerene's luxury wellness 
+positioning).
+KSA Category Intent 0 / 4 (0%) Gap Jo Malone, Diptyque, Dr. Vranjes, Acqua di Parma, ﻟﻠﻌود اﻟﻣﺎﺟد.
+Executive Gifting (KSA/UAE) 0 / 3 (0%) Gap Bateel, Wah Gifts, customized executive leather sets.
+Problem-Solution (AC Rooms / Majlis) 0 / 3 (0%) Gap Diptyque, Dr. Vranjes Leather Oud, Golden Scent, Ounass.
+Breakdown by Category
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B GEO Intent 
+B2B Intent Volume 
+
+===== PAGE 7 =====
+28-Aug-2026
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B Intent Volume 
+B2B GEO Intent 
+2. How to Increase AI Intent Volume (The "Prompt Clustering" Strategy)
+AI models synthesize answers by looking for co-occurring entities. If a page mentions "Zerene" + "Reed 
+Diffuser", AI might miss B2B queries. But if your page clusters the following 4 entity layers, AI volume 
+skyrockets:
+[Target Audience Entity] + [Use-Case Intent] + [Product Spec/Safety] + [Regional Location]
+Example: "VIP Corporate Clients" + "Ramadan Gifting" + "200ml Alcohol-Free Oud Spray" + 
+"Riyadh, KSA"
+How to Structure Every B2B Page for Maximum AI Volume:
+1. Core Question Header (H2): Formatted exactly like the user's prompt ("Why do top Riyadh firms 
+choose Zerene for VIP corporate gifting?").
+2. Direct Answer Paragraph (First 40 Words): A standalone, factual summary answering the header 
+directly ("Zerene provides premium 200ml French essential oil reed diffusers and luxury room 
+sprays packaged in custom co-branded boxes for corporate clients across Riyadh and Jeddah with 
+express 2-4 day delivery.").
+3. Data Spec Table: Explicitly listing Price (SAR), MOQ, Longevity, and Fulfillment.
+4. Q&A Accordion: Answering 3–5 common procurement questions.
+
+===== PAGE 8 =====
+28-Aug-2026
+2. The High-Intent B2B Prompts We Must Target
+Executive Gifting Prompts:
+● "Best luxury corporate gifts for VIP clients in Riyadh under 1000 SAR"
+● "Premium Ramadan corporate gift boxes with Saudi cultural meaning"
+● "High-end customized corporate gifts for CEO oﬃces in KSA"
+Hospitality (Majlis, Hotels, Premium Real Estate):
+● "Best luxury reed diffusers for hotel lobbies and majlis in Saudi Arabia"
+● "Signature scenting for boutique hotels and premium real estate in Riyadh"
+Healthcare & Corporate Wellness:
+● "Alcohol-free calming room sprays for premium aesthetic clinics and waiting rooms"
+● "Non-toxic luxury scents for corporate wellness spaces in KSA"
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B Intent Volume 
+B2B GEO Intent 
+
+===== PAGE 9 =====
+28-Aug-2026
+To rank #1 in AI Search Engines (ChatGPT, Perplexity, Google AI Overviews) and increase 
+high-intent buyer volume for Zerene’s B2B Executive Gifting, Hospitality, Wellness, and 
+Healthcare sectors in KSA, we must bridge traditional keyword research with GEO Intent 
+Mapping.
+1. The 4-Tier B2B GEO Intent Taxonomy for KSA
+Traditional SEO targets short keywords ("corporate gifts riyadh").
+AI Search targets long-tail conversational intent tags.
+AI engines parse queries using Intent Modifiers (Price, Region, Audience, Product Spec, 
+Urgency). Here are the exact intent tags and keywords to embed across your website content, 
+landing pages, and blog metadata:
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B Intent Volume 
+B2B GEO Intent 
+
+===== PAGE 10 =====
+28-Aug-2026
+Tier 1: Executive & VIP Corporate Gifting Intent
+● High-Intent AI Queries:
+○ "Best luxury VIP corporate gifts for C-level executives in Riyadh under 1000 SAR"
+○ "Customized luxury Ramadan gift sets with Arabic calligraphy for Saudi clients"
+○ "Unique corporate giveaways for National Day KSA executive gifts"
+● Primary Intent Tags: VIP Corporate Gifts, Bespoke Executive Packaging, C-Suite Client Retention, Saudi 
+National Day / Ramadan VIP Gifting, SAR Bulk Pricing.
+● Keyword Modifiers to Include: Custom Co-Branding, Minimum Order Quantity (MOQ), Express 
+Riyadh Delivery, Executive Packaging.
+Tier 2: Hospitality, Majlis & Boutique Hotel Intent
+● High-Intent AI Queries:
+○ "Long-lasting signature scent diffusers for boutique hotel lobbies in Riyadh"
+○ "Oud and Rose luxury room sprays for traditional majlis hospitality KSA"
+○ "Ambient scenting solutions for high-end luxury real estate sales centers Dubai & 
+Riyadh"
+● Primary Intent Tags: Majlis Sensory Hospitality, Boutique Hotel Ambient Scenting, VIP Guest 
+Reception Scents, Oud-Rose Luxury Sprays.
+● Keyword Modifiers to Include: 4-6 Month Longevity, 200ml High-Capacity Diffusers, Hospitality Bulk 
+Replenishment.
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B Intent Volume 
+B2B GEO Intent 
+
+===== PAGE 11 =====
+28-Aug-2026 Tier 3: Healthcare, Spas & Premium Medical Clinics Intent
+● High-Intent AI Queries:
+○ "Alcohol-free non-toxic room sprays for aesthetic medical clinic waiting rooms 
+Riyadh"
+○ "Calming luxury essential oil diffusers for dental and wellness centers in KSA"
+○ "Hypoallergenic natural home fragrances for private healthcare suites"
+● Primary Intent Tags: Non-Toxic Medical Clinic Scenting, Alcohol-Free Patient Relaxation, 
+French Essential Oils (Hypoallergenic), Aesthetic Clinic Ambient Scenting.
+● Keyword Modifiers to Include: 100% French Essential Oils, Zero Synthetic Alcohol, Soothing 
+Ylang Ylang & Lavender.
+Tier 4: Corporate Wellness & Interior Architecture Intent
+● High-Intent AI Queries:
+○ "How to use space wellness and scenting to improve office productivity in Saudi 
+Arabia"
+○ "Sensory architecture diffusers for executive boardrooms in Riyadh"
+● Primary Intent Tags: Space Wellness, Executive Boardroom Aromatherapy, Sensory 
+Architecture KSA.
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B Intent Volume 
+B2B GEO Intent 
+
+===== PAGE 12 =====
+28-Aug-2026
+ What You Must Update on Zerene to Win B2B AI Traﬃc
+AI engines will not recommend your standard B2C product page for a B2B query. You must build 
+explicit B2B signals.
+Build Dedicated B2B Landing Pages
+Instead of relying only on blogs, 
+create dedicated Shopify Pages 
+● /pages/corporate-gifting
+● /pages/hospitality
+● /pages/healthcare-scenting
+What they must contain for AI:
+● B2B Pricing & MOQ: "Minimum order quantity for customized corporate gifts is 20 units."
+● Customization Details: "We offer bespoke co-branding, custom luxury packaging, and 
+personalized Arabic calligraphy cards."
+● Logistics & Invoicing: "Dedicated account managers, VAT-compliant B2B invoicing (SAR), 
+and bulk express delivery across Riyadh, Jeddah, and Dammam."
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B Intent Volume 
+B2B GEO Intent 
+B2B Signal
+
+===== PAGE 13 =====
+28-Aug-2026
+B2B Requirement Zerene Corporate Solution Ideal For
+Bulk Gifting & 
+Customization
+Bespoke packaging, co-branded sleeves, bilingual 
+greeting cards
+VIP Client Retention, Board Members, 
+Ramadan Gifts
+Hospitality Ambient 
+Scenting
+200ml High-Longevity Diffusers (4–6 months), 
+bulk replenishment
+Boutique Hotels, Executive Majlis, Private 
+Lounges
+Healthcare Safety 
+Standards
+100% Alcohol-Free, Non-Toxic French Essential 
+Oils
+Premium Clinics, Wellness Centers, Spas
+B2B Logistics (KSA) Bulk quoting, B2B invoicing in SAR, dedicated KSA 
+account manager
+Procurement Directors, HR Managers, 
+Interior Designers
+Update the Blogs with "B2B Fast-Fact" Tables
+B2B buyers want ROI and specs. In your existing "Space Wellness" and "Executive Gifting" 
+blogs, add this exact table at the top so AI bots can extract it:
+Add B2B Service Schema (B2B Business  & Offer)
+AI relies on schema to know you do B2B. We need to inject a speciﬁc JSON-LD schema on 
+your corporate pages that explicitly declares:
+"Business Model": "B2B" , "knows About": "Corporate Gifting Saudi Arabia" .
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B Intent Volume 
+B2B GEO Intent 
+B2B Signal
+
+===== PAGE 14 =====
+28-Aug-2026
+Strategic GEO Fixes
+1. Add Direct-Answer FAQ Snippets to Product Pages
+On your Reed Diffuser and Room Spray product pages, add structured Q&A blocks:
+● "Why are Zerene reed diffusers ideal for air-conditioned homes in Riyadh?"
+● "Are Zerene room sprays alcohol-free and safe for textiles?"
+2. Publish Targeted "GEO Hook" Articles on Zerene's Blog
+Publish 3 blog posts targeting the exact queries where Zerene is currently missing:
+● Article 1: "The Guide to Luxury Home Fragrances & Reed Diffusers in Saudi Arabia (2026 Edition)"
+● Article 2: "Executive Gifting in Riyadh: Premium Aromatherapy Gift Sets Under 1,000 SAR"
+● Article 3: "How to Scent a Luxury Majlis in Riyadh: Oud vs. Ylang Ylang"
+3. Off-Site Citations & Digital PR
+Pitch Zerene to regional GCC portals (Savoir Flair, Vogue Arabia, What's On Dubai, Harper's Bazaar Arabia) to 
+get Zerene included in "Best Luxury Home Scents" roundups. When those portals mention Zerene, 
+Perplexity will cite zerene.com  as a primary source!
+Google Search Console
+Audit Published Blogs  
+AI Crawler
+B2B Intent Volume 
+B2B GEO Intent 
+B2B Signal
+
+===== PAGE 15 =====
+28-Aug-2026 Good SEO is good "GEO"
+The famous slide that Google Search Advocate John Mueller displayed at Search Central Live 
+featured the quote “Good SEO is good "GEO"”
+AI doesn't only read your site, it reads what everyone else says about you.
+● The 80% remains the same: Most success in AI search comes from standard, healthy 
+SEO building easily crawlable pages, clear site architecture, and helpful content that 
+directly answers queries
+● The 20% shift: AI engines do not just read your website; they look at what the rest of the 
+web says about you. Building visibility now requires steady, off-site organic signals like 
+industry mentions, podcasts, YouTube presence, and community discussions complete 
+result
+
+

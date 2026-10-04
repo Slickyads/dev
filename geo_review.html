@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zerene GEO Strategy Review</title>
+    <style>
+        :root {
+            --color-bg: #f7f5f2;
+            --color-surface: #ffffff;
+            --color-primary: #1a2e28;
+            --color-secondary: #2d5a4f;
+            --color-accent: #b8941f;
+            --color-muted: #6b7575;
+            --color-border: #e2e8e8;
+            --color-success: #1d7c3d;
+            --color-warning: #b8860b;
+            --color-error: #b3261e;
+            --color-text: #1a1a1a;
+            --color-text-light: #3a3a3a;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-serif: 'Georgia', 'Cambria', 'Times New Roman', serif;
+            --radius: 10px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --transition: all 0.2s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg: #1a1f1e;
+                --color-surface: #222827;
+                --color-primary: #e8efe9;
+                --color-secondary: #a8d0b8;
+                --color-accent: #d4b83a;
+                --color-muted: #8a9595;
+                --color-border: #3a403f;
+                --color-success: #4ade80;
+                --color-warning: #fbbf24;
+                --color-error: #f87171;
+                --color-text: #e8efe9;
+                --color-text-light: #c8cec9;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 18px;
+        }
+
+        body {
+            font: 1.05rem/1.7 var(--font-sans);
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            background-color: var(--color-surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        header {
+            background-color: var(--color-primary);
+            color: #ffffff;
+            padding: 3rem 2.5rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 400;
+        }
+
+        main {
+            padding: 2.5rem 2.5rem 3rem;
+        }
+
+        section {
+            margin-bottom: 2.75rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.75;
+            color: var(--color-text-light);
+            margin-bottom: 1.25rem;
+        }
+
+        p strong {
+            color: var(--color-text);
+        }
+
+        ul, ol {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--color-text-light);
+            margin-bottom: 1.25rem;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        ol {
+            padding-left: 1.75rem;
+        }
+
+        ol li {
+            margin-bottom: 0.75rem;
+            font-size: 1.05rem;
+            line-height: 1.65;
+        }
+
+        ol li strong {
+            color: var(--color-text);
+        }
+
+        a {
+            color: var(--color-secondary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .note {
+            font-size: 1rem;
+            color: var(--color-muted);
+            font-style: italic;
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 1.85rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid var(--color-border);
+            position: relative;
+            font-weight: 600;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background-color: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+            margin-top: 1.75rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-card {
+            background-color: var(--color-bg);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            border-left: 5px solid var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-card h4 {
+            font-size: 1.15rem;
+            color: var(--color-primary);
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .timeline-card h4::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: var(--color-secondary);
+            border-radius: 50%;
+            margin-right: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .timeline-card li {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--color-text-light);
+            margin-bottom: 0.55rem;
+            position: relative;
+            padding-left: 1.35rem;
+        }
+
+        .intent-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .timeline-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background-color: var(--color-bg);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 3px solid var(--color-secondary);
+        }
+
+        .metric-value {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            color: var(--color-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 0.4rem;
+        }
+
+        .metric-change {
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+            padding: 0.3rem 0.85rem;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .metric-change.positive {
+            background-color: rgba(39, 174, 96, 0.15);
+            color: var(--color-success);
+        }
+
+        .metric-change.negative {
+            background-color: rgba(231, 76, 60, 0.15);
+            color: var(--color-error);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: var(--color-surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        th,
+        td {
+            padding: 1rem 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 1rem;
+            line-height: 1.55;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: var(--color-bg);
+            font-weight: 600;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.4px;
+        }
+
+        tr:hover td {
+            background-color: rgba(52, 152, 219, 0.04);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+        }
+
+        .status-good {
+            background-color: rgba(39, 174, 96, 0.15);
+            color: var(--color-success);
+        }
+
+        .status-moderate {
+            background-color: rgba(241, 196, 15, 0.15);
+            color: var(--color-warning);
+        }
+
+        .status-gap {
+            background-color: rgba(231, 76, 60, 0.15);
+            color: var(--color-error);
+        }
+
+        .status-blocking {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--color-error);
+            font-weight: 700;
+        }
+
+        .next-steps {
+            background-color: var(--color-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-top: 2rem;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .next-steps h3 {
+            margin-top: 0;
+        }
+
+        .next-steps ol {
+            counter-reset: step;
+            margin-left: 1.5rem;
+        }
+
+        .next-steps li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .next-steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--color-accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, rgba(231, 76, 60, 0.05) 100%);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-top: 2.5rem;
+            border: 1px solid var(--color-border);
+        }
+
+        .conclusion h3 {
+            margin-top: 0;
+            color: var(--color-primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--color-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--color-border);
+            margin-top: 2.5rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            header {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            main {
+                padding: 1.5rem;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Zerene GEO Strategy Review</h1>
+            <p class="subtitle">Generative Engine Optimization Progress Report</p>
+        </header>
+
+        <main>
+            <section>
+                <h2>Executive Summary</h2>
+                <p>Over the past nine months, Zerene has established a strong strategic foundation for GEO (Generative Engine Optimization), focusing on aligning content with AI search behavior, improving technical SEO, and mapping B2B intent in key GCC markets. While cultural alignment and brand sentiment remain strong (<strong>100% likelihood to buy</strong>), critical execution gaps in product specifications, pricing transparency, and structured data have limited AI visibility to <strong>20% Share of Voice</strong> across tracked prompts.</p>
+                <p>The core challenge identified is that AI search engines operate as data-driven shopping assistants requiring concrete facts (prices, volumes, specifications) - not just brand philosophy - to make recommendations. Without these elements, Zerene loses to competitors who provide clear procurement data despite weaker brand alignment.</p>
+            </section>
+
+            <section>
+                <h2>Timeline of Work Completed</h2>
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <h4>Foundation & Strategy (Jan-Mar 2026)</h4>
+                        <ul>
+                            <li>Defined GEO as "next-gen" layer atop SEO</li>
+                            <li>Established core philosophy: machine readability, E-E-A-T, conversational logic</li>
+                            <li>Created 3-phase workflow: Content → Entity Optimization → AI Indexing</li>
+                            <li>Set benchmark target: 25% citation rate across AI platforms</li>
+                            <li>Selected measurement stack: Otterly, GSC, Semrush, GA4, HubSpot AEO Grader</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-card">
+                        <h4>Measurement Framework (May-Jun 2026)</h4>
+                        <ul>
+                            <li>Defined GEO measurement model: Citation → Prompt → Share of Voice</li>
+                            <li>Tracked key metrics: AI Citation Rate, Share of Answers, Prompt Win Rate, AI SoV</li>
+                            <li>Configured Otterly.ai for 50+ countries including KSA/Arabic market</li>
+                            <li>Established baseline monitoring across ChatGPT, Perplexity, Gemini, Claude</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-card">
+                        <h4>Technical SEO & Indexation (Jun-Aug 2026)</h4>
+                        <ul>
+                            <li>Improved Google Search Console indexation:</li>
+                            <ul>
+                                <li>Indexed pages: +46 (+27.9%) from 165 to 211</li>
+                                <li>Not indexed pages: -26 (-13.8%) from 189 to 163</li>
+                                <li>Indexation rate: +9.8 pts from 46.6% to 56.4%</li>
+                            </ul>
+                            <li>Increased known pages awareness by +20 (354 to 374)</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-card">
+                        <h4>Content Audit & B2B Mapping (Aug 2026)</h4>
+                        <ul>
+                            <li>Audited 40 published blogs across 6 dimensions</li>
+                            <li>Identified critical gaps: 0% pricing, 0% product specs, 0% JSON-LD schema</li>
+                            <li>Mapped 4-Tier B2B GEO Intent Taxonomy for KSA</li>
+                            <li>Analyzed buyer behavior: HR, Procurement, VIP Concierges using AI for risk evaluation</li>
+                            <li>Diagnosed authority gap: high sentiment alignment but low market coverage (2.4%)</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-card">
+                        <h4>Strategic Recommendations (Aug-Sep 2026)</h4>
+                        <ul>
+                            <li>On-page fixes: JSON-LD schema, spec/price tables, keyword-rich internal links</li>
+                            <li>B2B landing pages: corporate-gifting, healthcare-scenting, hospitality</li>
+                            <li>Content updates: GEO Hook articles, Arabic localization, problem-solver transformations</li>
+                            <li>Off-site authority: GCC lifestyle portal outreach for roundup inclusion</li>
+                            <li>Quick technical fixes: SAR currency, KSA shipping banner, schema implementation</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Current Performance Metrics</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">20.0%</div>
+                        <div class="metric-label">AI Share of Voice</div>
+                        <div class="metric-change negative">Below Target</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">3/15</div>
+                        <div class="metric-label">Prompts with Zerene Mention</div>
+                        <div class="metric-change negative">Needs Improvement</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">3/3</div>
+                        <div class="metric-label">Brand Direct Queries</div>
+                        <div class="metric-change positive">Strong</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">0/4</div>
+                        <div class="metric-label">KSA Category Intent</div>
+                        <div class="metric-change negative">Critical Gap</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">Brand Sentiment Score</div>
+                        <div class="metric-change positive">Excellent</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">2.4%</div>
+                        <div class="metric-label">Domain Coverage</div>
+                        <div class="metric-change negative">Authority Gap</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Content Audit Findings - 40 Published Blogs</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dimension Audited</th>
+                            <th>Results</th>
+                            <th>Percentage</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Visual Q&A Accordions</td>
+                            <td>40 / 40</td>
+                            <td>100%</td>
+                            <td><span class="status-badge status-good">Good - Excellent human readability</span></td>
+                        </tr>
+                        <tr>
+                            <td>Arabic & Saudi Cultural Themes</td>
+                            <td>40 / 40</td>
+                            <td>100%</td>
+                            <td><span class="status-badge status-good">Strong - Karam, Wajaha, Sukun coverage</span></td>
+                        </tr>
+                        <tr>
+                            <td>Collection & Product Links</td>
+                            <td>40 / 40</td>
+                            <td>100%</td>
+                            <td><span class="status-badge status-moderate">Moderate - Generic anchor text</span></td>
+                        </tr>
+                        <tr>
+                            <td>Numerical Pricing (SAR/AED)</td>
+                            <td>0 / 40</td>
+                            <td>0%</td>
+                            <td><span class="status-badge status-blocking">Gap - Critical - Zero pricing mentioned</span></td>
+                        </tr>
+                        <tr>
+                            <td>Product Specs (200ml/100ml)</td>
+                            <td>0 / 40</td>
+                            <td>0%</td>
+                            <td><span class="status-badge status-blocking">Gap - Critical - Zero volume metrics stated</span></td>
+                        </tr>
+                        <tr>
+                            <td>Backend JSON-LD Schema</td>
+                            <td>0 / 40</td>
+                            <td>0%</td>
+                            <td><span class="status-badge status-blocking">Blocking - No Article/FAQPage schema</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="note">Despite outstanding brand philosophy and cultural alignment, AI search bots cannot recommend Zerene for category queries due to missing factual data required for purchase decisions.</p>
+            </section>
+
+            <section>
+                <h2>B2B GEO Intent Analysis - KSA Market</h2>
+                <h3>4-Tier Intent Taxonomy Established</h3>
+                <div class="intent-grid">
+                    <div>
+                        <h4>Tier 1: Executive & VIP Corporate Gifting</h4>
+                        <ul>
+                            <li><em>"Best luxury VIP corporate gifts for C-level executives in Riyadh under 1000 SAR"</em></li>
+                            <li><em>"Customized luxury Ramadan gift sets with Arabic calligraphy for Saudi clients"</em></li>
+                            <li><strong>Tags:</strong> VIP Corporate Gifts, Bespoke Executive Packaging, SAR Bulk Pricing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Tier 2: Hospitality, Majlis & Boutique Hotel</h4>
+                        <ul>
+                            <li><em>"Long-lasting signature scent diffusers for boutique hotel lobbies in Riyadh"</em></li>
+                            <li><em>"Oud and Rose luxury room sprays for traditional majlis hospitality KSA"</em></li>
+                            <li><strong>Tags:</strong> Majlis Sensory Hospitality, Boutique Hotel Ambient Scenting</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Tier 3: Healthcare, Spas & Premium Medical Clinics</h4>
+                        <ul>
+                            <li><em>"Alcohol-free non-toxic room sprays for aesthetic medical clinic waiting rooms Riyadh"</em></li>
+                            <li><em>"Calming luxury essential oil diffusers for dental and wellness centers in KSA"</em></li>
+                            <li><strong>Tags:</strong> Non-Toxic Medical Clinic Scenting, Alcohol-Free Patient Relaxation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Tier 4: Corporate Wellness & Interior Architecture</h4>
+                        <ul>
+                            <li><em>"How to use space wellness and scenting to improve office productivity in Saudi Arabia"</em></li>
+                            <li><em>"Sensory architecture diffusers for executive boardrooms in Riyadh"</em></li>
+                            <li><strong>Tags:</strong> Space Wellness, Executive Boardroom Aromatherapy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>AI Audit Summary - Share of Voice by Category</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prompt Category</th>
+                            <th>Zerene Mentions</th>
+                            <th>Status</th>
+                            <th>Primary Competitors Winning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Brand Direct Queries</td>
+                            <td>3 / 3 (100%)</td>
+                            <td><span class="status-badge status-good">Strong</span></td>
+                            <td>None - Zerene ranks #1</td>
+                        </tr>
+                        <tr>
+                            <td>KSA Category Intent</td>
+                            <td>0 / 4 (0%)</td>
+                            <td><span class="status-badge status-gap">Gap</span></td>
+                            <td>Jo Malone, Diptyque, Dr. Vranjes, Acqua di Parma, Al Majd for Oud</td>
+                        </tr>
+                        <tr>
+                            <td>Executive Gifting (KSA/UAE)</td>
+                            <td>0 / 3 (0%)</td>
+                            <td><span class="status-badge status-gap">Gap</span></td>
+                            <td>Bateel, Wah Gifts, customized executive leather sets</td>
+                        </tr>
+                        <tr>
+                            <td>Problem-Solution (AC Rooms/Majlis)</td>
+                            <td>0 / 3 (0%)</td>
+                            <td><span class="status-badge status-gap">Gap</span></td>
+                            <td>Diptyque, Dr. Vranjes, Golden Scent, Ounass</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="note">AI classifies Zerene as "Niche Luxury Wellness / Executive Gifting" with 100% likelihood to buy, but defaults to legacy competitors for broader queries due to low domain coverage (2.4%).</p>
+            </section>
+
+            <section>
+                <h2>What's Working Well</h2>
+                <ul>
+                    <li><strong>Strategic Foundation:</strong> Clear GEO philosophy, measurement framework, and B2B intent mapping</li>
+                    <li><strong>Cultural Alignment:</strong> Excellent integration of Saudi themes (Karam, Wajaha, Sukun) across content</li>
+                    <li><strong>Brand Sentiment:</strong> 100% likelihood to buy score indicates strong perceived value</li>
+                    <li><strong>Technical SEO Progress:</strong> +27.9% increase in indexed pages, improved indexation rate to 56.4%</li>
+                    <li><strong>Diagnostic Accuracy:</strong> Correctly identified AI's need for structured data over brand poetry</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Critical Gaps Identified</h2>
+                <ul>
+                    <li><strong>Zero Product Specifications:</strong> 0/40 blogs mention 200ml/100ml volumes</li>
+                    <li><strong>No Pricing Transparency:</strong> 0/40 blogs include SAR/AED pricing</li>
+                    <li><strong>Missing Structured Data:</strong> 0/40 blogs have JSON-LD schema for AI extraction</li>
+                    <li><strong>Generic Internal Links:</strong> Anchor text lacks keyword richness for AI context</li>
+                    <li><strong>Low AI Visibility:</strong> Only 20% Share of Voice (3/15 prompts), 0% on non-branded category queries</li>
+                    <li><strong>Authority Deficit:</strong> Limited third-party mentions, absent from aggregator sites (Ounass.sa, Golden Scent KSA)</li>
+                    <li><strong>B2B Signal Gap:</strong> No dedicated landing pages with MOQ, bulk pricing, or procurement data</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>B2B Client Prompts for KSA — Prompt Library</h2>
+                <p>Ready-to-copy prompts for Otterly.ai. Mark as <strong>Core Baseline</strong> (fixed, month-over-month tracking) or <strong>Exploratory</strong> (test first, promote after ICP fit confirmed).</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Persona</th>
+                            <th>Prompt (Copy-Paste)</th>
+                            <th>Intent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Corporate Gifting</td>
+                            <td>"Best luxury corporate gifts for C-level executives in Riyadh under 1,000 SAR"</td>
+                            <td>Commercial</td>
+                        </tr>
+                        <tr>
+                            <td>Ramadan Gifting</td>
+                            <td>"Customized luxury Ramadan gift sets with Arabic calligraphy for Saudi clients"</td>
+                            <td>Seasonal</td>
+                        </tr>
+                        <tr>
+                            <td>Hospitality</td>
+                            <td>"Long-lasting signature scent diffusers for boutique hotel lobbies in Riyadh"</td>
+                            <td>Solution-led</td>
+                        </tr>
+                        <tr>
+                            <td>Majlis Hospitality</td>
+                            <td>"Oud and Rose luxury room sprays for traditional majlis hospitality KSA"</td>
+                            <td>Cultural</td>
+                        </tr>
+                        <tr>
+                            <td>Healthcare</td>
+                            <td>"Alcohol-free non-toxic room sprays for aesthetic medical clinic waiting rooms Riyadh"</td>
+                            <td>Safety-first</td>
+                        </tr>
+                        <tr>
+                            <td>Procurement</td>
+                            <td>"Compare Zerene vs [competitor] for corporate executive gifting in the GCC"</td>
+                            <td>Comparison</td>
+                        </tr>
+                        <tr>
+                            <td>B2B Value</td>
+                            <td>"Why do top Riyadh firms choose Zerene for VIP corporate gifting?"</td>
+                            <td>Direct answer</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Prompt Research &amp; Baseline Methodology</h2>
+                <h3>How to Find &amp; Save Prompts in Otterly.ai</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Search Type</th>
+                            <th>What to Search</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Brand + Category</td>
+                            <td>"Zerene" "corporate gifting" "Riyadh"</td>
+                            <td>Finds prompts where Zerene + gifting + city appear</td>
+                        </tr>
+                        <tr>
+                            <td>Competitor Gap</td>
+                            <td>"best corporate gifts KSA" minus Zerene</td>
+                            <td>Shows where competitors appear, Zerene absent</td>
+                        </tr>
+                        <tr>
+                            <td>Intent Clusters</td>
+                            <td>"alcohol-free room spray" "KSA"</td>
+                            <td>Finds safety-conscious prompts</td>
+                        </tr>
+                        <tr>
+                            <td>Arabic Variants</td>
+                            <td>"رةخاف ةكرش ةيده ضايرلا"</td>
+                            <td>Arabic MSA for UAE/KSA market</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>Baseline Categories</h3>
+                <ul>
+                    <li><strong>Core Baseline:</strong> Approved premium-intent prompts, month-over-month reporting. Keep unchanged.</li>
+                    <li><strong>Exploratory:</strong> New or AI-generated prompts under review. Promote only after confirming ICP fit.</li>
+                    <li><strong>Excluded:</strong> Generic "fresh air" or commodity prompts — inflate count without measuring Zerene's intended customer.</li>
+                </ul>
+                <h3>Share of Voice (SoV) Formula</h3>
+                <p>Otterly calculates: <em>prompts mentioning Zerene ÷ all eligible prompts × 100</em>. Start with Core Baseline (15–20 prompts). Report SoV alone, then show Exploratory separately. Minimum mention threshold: don't report NSS for prompts with &lt;10 total mentions.</p>
+            </section>
+
+            <section>
+                <h2>Red Ocean vs Blue Ocean Strategy</h2>
+                <div class="timeline">
+                    <div class="timeline-card" style="border-left-color: #b3261e;">
+                        <h4 style="color: #b3261e;">Avoid for Baseline — Red Ocean</h4>
+                        <ul>
+                            <li>"corporate gifts KSA" — high competition, broad audience, price-sensitive</li>
+                            <li>"perfume gifts Saudi Arabia" — many brands bidding, low intent volume</li>
+                            <li>Doesn't match premium ICP</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-card" style="border-left-color: #1a7a3a;">
+                        <h4 style="color: #1a7a3a;">Recommended — Blue Ocean</h4>
+                        <ul>
+                            <li>"alcohol-free luxury room spray aesthetic clinic Riyadh"</li>
+                            <li>"customized executive co-branding Saudi Arabia"</li>
+                            <li>Tier 3 &amp; 4 B2B prompts — Healthcare, Corporate Wellness, Interior Architecture</li>
+                            <li>Less competition, higher per-deal value, premium positioning</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-card" style="border-left-color: #b8860b;">
+                        <h4 style="color: #b8860b;">Hybrid Approach</h4>
+                        <ul>
+                            <li>Core Baseline: blue-ocean prompts only</li>
+                            <li>Exploratory: 1–2 red-ocean prompts for testing</li>
+                            <li>Don't let exploratory shift the baseline trend</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Blue Ocean Prompt Framework</h2>
+                <p>Use this structure for every prompt: <strong>[TARGET AUDIENCE] + [USE-CASE INTENT] + [PRODUCT SPEC/SAFETY] + [REGIONAL LOCATION]</strong></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prompt</th>
+                            <th>Components</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Alcohol-free non-toxic room sprays for aesthetic medical clinic waiting rooms Riyadh"</td>
+                            <td>[Medical clinic] + [waiting room] + [alcohol-free/toxic] + [Riyadh]</td>
+                        </tr>
+                        <tr>
+                            <td>"Long-lasting signature scent diffusers for boutique hotel lobbies in Riyadh"</td>
+                            <td>[boutique hotel] + [lobby] + [signature scent/long-lasting] + [Riyadh]</td>
+                        </tr>
+                        <tr>
+                            <td>"Customized luxury Ramadan gift sets with Arabic calligraphy for Saudi clients"</td>
+                            <td>[Saudi clients] + [Ramadan gift] + [Arabic calligraphy/customized] + [Saudi Arabia]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>KSA Presence Signals — Helping AI Recognize Zerene in KSA</h2>
+                <p>Currently Zerene's website shows presence in UAE only. AI engines use entity signals (addresses, contact data) to determine geographic relevance. Without a KSA signal, Zerene gets recommended for UAE only.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>How It Helps AI</th>
+                            <th>Effort</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Add KSA office address to footer/contact page (PO Box or co-working space)</td>
+                            <td>"Physical presence" entity signal for KSA</td>
+                            <td>&lt; 1 hour</td>
+                        </tr>
+                        <tr>
+                            <td>List KSA delivery on product pages: "Express shipping to Riyadh, Jeddah &amp; Dammam within 2–4 business days"</td>
+                            <td>Triggers AI to extract fulfillment + region data</td>
+                            <td>&lt; 30 mins</td>
+                        </tr>
+                        <tr>
+                            <td>Create /saudi or /ksa landing page with localized content (Arabic, cultural references, local case studies)</td>
+                            <td>Dedicated page to associate with KSA market</td>
+                            <td>2–4 hours</td>
+                        </tr>
+                        <tr>
+                            <td>Add KSA-specific schema: Organization with address in Riyadh, areaServed: ["Saudi Arabia"]</td>
+                            <td>Structured data tells AI exactly where you operate</td>
+                            <td>1 hour</td>
+                        </tr>
+                        <tr>
+                            <td>Get listed in KSA directories (Saudi Business Directory, local chambers, luxury gifting guides)</td>
+                            <td>Third-party citations build KSA authority</td>
+                            <td>1–2 weeks</td>
+                        </tr>
+                        <tr>
+                            <td>Publish KSA-focused blog (e.g., "Executive Gifting Trends in Riyadh 2026")</td>
+                            <td>Content + localization = AI relevance signal</td>
+                            <td>1 week</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="next-steps">
+                <h2>Recommended Next Steps (P1–P10)</h2>
+                <ol>
+                    <li><strong>P1 — Immediate Blocking Fixes (Week 1):</strong>
+                        <ul>
+                            <li>Add 10–15 blue-ocean B2B prompts to Otterly Core Baseline (Tier 3 &amp; 4)</li>
+                            <li>Inject FAQPage JSON-LD schema into Shopify's article.liquid template</li>
+                            <li>Add pricing (SAR) and product specs (200ml/100ml) to all 40 blogs</li>
+                            <li>Enable SAR currency via Shopify Markets</li>
+                        </ul>
+                    </li>
+                    <li><strong>P2 — KSA Signal Building (Week 2):</strong>
+                        <ul>
+                            <li>Add KSA office address / delivery banner to website</li>
+                            <li>Create /saudi landing page with localized content</li>
+                        </ul>
+                    </li>
+                    <li><strong>P3 — Authority &amp; Distribution (Month 2):</strong>
+                        <ul>
+                            <li>Pitch Zerene to 3 GCC lifestyle portals for roundup inclusion</li>
+                            <li>Expand Otterly prompt set from 15 → 50+ using the optimized CSV</li>
+                        </ul>
+                    </li>
+                    <li><strong>P4 — Measurement Rhythm (Month 3):</strong>
+                        <ul>
+                            <li>Establish fixed Core Baseline + monthly SoV reporting</li>
+                            <li>Quarterly review: promote high-relevance exploratory prompts to baseline</li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Team FAQ</h2>
+                <dl class="faq-list" style="display: grid; gap: 1rem;">
+                    <div>
+                        <strong class="faq-question">Q: Why does Otterly show 0% for KSA category prompts?</strong>
+                        <p>Because the website has no pricing, specs, or KSA-specific signals. AI can't extract facts it doesn't have. Fix the on-page data first.</p>
+                    </div>
+                    <div>
+                        <strong class="faq-question">Q: Why is intent volume low for our segment?</strong>
+                        <p>Because we're targeting a narrow premium B2B ICP. Lower volume is expected — track trends, not absolute numbers.</p>
+                    </div>
+                    <div>
+                        <strong class="faq-question">Q: Should we target broad "corporate gifts KSA" prompts?</strong>
+                        <p>No — these are red ocean, low relevance to premium ICP. Focus on blue-ocean Tier 3/4 prompts instead.</p>
+                    </div>
+                    <div>
+                        <strong class="faq-question">Q: How many prompts should we track in Core Baseline?</strong>
+                        <p>Start with 15–20. Goal is a stable, fixed set for month-over-month comparison, not maximum count.</p>
+                    </div>
+                    <div>
+                        <strong class="faq-question">Q: What if a prompt generates neutral or negative sentiment?</strong>
+                        <p>Use prompt-level drill-down to identify why (missing price, wrong audience). Then improve the relevant content and remeasure the unchanged Core Baseline.</p>
+                    </div>
+                    <div>
+                        <strong class="faq-question">Q: We don't have KSA contacts — how do we show AI we're present?</strong>
+                        <p>Add a KSA address (even PO Box), list SAR pricing and 2–4 day shipping, create a /ksa page, get listed in local directories. These entity signals help AI associate the brand with KSA.</p>
+                    </div>
+                    <div>
+                        <strong class="faq-question">Q: How often should we report SoV?</strong>
+                        <p>Monthly, using the same Core Baseline. Report Core Baseline alone, then show Exploratory separately. Trend data is more useful than a single snapshot.</p>
+                    </div>
+                </dl>
+            </section>
+                        </ul>
+                    </li>
+                    <li><strong>Measurement & Optimization (Month 3):</strong>
+                        <ul>
+                            <li>Track Core Baseline NSS, Share of Voice, and mention count monthly</li>
+                            <li>Promote only high-relevance exploratory prompts to baseline (≥80% ICP fit)</li>
+                            <li>Review sentiment attributes monthly to identify content gaps</li>
+                            <li>Brief content team on top 3 content improvement opportunities</li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+
+            <section class="conclusion">
+                <h2>Conclusion</h2>
+                <p>Zerene's GEO program demonstrates strong strategic insight but requires urgent execution focus. The brand possesses excellent cultural alignment and sentiment strength, yet loses AI visibility to competitors who provide the concrete procurement data that AI search engines require.</p>
+                <p>The path forward is clear: implement the technical fixes (schema, pricing, specifications) that enable AI to extract and cite Zerene's content, while simultaneously building B2B-specific authority through dedicated landing pages and third-party validation. With these foundations in place, the existing strategic framework can drive meaningful improvement in Share of Voice toward the 25%+ benchmark.</p>
+                <p><em>As highlighted in the audit: "Good SEO is good GEO" - but GEO demands the additional layer of machine-readable facts that transforms brand philosophy into AI-actionable intelligence.</em></p>
+            </section>
+        </main>
+
+        <footer>
+            Zerene GEO Strategy Review<br>
+            Based on analysis of seo/sm_zerene_geo_2026_v1.txt and related documentation
+        </footer>
+    </div>
+</body>
+</html>

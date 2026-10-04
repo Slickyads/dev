@@ -1,0 +1,2033 @@
+GEO (Generative Engine Optimization)
+Analysis
+
+Zerene
+
+2026
+
+04-Sep-2026
+
+Google Search Console
+Audit Published Blogs
+AI Crawler
+B2B GEO Intent
+B2B Intent Volume
+
+04-Sep-2026
+
+Google Search Console
+Audit Published Blogs
+AI Crawler
+B2B GEO Intent
+B2B Intent Volume
+
+28-Aug-2026
+
+Audit Findings Across the 40 Published Blogs
+
+Google Search Console
+
+Dimension Audited
+
+Audit Result
+
+Target for AI Dominance
+
+Status
+
+Visual Q&A Accordions
+
+40 / 40 (100%)
+
+100% of posts
+
+Good — Excellent human readability.
+
+Arabic & Saudi Cultural Themes
+
+40 / 40 (100%)
+
+100% of GCC posts
+
+Strong — Great coverage of Karam (‫)ﻛرم‬,
+Wajaha (‫)وﺟﺎھﺔ‬, Sukun (‫)ﺳﻛون‬.
+
+Collection & Product Links
+
+40 / 40 (100%)
+
+100% of posts
+
+Moderate — Links exist, but use generic anchor
+text.
+
+Numerical Pricing (SAR / AED)
+
+0 / 40 (0%)
+
+100% of e-commerce posts
+
+Gap — Critical — Zero pricing mentioned across
+all 40 blogs.
+
+Product Specs (200ml / 100ml)
+
+0 / 40 (0%)
+
+100% of e-commerce posts
+
+Gap — Critical — Zero product size/volume
+metrics stated.
+
+Backend JSON-LD Schema
+
+0 / 40 (0%)
+
+100% of posts
+
+Blocking — No Article or FAQPage JSON-LD
+schema found.
+
+Audit Published Blogs
+AI Crawler
+B2B GEO Intent
+B2B Intent Volume
+
+28-Aug-2026
+
+Key Takeaway
+Why AI Engines Don't Recommend Zerene from these 40 Posts
+
+Your blog catalog has outstanding brand philosophy and Saudi cultural alignment, but AI
+search bots operate as data-driven shopping assistants.
+Google Search Console
+
+When a user asks:
+
+Audit Published Blogs
+AI Crawler
+
+"What are the best luxury corporate gift sets in Riyadh under 1,000 SAR?"
+"What are the best luxury reed diffusers in Saudi Arabia?"
+
+B2B GEO Intent
+B2B Intent Volume
+
+The AI crawler reads Zerene's blog posts, but cannot find prices, bottle sizes (200ml), or
+shipping delivery times. Because it cannot confirm these facts, it recommends
+competitors who list clear specs and prices instead.
+
+28-Aug-2026
+
+When a B2B procurement manager, HR director, or clinic manager uses ChatGPT or Perplexity, they don't
+search for "nice room spray." They search for "luxury corporate Ramadan gifts for VIP clients Riyadh" or
+"non-toxic ambient scenting for premium medical clinics in KSA."
+Here is the complete B2B KSA AI Optimization Playbook for Zerene:
+
+1. B2B Competitor Landscape in KSA (Who AI Recommends Right Now)
+To win in B2B AI Search, you are no longer just competing against retail perfume brands. You are
+competing against B2B gifting agencies and commercial scenting companies.
+
+B2B Sector
+
+Primary AI Competitors in KSA
+
+Why AI Recommends Them
+
+Google Search Console
+Audit Published Blogs
+
+Executive Gifting
+
+Bateel (Corporate), Mubkhar
+Corporate, Floward B2B, Saudi
+Corporate Gifts
+
+Hospitality
+(Hotels/Majlis)
+
+Dr. Vranjes (Commercial), Air Aroma, They explicitly state their ability to scent large spaces (HVAC
+ScentAir Arabia
+integration vs. large 500ml+ reed diffusers) and offer B2B
+consultation forms.
+
+Healthcare &
+Wellness
+
+Local aesthetic clinic suppliers,
+M-Scent
+
+AI Crawler
+B2B GEO Intent
+B2B Intent Volume
+
+They have dedicated /corporate pages with explicit bulk
+pricing, custom branding details, and MOQ (Minimum Order
+Quantities).
+
+They emphasize "sterile," "hypoallergenic," "alcohol-free," and
+"patient relaxation."
+
+28-Aug-2026
+
+AI Audit Summary
+Metric
+
+Value
+
+Diagnosis
+
+Total Prompts Tracked
+
+15
+
+English & Arabic (KSA)
+
+AI Share of Voice (SoV)
+
+20.0% (3 / 15)
+
+Zerene appears on brand direct queries, but is missing on
+non-branded category queries.
+
+Direct URL Citations
+
+20.0% (3 / 15)
+
+Perplexity cites zerene.com when asked about Zerene, but not
+when users search for category products.
+
+Google Search Console
+Audit Published Blogs
+AI Crawler
+
+Breakdown by Category
+Prompt Category
+
+Zerene Mentions
+
+Status
+
+Primary Competitors Recommended by AI
+
+B2B GEO Intent
+B2B Intent Volume
+
+Brand Direct Queries
+
+3 / 3 (100%)
+
+Strong
+
+None (Zerene ranks #1 and AI quotes Zerene's luxury wellness
+positioning).
+
+KSA Category Intent
+
+0 / 4 (0%)
+
+Gap
+
+Jo Malone, Diptyque, Dr. Vranjes, Acqua di Parma, ‫اﻟﻣﺎﺟد ﻟﻠﻌود‬.
+
+Executive Gifting (KSA/UAE)
+
+0 / 3 (0%)
+
+Gap
+
+Bateel, Wah Gifts, customized executive leather sets.
+
+Problem-Solution (AC Rooms / Majlis) 0 / 3 (0%)
+
+Gap
+
+Diptyque, Dr. Vranjes Leather Oud, Golden Scent, Ounass.
+
+28-Aug-2026
+
+2. How to Increase AI Intent Volume (The "Prompt Clustering" Strategy)
+AI models synthesize answers by looking for co-occurring entities. If a page mentions "Zerene" + "Reed
+Diffuser", AI might miss B2B queries. But if your page clusters the following 4 entity layers, AI volume
+skyrockets:
+
+[Target Audience Entity] + [Use-Case Intent] + [Product Spec/Safety] + [Regional Location]
+Example: "VIP Corporate Clients" + "Ramadan Gifting" + "200ml Alcohol-Free Oud Spray" +
+"Riyadh, KSA"
+How to Structure Every B2B Page for Maximum AI Volume:
+Google Search Console
+Audit Published Blogs
+
+1.
+
+Core Question Header (H2): Formatted exactly like the user's prompt ("Why do top Riyadh firms
+choose Zerene for VIP corporate gifting?").
+
+2.
+
+Direct Answer Paragraph (First 40 Words): A standalone, factual summary answering the header
+directly ("Zerene provides premium 200ml French essential oil reed diffusers and luxury room
+sprays packaged in custom co-branded boxes for corporate clients across Riyadh and Jeddah with
+express 2-4 day delivery.").
+
+3.
+
+Data Spec Table: Explicitly listing Price (SAR), MOQ, Longevity, and Fulfillment.
+
+4.
+
+Q&A Accordion: Answering 3–5 common procurement questions.
+
+AI Crawler
+B2B Intent Volume
+B2B GEO Intent
+
+28-Aug-2026
+
+2. The High-Intent B2B Prompts We Must Target
+Executive Gifting Prompts:
+
+Google Search Console
+Audit Published Blogs
+AI Crawler
+B2B Intent Volume
+B2B GEO Intent
+
+●
+●
+●
+
+"Best luxury corporate gifts for VIP clients in Riyadh under 1000 SAR"
+"Premium Ramadan corporate gift boxes with Saudi cultural meaning"
+"High-end customized corporate gifts for CEO oﬃces in KSA"
+
+Hospitality (Majlis, Hotels, Premium Real Estate):
+●
+●
+
+"Best luxury reed diffusers for hotel lobbies and majlis in Saudi Arabia"
+"Signature scenting for boutique hotels and premium real estate in Riyadh"
+
+Healthcare & Corporate Wellness:
+●
+●
+
+"Alcohol-free calming room sprays for premium aesthetic clinics and waiting rooms"
+"Non-toxic luxury scents for corporate wellness spaces in KSA"
+
+28-Aug-2026
+
+To rank #1 in AI Search Engines (ChatGPT, Perplexity, Google AI Overviews) and increase
+high-intent buyer volume for Zerene’s B2B Executive Gifting, Hospitality, Wellness, and
+Healthcare sectors in KSA, we must bridge traditional keyword research with GEO Intent
+Mapping.
+
+1. The 4-Tier B2B GEO Intent Taxonomy for KSA
+Traditional SEO targets short keywords ("corporate gifts riyadh").
+Google Search Console
+Audit Published Blogs
+AI Crawler
+B2B Intent Volume
+B2B GEO Intent
+
+AI Search targets long-tail conversational intent tags.
+AI engines parse queries using Intent Modifiers (Price, Region, Audience, Product Spec,
+Urgency). Here are the exact intent tags and keywords to embed across your website content,
+landing pages, and blog metadata:
+
+28-Aug-2026
+
+Tier 1: Executive & VIP Corporate Gifting Intent
+●
+
+●
+●
+
+High-Intent AI Queries:
+○
+"Best luxury VIP corporate gifts for C-level executives in Riyadh under 1000 SAR"
+○
+"Customized luxury Ramadan gift sets with Arabic calligraphy for Saudi clients"
+○
+"Unique corporate giveaways for National Day KSA executive gifts"
+Primary Intent Tags: VIP Corporate Gifts, Bespoke Executive Packaging, C-Suite Client Retention, Saudi
+National Day / Ramadan VIP Gifting, SAR Bulk Pricing.
+Keyword Modifiers to Include: Custom Co-Branding, Minimum Order Quantity (MOQ), Express
+Riyadh Delivery, Executive Packaging.
+
+Google Search Console
+
+Tier 2: Hospitality, Majlis & Boutique Hotel Intent
+Audit Published Blogs
+AI Crawler
+
+●
+
+B2B Intent Volume
+B2B GEO Intent
+
+●
+●
+
+High-Intent AI Queries:
+○
+"Long-lasting signature scent diffusers for boutique hotel lobbies in Riyadh"
+○
+"Oud and Rose luxury room sprays for traditional majlis hospitality KSA"
+○
+"Ambient scenting solutions for high-end luxury real estate sales centers Dubai &
+Riyadh"
+Primary Intent Tags: Majlis Sensory Hospitality, Boutique Hotel Ambient Scenting, VIP Guest
+Reception Scents, Oud-Rose Luxury Sprays.
+Keyword Modifiers to Include: 4-6 Month Longevity, 200ml High-Capacity Diffusers, Hospitality Bulk
+Replenishment.
+
+28-Aug-2026
+
+Tier 3: Healthcare, Spas & Premium Medical Clinics Intent
+●
+
+●
+●
+Google Search Console
+Audit Published Blogs
+
+High-Intent AI Queries:
+○ "Alcohol-free non-toxic room sprays for aesthetic medical clinic waiting rooms
+Riyadh"
+○ "Calming luxury essential oil diffusers for dental and wellness centers in KSA"
+○ "Hypoallergenic natural home fragrances for private healthcare suites"
+Primary Intent Tags: Non-Toxic Medical Clinic Scenting, Alcohol-Free Patient Relaxation,
+French Essential Oils (Hypoallergenic), Aesthetic Clinic Ambient Scenting.
+Keyword Modifiers to Include: 100% French Essential Oils, Zero Synthetic Alcohol, Soothing
+Ylang Ylang & Lavender.
+
+Tier 4: Corporate Wellness & Interior Architecture Intent
+
+AI Crawler
+B2B Intent Volume
+
+●
+
+B2B GEO Intent
+
+●
+
+High-Intent AI Queries:
+○ "How to use space wellness and scenting to improve office productivity in Saudi
+Arabia"
+○ "Sensory architecture diffusers for executive boardrooms in Riyadh"
+Primary Intent Tags: Space Wellness, Executive Boardroom Aromatherapy, Sensory
+Architecture KSA.
+
+28-Aug-2026
+
+What You Must Update on Zerene to Win B2B AI Traﬃc
+AI engines will not recommend your standard B2C product page for a B2B query. You must build
+explicit B2B signals.
+Build Dedicated B2B Landing Pages
+Instead of relying only on blogs,
+create dedicated Shopify Pages
+Google Search Console
+Audit Published Blogs
+AI Crawler
+B2B Intent Volume
+B2B GEO Intent
+B2B Signal
+
+●
+●
+●
+
+/pages/corporate-gifting
+/pages/hospitality
+/pages/healthcare-scenting
+
+What they must contain for AI:
+●
+●
+●
+
+B2B Pricing & MOQ: "Minimum order quantity for customized corporate gifts is 20 units."
+Customization Details: "We offer bespoke co-branding, custom luxury packaging, and
+personalized Arabic calligraphy cards."
+Logistics & Invoicing: "Dedicated account managers, VAT-compliant B2B invoicing (SAR),
+and bulk express delivery across Riyadh, Jeddah, and Dammam."
+
+28-Aug-2026
+
+Update the Blogs with "B2B Fast-Fact" Tables
+B2B buyers want ROI and specs. In your existing "Space Wellness" and "Executive Gifting"
+blogs, add this exact table at the top so AI bots can extract it:
+B2B Requirement
+
+Zerene Corporate Solution
+
+Ideal For
+
+Bulk Gifting &
+Customization
+
+Bespoke packaging, co-branded sleeves, bilingual VIP Client Retention, Board Members,
+greeting cards
+Ramadan Gifts
+
+Hospitality Ambient
+Scenting
+
+200ml High-Longevity Diffusers (4–6 months),
+bulk replenishment
+
+Boutique Hotels, Executive Majlis, Private
+Lounges
+
+Audit Published Blogs
+
+Healthcare Safety
+Standards
+
+100% Alcohol-Free, Non-Toxic French Essential
+Oils
+
+Premium Clinics, Wellness Centers, Spas
+
+AI Crawler
+
+B2B Logistics (KSA)
+
+Bulk quoting, B2B invoicing in SAR, dedicated KSA Procurement Directors, HR Managers,
+account manager
+Interior Designers
+
+Google Search Console
+
+B2B Intent Volume
+B2B GEO Intent
+B2B Signal
+
+Add B2B Service Schema (B2B Business & Offer)
+AI relies on schema to know you do B2B. We need to inject a speciﬁc JSON-LD schema on
+your corporate pages that explicitly declares:
+"Business Model": "B2B", "knows About": "Corporate Gifting Saudi Arabia".
+
+28-Aug-2026
+
+Strategic GEO Fixes
+1. Add Direct-Answer FAQ Snippets to Product Pages
+On your Reed Diffuser and Room Spray product pages, add structured Q&A blocks:
+●
+●
+
+"Why are Zerene reed diffusers ideal for air-conditioned homes in Riyadh?"
+"Are Zerene room sprays alcohol-free and safe for textiles?"
+
+2. Publish Targeted "GEO Hook" Articles on Zerene's Blog
+Publish 3 blog posts targeting the exact queries where Zerene is currently missing:
+Google Search Console
+Audit Published Blogs
+AI Crawler
+B2B Intent Volume
+B2B GEO Intent
+B2B Signal
+
+●
+●
+●
+
+Article 1: "The Guide to Luxury Home Fragrances & Reed Diffusers in Saudi Arabia (2026 Edition)"
+Article 2: "Executive Gifting in Riyadh: Premium Aromatherapy Gift Sets Under 1,000 SAR"
+Article 3: "How to Scent a Luxury Majlis in Riyadh: Oud vs. Ylang Ylang"
+
+3. Off-Site Citations & Digital PR
+Pitch Zerene to regional GCC portals (Savoir Flair, Vogue Arabia, What's On Dubai, Harper's Bazaar Arabia) to
+get Zerene included in "Best Luxury Home Scents" roundups. When those portals mention Zerene,
+Perplexity will cite zerene.com as a primary source!
+
+28-Aug-2026
+
+Good SEO is good "GEO"
+The famous slide that Google Search Advocate John Mueller displayed at Search Central Live
+featured the quote “Good SEO is good "GEO"”
+AI doesn't only read your site, it reads what everyone else says about you.
+●
+
+The 80% remains the same: Most success in AI search comes from standard, healthy
+SEO building easily crawlable pages, clear site architecture, and helpful content that
+directly answers queries
+
+●
+
+The 20% shift: AI engines do not just read your website; they look at what the rest of the
+web says about you. Building visibility now requires steady, off-site organic signals like
+industry mentions, podcasts, YouTube presence, and community discussions complete
+result
+
+28-Aug-2026
+
+4-Pillar Action Plan to Upgrade All 40 Blogs for AI Dominance
+Pillar 1: Insert a "Product Spec & Price Fact Sheet" Table (< 5 mins per post)
+Add a standardized 3-column table near the top of all 40 blog posts:
+Product
+Speciﬁcation
+
+Zerene Luxury Standard
+
+Regional Beneﬁt for KSA & UAE
+
+Product Formats
+
+200ml Reed Diffusers & 100ml Alcohol-Free
+Room Sprays
+
+Pricing Tier
+
+420 AED – 1,020 AED (~430 SAR – 1,040 SAR) Fits premium executive gifting
+budgets
+
+Craftsmanship
+
+100% French Essential Oils (Alcohol-Free)
+
+Pure non-toxic aromatherapy
+
+Express
+Fulﬁllment
+
+Shipped direct to Riyadh, Jeddah, Dammam &
+Dubai
+
+2–4 Business Days Express
+Fulﬁllment
+
+Perplexity Audit
+
+4–6 months continuous diffusion in
+AC rooms
+
+28-Aug-2026
+
+3. How We Will Analyze Your Otterly / Prompt Data
+Once you share your Otterly report or prompt export data, I will run it through our
+analysis framework to extract:
+1.
+
+AI Share of Voice (SoV) Gap:
+Which specific prompts show Zerene vs. where competitors (Bateel, Dr.
+Vranjes, Mubkhar) are winning.
+
+Brand Visibility
+
+2.
+
+Domain Citation Mapping:
+Which external URLs (blogs, magazines, gift guides) AI models are currently
+quoting for those queries.
+
+3.
+
+Prompt Cluster Opportunities:
+Grouping low-performing prompts into actionable content updates for
+zerene.com.
+
+28-Aug-2026
+
+What Otterly.ai Does
+●
+
+Prompt Tracking across LLMs:
+You enter user prompts (e.g., "What are the best luxury reed diffusers in Dubai?" or "Top
+non-toxic room sprays in Saudi Arabia"), and Otterly scans ChatGPT, Perplexity, Google
+AI Overviews, and Claude to check if Zerene is recommended in the answer.
+
+●
+
+Source & Citation Tracking:
+When Perplexity or ChatGPT Search answers a query, Otterly extracts which speciﬁc
+websites were cited as sources. (e.g., Did the AI quote zerene.com, a lifestyle blog, or
+a competitor?).
+
+Brand Visibility
+
+●
+
+Share of Voice (SoV) & Competitor Benchmarking:
+It calculates how often Zerene appears compared to regional competitors (e.g.,
+Rituals, Jo Malone, Diptyque, local GCC perfume houses).
+
+●
+
+Sentiment & Position Analysis:
+It tracks whether Zerene is listed as #1, #2, or #3 in AI list recommendations and
+whether the tone is positive, neutral, or negative.
+
+28-Aug-2026
+
+Pillar 2: Deploy Backend JSON-LD Schema
+Inject the dynamic schema code (zerene-shopify-schema.liquid) into Shopify's
+article.liquid template so AI search engines automatically parse the Q&A sections of all 40
+blogs.
+Pillar 3: Upgrade Internal Link Anchors to High-Intent Search Terms
+Replace generic links ("our collection", "Start Shopping") with exact-match search anchors:
+Perplexity Audit
+
+●
+
+Change to: [Zerene Executive Gifting Sets in
+
+●
+
+Riyadh](https://zerene.com/collections/all)
+Change to: [Luxury French Essential Oil Reed
+Diffusers](https://zerene.com/collections/all)
+
+Pillar 4: Transform Science Posts into GCC Problem-Solvers
+Update older science blog titles (e.g. "Lavender essential oil: A scientiﬁc perspective") into GCC
+climate problem-solvers:
+●
+
+New Title: "How to Use Lavender & Ylang-Ylang Reed Diffusers for AC Bedroom Sleep
+Wellness in Dubai & Riyadh"
+
+28-Aug-2026
+
+Key Takeaways & The GEO Growth Roadmap for Zerene
+Why Zerene is Missing on Category Queries:
+1.
+
+Perplexity Audit
+
+2.
+
+Perplexity extracts facts from top-cited sites like Ounass.sa, Golden Scent KSA, Nice One, and regional
+blogs (e.g. Harper's Bazaar Arabia). Zerene is currently not featured on these aggregator sites or external
+gift roundups.
+Immediate Action Steps to Win AI Recommendations:
+
+○
+
+○
+○
+
+On-Page GEO Schema & FAQ Blocks: Inject the JSON-LD schema we generated
+(zerene-shopify-schema.liquid) into Shopify so AI search bots extract Zerene's product
+attributes (200ml reed diffusers, French essential oils, alcohol-free).
+Publish Direct-Answer Content: Publish blog posts targeting the exact missing prompts (e.g.
+"Best non-toxic long-lasting reed diffusers for air-conditioned rooms in Riyadh").
+Digital PR & GCC Roundups: Get Zerene included on luxury gift roundups and GCC lifestyle
+portals.
+
+28-Aug-2026
+
+What You Must Update on Zerene to Win B2B AI Traﬃc
+AI engines will not recommend your standard B2C product page for a B2B query. You must build
+explicit B2B signals.
+A. Build 3 Dedicated B2B Landing Pages
+
+Perplexity Audit
+
+Instead of relying only on blogs, create dedicated Shopify Pages (/pages/corporate-gifting,
+/pages/hospitality, /pages/healthcare-scenting).
+What they must contain for AI:
+●
+●
+●
+
+B2B Pricing & MOQ: "Minimum order quantity for customized corporate gifts is 20 units."
+Customization Details: "We offer bespoke co-branding, custom luxury packaging, and
+personalized Arabic calligraphy cards."
+Logistics & Invoicing: "Dedicated account managers, VAT-compliant B2B invoicing (SAR),
+and bulk express delivery across Riyadh, Jeddah, and Dammam."
+
+28-Aug-2026
+
+Executive Review of Live Zerene Blogs
+Dimension
+
+Perplexity Audit
+
+Current
+Status
+
+Key Findings
+
+Cultural
+Alignment
+
+Strong
+
+Excellent framing around Saudi leadership, Majlis, and regional concepts like Karam
+(‫ )ﻛرم‬and Wajaha (‫)وﺟﺎھﺔ‬.
+
+Visual FAQ
+Structure
+
+Moderate
+
+Articles feature clean visual ⭐ FAQ: sections, but lack backend JSON-LD schema.
+
+Product Specs &
+Prices
+
+Gap — High
+
+Articles omit volume (200ml), prices (SAR/AED), and concrete specs needed by AI
+shopping bots.
+
+Internal Anchor
+Links
+
+Gap —
+Medium
+
+Anchors are brand-generic ("Start Shopping") rather than product-keyword rich.
+
+Schema Markup
+
+Blocking
+
+Zero Article, BlogPosting, or FAQPage JSON-LD code present on article pages.
+
+28-Aug-2026
+
+Why AI Search Engines Skip Zerene Blogs
+When ChatGPT or Perplexity scans Zerene's blog posts to answer buyer queries like:
+"What are the best 200ml luxury reed diffusers in Saudi Arabia under 1,000 SAR?"
+It encounters high-level brand poetry ("A Caravan of the Soul", "Sensory Architecture"), but fails
+to ﬁnd concrete speciﬁcations:
+Perplexity Audit
+
+1.
+2.
+3.
+4.
+
+No product sizes (200ml diffusers, 100ml sprays).
+No numerical pricing (420 AED / ~430 SAR, 1,020 AED / ~1,040 SAR).
+No ingredient compliance specs (100% French Essential Oils, Alcohol-Free, Non-Toxic
+for AC rooms).
+No backend FAQPage JSON-LD schema to signal to AI engines that the article contains
+veriﬁed answers.
+
+28-Aug-2026
+
+The 5-Step Action Plan to Make Zerene Blogs AI-Dominant
+1.
+2.
+
+3.
+Perplexity Audit
+
+4.
+5.
+
+Inject FAQPage JSON-LD Schema: Embed backend schema code into Shopify's
+article.liquid template so AI search engines ingest Q&As automatically.
+Insert a "Product Spec & Price Table" in Every Article: Place a 4-row spec table
+(Formulation, Volume, Price Range, KSA Delivery Timeline) near the top of every blog
+post.
+Keyword-Rich Internal Links: Replace generic links ("explore collection") with high-intent
+keyword anchors ("Zerene Alcohol-Free Oud Room Sprays").
+Publish Native Arabic Articles: Launch dedicated Arabic posts targeting exact Saudi
+search prompts (‫)ﻋﻄﻮر ﻣﻨﺎزل ﻓﺎﺧﺮة وﺛﺎﺑﺘﺔ ﻟﻠﻤﺠﺎﻟﺲ ﺑﺎﻟﺮﻳﺎض‬.
+Embed Live Product Cards: Include Shopify product cards with live price badges
+directly inside blog post body text.
+
+28-Aug-2026
+Quick Fix 1: Install the JSON-LD Schema Code (< 10 mins)
+AI bots (ChatGPT Search & Perplexity) read JSON-LD to understand product details, ingredients, and
+geographic targets.
+1.
+
+2.
+3.
+4.
+Perplexity Audit
+
+Open Shopify Admin ➔ Online Store ➔ Themes ➔ Edit Code.
+Create a new snippet under Snippets : zerene-jsonld.liquid .
+Paste the code from zerene/seo/zerene-shopify-schema.liquid .
+In layout/theme.liquid , paste {% render 'zerene-jsonld' %} right before </head> .
+
+Quick Fix 2: Enable SAR Currency via Shopify Markets (< 5 mins)
+Perplexity deprioritizes stores in KSA search results if prices are displayed only in AED .
+1.
+2.
+3.
+
+Go to Shopify Admin ➔ Settings ➔ Markets.
+Click Add Market ➔ Select Saudi Arabia.
+Enable Saudi Riyal (SAR) local currency and auto-conversion.
+
+Quick Fix 3: Add a KSA Express Shipping Bar (< 5 mins)
+AI web scrapers look for fulﬁllment terms on e-commerce sites to conﬁrm regional availability.
+Add a banner or product page text:
+🚚 Express Shipping to Riyadh, Jeddah & Across Saudi Arabia within 2–4 Business Days.
+
+28-Aug-2026
+
+B2B Competitors KSA
+●
+
+Brand Visibility
+
+Prompt Tracking across LLMs:
+
+B2C Competitors KSA
+●
+
+Prompt Tracking across LLMs:
+
+04-Sep-2026
+
+Increase Organic
+●
+Impressions
+●
+Engagement
+
+Brand Visibility
+
+KSA Organic
+●
+Impressions
+●
+Engagement
+
+04-Sep-2026
+
+Brand Visibility
+
+04-Sep-2026
+
+Brand Visibility
+
+28-Aug-2026
+
+Whats is brand sentiment?
+Brand sentiment is the tone and perception associated with Zerene when AI-generated answers
+mention the brand typically positive, neutral, or negative. Otterly AI lets you evaluate sentiment at
+the prompt, response, and answer level, including the attributes that explain why a response
+received its sentiment.
+How AI measure Content Visibility for Content
+Track:
+
+Brand Visibility
+
+●
+●
+●
+
+Sentiment direction: positive, neutral, or negative mentions.
+Sentiment score: the overall favorability measure used in the report.
+Sentiment volume: the number of mentions supporting the score, because the same score
+can represent very different levels of evidence at different mention volumes.
+
+For Zerene, segment results by premium wellness, fragrance, solution-led content, price/value,
+quality, and B2B procurement. Compare Zerene with premium competitors rather than
+inexpensive products that do not match the intended customer profile.
+Measure visibility independently from sentiment.
+Brand Coverage is the percentage of prompts that mention Zerene: prompts mentioning Zerene ÷
+all eligible prompts × 100. Report it alongside mention count, visibility, sentiment breakdown, and
+NSS (positive mentions − negative mentions) ÷ total mentions × 100 rather than treating any one metric as the
+complete result
+
+28-Aug-2026
+
+Zerene sentiment and measurement plan
+OtterlyAI, open Brand Report Overview → Brand Ranking
+
+Brand Visibility
+
+28-Aug-2026
+
+Zerene Use a fixed measurement baseline
+Create a clearly labeled Core Baseline containing only approved prompts aligned with Zerene’s
+premium-wellness ICP. Keep those prompts unchanged for trend comparisons. open the Prompt
+view to inspect sentiment for individual queries and AI responses.
+
+Brand Visibility
+
+28-Aug-2026
+
+New Prompts
+Put newly suggested prompts into an Exploratory group first; promote them only after confirming
+that they represent premium product, solution, fragrance, or B2B buying intent.
+Exclude prompts centered on generic “fresh air,” low-price alternatives, or audiences outside the
+ICP. This prevents changes in the prompt set from being mistaken for changes in Zerene’s
+performance.
+Expect intent and results to evolve.
+
+Brand Visibility
+
+Buyer wording, competitor visibility, cited sources, and AI responses can change over time, so
+maintain the fixed Core Baseline and review the Exploratory group separately. OtterlyAI refreshes
+sentiment with its regular daily tracking schedule, making repeated measurements more useful
+than one snapshot.
+Regardless of how a prompt is generated, validate its relevance before using it for KPI reporting.
+
+28-Aug-2026
+
+Framework to conclude - GEO/AIO / How to improve content/ ICP
+Conclude with a practical GEO/AIO scorecard. Review the report by asking:
+●
+●
+●
+●
+●
+●
+
+Brand Visibility
+
+Are relevant premium buyers seeing Zerene?
+Is Zerene associated with quality, wellness, sophistication, and value rather than low price?
+Does Zerene appear in Arabic B2B and premium-consumer prompts?
+Which high-priority prompts generate neutral or negative sentiment?
+Which cited sources or missing content explain the result?
+Are any prompts attracting irrelevant “fresh air” intent and therefore needing exclusion?
+
+Prioritize work where buyer relevance, commercial intent, and improvement opportunity are all high. Then
+remeasure the fixed baseline after content, PR, or positioning changes; trend data is more useful than a
+single snapshot.
+Fix the report configuration. Use this operating structure:
+●
+●
+●
+●
+●
+●
+
+Core Baseline: approved premium-intent prompts used for month-over-month reporting.
+Exploratory: new or AI-generated prompts under review.
+Excluded: generic fresh-air, commodity air-freshening, and low-price-led prompts.
+Segments: premium wellness, fragrance, solution-led use cases, and B2B procurement.
+Monthly decision: retain, revise, promote, or exclude each exploratory prompt based on ICP fit and
+commercial relevance.
+For the cleanest current-status reading, first report the Core Baseline alone, then show
+Exploratory results separately rather than combining both sets.
+
+28-Aug-2026
+
+Intent Volume vs keywords Volume
+Separate prompt intent from keyword volume. Do not prioritize a keyword only because it has high
+search volume. Classify each prompt by:
+●
+●
+●
+●
+
+Brand Visibility
+
+Commercial intent: the buyer is comparing or selecting a premium product.
+Solution intent: the buyer is trying to solve a wellness, ambiance, or fragrance-related
+Educational intent: the buyer is learning about the category or benefits.
+B2B intent: the buyer is evaluating products for hospitality, retail, wellness spaces, offices,
+
+Excluded intent: “fresh air” or general air-freshening queries that do not represent Zerene’s ideal
+premium-wellness customer.
+
+28-Aug-2026
+
+Increasing relevant prompt intent volume for Zerene
+Build prompt clusters around the buyer’s full question and intent, because AI search interprets the
+meaning of a complete natural-language prompt rather than only individual keywords. OtterlyAI’s
+purpose is to show where Zerene appears or is missing in AI answers and which questions drive
+exposure.
+Expand the prompt set by adding controlled variants within each qualified cluster:
+●
+
+Brand Visibility
+
+●
+●
+●
+●
+●
+
+Premium wellness: luxury wellness products for homes, hotels, spas, and premium
+environments.
+Fragrance solutions: premium scenting, signature scent, ambient fragrance, and
+high-quality fragrance systems.
+B2B procurement: hotel, resort, retail, commercial, and wellness-space supplier
+comparisons.
+Premium value: quality, craftsmanship, durability, customization, service, and whether the
+premium price is justified.
+Brand discovery: “What is Zerene?”, “How does Zerene compare with premium
+alternatives?”, and “Is Zerene suitable for hotels or luxury spaces?”
+For each cluster, create variants using best, compare, how to choose, for [buyer type],
+quality, price/value, and recommendation language. These remain relevant only when they
+preserve the premium-wellness or B2B buying context.
+
+Keep a fixed Core Baseline for trend reporting and place new variants, AI-suggested prompts, and
+experimental wording in an Exploratory group
+
+28-Aug-2026
+
+How conclude user is typing similar prompt and zerene brand showing
+Group semantically similar prompts, not merely identical keywords. For example, place these in
+one “premium hotel fragrance solution” cluster:
+
+Brand Visibility
+
+What are the best luxury scent solutions for hotels?
+How should a five-star hotel choose a premium scenting supplier?
+Compare premium fragrance solutions for luxury resorts.
+Which high-quality ambient fragrance systems suit hospitality spaces?
+The prompts are different in wording but address a related buying need. AI engines interpret full
+prompt meaning, so this cluster-based approach is more representative than counting one
+keyword alone.
+Measure each cluster using a repeatable scorecard:
+Number of eligible prompts in the cluster.
+Number and percentage of prompts where Zerene is mentioned.
+Number and percentage where Zerene is cited.
+Zerene’s visibility position or share relative to the defined competitor set.
+Positive, neutral, and negative sentiment by prompt.
+Results split by engine, country, language, and reporting period.
+
+28-Aug-2026
+Otterly plan covers 15 prompts or more so we need to concluded based on available data.
+Recommended conclusion format for monthly report:
+“Within the fixed Core Baseline of [number] qualified prompts covering [clusters], Zerene was
+mentioned in [number/percentage] and cited in [number/percentage] during [period]. Visibility
+was strongest in [clusters] and weaker in [clusters]. Exploratory prompts produced [separate
+result] and were not used to change the baseline trend.”
+
+Brand Visibility
+
+28-Aug-2026
+
+Brand Visibility
+
+The product related keywords compete with other brand product which are low price while Zerene
+products are premium and high quality due to higher price.
+Build Zerene’s positioning around premium value.
+Align the content and prompts around this positioning structure:
+●
+Audience: premium wellness-conscious consumers and B2B buyers.
+●
+Need: a refined, high-quality fragrance or wellness solution.
+●
+Differentiation: premium experience, quality, design, formulation, service, and credible
+proof not lowest price.
+●
+Commercial message: explain why the higher price is justified.
+●
+Proof layer: product specifications, sourcing, craftsmanship, testing, use cases, expert
+commentary, customer evidence, and reputable third-party coverage.
+When sentiment is weak, inspect the sources cited in the AI answer; sentiment is derived from the
+sources used and cited in that answer, and the report allows source-level inspection.
+
+28-Aug-2026
+
+Prompt should not match with fresh air products as it does not meet Ideal buying criteria.
+Map prompts to content before publishing. Create a simple prompt-to-content matrix:
+●
+●
+●
+●
+●
+●
+
+Brand Visibility
+
+Premium product page: product, quality, materials, price justification, and differentiation.
+Solution page: wellness use case, environment, buyer need, and expected experience.
+B2B page: hospitality, retail, workplace, customization, service, and procurement criteria.
+Comparison page: Zerene versus low-price alternatives, with objective quality and value criteria.
+Proof page: certifications, testing, sourcing, case studies, reviews, and third-party mentions.
+Arabic content: localized versions of the highest-priority pages and FAQs.
+
+Use a non-moving baseline for strategy decisions
+Keep a fixed benchmark set of prompts and record results at regular intervals. Do not replace the
+baseline whenever performance changes.
+Add new prompts to a separate exploratory group, then promote them into the baseline only after they
+demonstrate strong relevance to the premium ICP. Track visibility, mention presence, sentiment, cited
+sources, competitor presence, and the content page mapped to each prompt.
+
+28-Aug-2026
+
+Brand visibility
+Follow up
+●
+●
+●
+Google Search
+
+●
+●
+
+How Brand sentiment will measure ?
+○
+Whats is brand sentiment?
+Brand & Strategy positioning without Non-moving metric for prompt?
+How AI measure Content Visibility for Content
+○
+Content - Intent Volume
+○
+Fragrance Topic - High Competition/Pricing
+○
+Solution Content Prompts for B2B Buyers Engage AI to Discover Zerene in Arabic language
+AI Search Prompts Behaviorally Discover Zerene
+
+The shared keywords should match with Premium customer who is looking for wellness solution
+and premium products.
+The product related keywords compete with other brand product which are low price while Zerene
+products are premium and high quality due to higher price.
+Prompt should not match with fresh air products as it does not meet Ideal buying criteria.
+Framework to conclude - GEO/AIO / How to improve content/ ICP - Content Solution, Premium
+Prompt match with Content Keywords - Premium Product
+
+21-Aug-2026
+
+How B2B Buyers Engage AI to Discover Zerene
+B2B buyers (HR leaders, Procurement Heads, VIP Concierges, and EA to C-Suites) do not use
+conversational AI to browse; they use it to evaluate risk, find cultural alignment, and source
+curated options.
+●
+
+Google Search
+
+●
+
+●
+
+Mid-Funnel Discovery Prompts: Procurement managers prompt AI engines with specific
+criteria: "Top luxury executive gifting brands in Saudi Arabia focused on wellness,"
+"Customizable sensory branding for high-end offices in Riyadh," or "B2B VIP corporate gifts
+reflecting regional hospitality (Karam)".
+Synthesis & Shortlisting: The AI engine scans indexed domain authority, blog content,
+and structural product details, compiling a comparison table or structured summary of
+top-tier recommendations.
+Deep Evaluation Queries: Once Zerene enters the shortlisting stage, buyers use prompt
+follow-ups to verify credibility: "Compare Zerene vs. Jo Malone for corporate executive
+gifting," "Does Zerene offer bulk bespoke packaging in the GCC?" or "What is the cultural
+significance of Zerene's scents for majlis settings?
+
+21-Aug-2026
+
+How AI Search Models Behaviorally Treat Zerene (Brand Profile)
+Generative AI models categorize brands based on entity signals, existing indexed content, and
+sentiment across the web.
+[ B2B Buyer Query ] > [ AI Reasoning Model ]
+
+Google Search
+
+●
+●
+●
+
+├── Domain Category ──► Classified as "Niche Luxury Wellness / Executive Gifting"
+├── Sentiment Score ──► 100% "Likelihood to Buy" (High Sentiment Alignment)
+└── Authority Gap ──► High positioning depth, but low overall market coverage (2.4%)
+
+●
+
+Entity Recognition as "Niche Executive Specialist": AI platforms (ChatGPT, Perplexity,
+Gemini) currently classify Zerene in the Niche category. They recognize Zerene’s messaging
+around leadership, quiet luxury, and space wellness, giving it an exceptionally high sentiment
+score (100% Likelihood to Buy).
+High Depth, Low Citation Spread: AI search models view Zerene as a high-quality
+subject-matter authority for hyper-specific terms (e.g., Ylang Ylang + Lavender room sprays in
+KSA). However, because domain coverage sits at 2.4%–4%, AI engines frequently default to
+global legacy competitors (e.g., Diptyque, Jo Malone) for broader B2B queries.
+Inference-Driven Recommendations: When an AI engine generates answers for VIP corporate
+gifting in the Middle East, it cross-references Zerene’s editorial content (Wajaha, Thiqah, Karam)
+with B2B purchase intent. If Zerene’s B2B landing pages lack explicit structural data (MOQs,
+corporate catalogs, B2B contact schemas), the AI engine may cite competitors who present
+clearer procurement data.
+
+●
+
+●
+
+21-Aug-2026
+
+Actionable GEO Adjustments for B2B Growth
+Build Dedicated B2B Content Clusters: Publish clear, structured B2B pages targeting queries like
+"Corporate Executive Gifting Saudi Arabia" with direct FAQ blocks for AI models to extract.
+●
+
+Google Search
+
+Inject B2B Schema Markup: Add Organization and B2B Servicing structured data so AI web
+crawlers easily index custom branding, bulk fulfillment, and regional delivery metrics.
+
+21-Aug-2026
+
+Domain Coverage
+
+Otterly
+
+21-Aug-2026
+
+All cited urls
+
+Otterly
+
+21-Aug-2026
+
+Brand Visibility
+
+Otterly
+
+21-Aug-2026
+
+Brand Visibility
+
+Otterly
+
+21-Aug-2026
+
+Technical SEO & Indexation Improvements
+
+Google Search
+
+●
+
+Continued technical SEO work with a strong focus on Google indexing
+and index coverage.
+
+●
+
+Reviewed indexed and non-indexed URLs in Google Search Console to
+identify indexation trends and remaining issues.
+
+●
+
+Worked on improving the indexability of valid website pages so more
+useful pages can become eligible to appear in Google Search.
+
+●
+
+Worked on reducing unnecessary pages and unwanted URL signals that
+do not need to remain in Google’s index coverage.
+
+●
+
+Monitored changes after technical SEO work to evaluate whether the
+website’s overall indexation profile was improving.
+
+21-Aug-2026
+
+Google Search
+
+Google Search Console Monitoring
+
+21-Aug-2026
+
+Google Search Console Monitoring
+●
+●
+
+Tracked the growth of indexed pages and the reduction of non-indexed
+pages through Google Search Console.
+Compared historical and current index coverage to document the
+cumulative technical SEO impact.
+Metric
+
+15 Jun 2026
+
+14 Aug 2026
+
+Change
+
+Impact
+
+Indexed pages
+
+165
+
+211
+
++46 (+27.9%)
+
+More valid pages
+indexed
+
+Not indexed pages
+
+189
+
+163
+
+-26 (-13.8%)
+
+Fewer URLs remaining
+outside index
+
+Indexation rate
+
+46.6%
+
+56.4%
+
++9.8 pts
+
+Higher share of known
+pages indexed
+
+Known pages
+
+354
+
+374
+
++20
+
+Google is aware of
+more site URLs
+
+Google Search
+
+13-Aug-2026
+
+Otterly expectation
+
+13-Aug-2026
+
+Otterly expectation
+
+13-Aug-2026
+
+Increase in organic
+traffic and keywords
+
+13-Aug-2026
+
+You cannot directly increase a prompt’s intent volume, it is an estimate of how
+frequently that query intent is searched across AI engines, based on Google search
+volume because AI platforms do not publish their underlying query-usage data1.
+To target higher-volume opportunities:
+
+How intent volume can be
+increase for prompts?
+
+1.
+
+Replace or add prompts that reﬂect real buyer questions. Prioritize
+non-branded, middle-to-bottom-funnel questions that imply evaluation or
+purchase intent, rather than broad informational questions such as “what is X?”
+
+2.
+
+Use prompt variations. Source relevant variations through AI Prompt Research,
+Query Fan-Out, Search Console, customer surveys, and sales or support
+conversations.
+
+3.
+
+Prioritize prompts rated 4–5. In the Prompts view, the ﬁve-segment indicator
+ranges from very low (1) to very high (5); levels 4–5 are the strongest
+candidates for GEO prioritization.
+
+4.
+
+Keep lower-volume prompts when commercially relevant. Intent volume helps
+prioritize demand, while prompt monitoring measures your brand coverage and
+website citations for each exact prompt.
+
+For more detail on the metric, see: https://otterly.ai/blog/intent-volume.
+
+13-Aug-2026
+
+Some keywords
+bring organic US
+Traffic
+
+13-Aug-2026
+
+13-Aug-2026
+
+13-Aug-2026
+
+06-Aug-2026
+
+05-Aug-2026
+
+Otterly
+
+05-Aug-2026
+
+Otterly
+
+04-Aug-2026
+
+Otterly
+
+GEO
+
+09-Jul-2026
+
+Semrush
+
+Semrush
+
+GEO
+
+03-Jul-2026
+
+How GEO Measured?
+
+Measurement Tools
+The sources highlight several tools used to track these metrics:
+●
+
+Otterly.ai: A purpose-built AI visibility tracker that monitors brand citations and "Share
+of Voice" across ChatGPT, Perplexity, Gemini, and others.
+
+●
+
+Google Search Console (GSC): Used to identify "GEO signal queries" long,
+conversational query patterns typical of AI engines that land on the site.
+
+●
+
+Semrush: Traditional SEO tools that have added "AI Visibility" or "AI Citations"
+modules to track mentions and cited pages across different LLMs.
+
+●
+
+Trending new tools: Provides a specialized score for "Answer Engine Optimization,"
+grading brand recognition and presence quality
+
+Measurement Tools
+
+GEO
+
+08-May-2026
+
+Visible
+● Mentions
+● Share of Voice
+
+Otterly
+
+Measurement Tools
+
+GEO
+
+08-May-2026
+
+Improve Impressions
+
+Google Search Console (GSC)
+
+Measurement Tools
+
+GEO
+
+08-May-2026
+
+Improve traffic
+
+Semrush | Organic Traffic
+
+Measurement Tools
+
+GEO
+
+08-May-2026
+
+Improve Impressions
+
+Google Analytics (GA4)
+
+Measurement Tools
+
+GEO
+
+08-May-2026
+
+What’s working?
+
+Claude | AI
+
+Measurement Tools
+
+What’s not?
+
+Claude | AI
+
+Measurement Tools
+
+What’s not?
+
+Claude | AI
+
+Otterly
+
+GEO
+
+08-May-2026
+
+Results are dynamic
+and may not remain
+same due to
+constant updates
+
+GEO
+
+19-Jun-2026
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+→ Citation → Prompt → Share of Voice
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+→ Citation → Prompt → Share of Voice
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+→ Citation → Prompt → Share of Voice
+
+GEO
+
+05-Jun-2026
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+→ Citation → Prompt → Share of Voice
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+→ Citation → Prompt → Share of Voice
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+→ Citation → Prompt → Share of Voice
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+→ Citation → Prompt → Share of Voice
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+→ Citation → Prompt → Share of Voice
+
+Google Search
+Console
+
+GEO
+
+08-May-2026
+Landing Pages
+& KSA Keywords
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+GEO Measurement
+
+GEO
+
+08-May-2026
+
+AI Recommendation
+
+GEO
+
+08-May-2026
+
+AI Recommendation
+
+GEO
+
+08-May-2026
+
+AI Recommendation
+
+GEO
+
+08-May-2026
+
+AI Recommendation
+
+GEO
+
+08-May-2026
+
+AI Recommendation
+
+GEO
+
+08-May-2026
+
+Google Search
+Console
+
+GEO
+
+Top 10 Landing Pages
+
+08-May-2026
+
+→ Keywords
+
+GEO
+
+08-May-2026
+
+GEO
+
+22-May-2026
+
+GEO Measurement
+→ Citation → Prompt → Share of Voice
+
+GEO
+
+GEO Measurement
+
+08-May-2026
+
+Otterly.ai
+base plan covers 50+ countries
+It covers for the KSA/Arabic market.
+lower price point.
+Key Metrics
+● AI Citation Rate (what percentage of relevant prompts mention your brand)
+● Share of Answers (how often you appear across all monitored prompts)
+● Prompt Win Rate (when your brand is recommended over competitors)
+● AI Share of Voice relative to competitors for a given topic cluster
+
+GEO
+Search Console
+
+GEO Measurement
+
+08-May-2026
+
+GEO
+Search Console
+
+GEO Measurement
+
+08-May-2026
+
+GEO
+Search Console
+
+GEO Measurement
+
+08-May-2026
+
+GEO
+Search Console
+
+GEO Measurement
+
+08-May-2026
+
+GEO
+Search Console
+
+GEO Measurement
+
+08-May-2026
+
+GEO
+Ahref
+
+GEO Measurement
+
+08-May-2026
+
+GEO
+Semrush
+
+GEO Measurement
+
+08-May-2026
+
+GEO
+Claude
+
+GEO Measurement
+
+08-May-2026
+
+GEO
+Tools
+
+GEO Measurement
+
+08-May-2026
+
+GEO
+
+08-May-2026
+
+Positioning → Authority → Content Structure → Distribution
+Positioning: Strong — clear differentiation (B2B, executive, KSA-focused)
+
+GEO
+Trust Layer
+Positioning
+
+Content Structure: In progress — good foundation, but not fully answer-ready yet
+
+08-May-2026
+
+Authority: Weak — limited external validation and third-party mentions
+
+Content Layer
+
+Distribution: Early — content exists, but not yet widely surfaced or reinforced across AI platforms
+
+Distribution Layer
+❌ Semantic alignment with AI classification
+→ AI still interprets Zerene as consumer/home fragrance, not B2B/executive solution
+
+Build Authority & External Citations (Trust Layer)
+Generate third-party mentions (PR, blogs, forums, media)
+
+GEO
+Trust Layer
+Positioning
+
+08-May-2026
+Content Layer
+Distribution Layer
+
+❌ Authority signals (external validation & citations)
+→ Lack of third-party mentions reduces AI confidence to recommend
+
+Create Answer-Ready Pages (Content Layer)
+
+GEO
+Trust Layer
+Positioning
+
+08-May-2026
+Content Layer
+Distribution Layer
+
+●
+●
+●
+
+Structure content as direct answers to specific queries
+Use FAQ blocks, question-based headings, clear use cases
+Principle: 1 page = 1 intent = 1 AI answer
+
+❌ Answer-ready content structure
+→ Pages are not yet optimized for direct AI extraction (clear query → answer
+mapping)
+
+Activate AI Visibility (Distribution Layer)
+
+GEO
+Trust Layer
+Positioning
+
+08-May-2026
+Content Layer
+Distribution Layer
+
+●
+●
+●
+
+Repeatedly test and push queries across AI platforms
+Ensure consistent wording across all touchpoints
+Build query repetition loop to train AI recall
+
+❌ AI distribution layer (visibility & repetition)
+→ Strong prompts exist, but insufficient exposure for AI to learn and recall
+
+GEO
+
+28-Apr-2026
+
+2026-A022 — GEO Metadata
+
+2026-A022 — GEO Metadata
+https://www.notion.so/slickymedia/35078ebc455180178eade2a21223a805?source=copy_link
+
+GEO
+
+24-Apr-2026
+
+https://auraaer.com/aromatherapy-diffuser/
+
+GEO
+
+17-Apr-2026
+
+Last 30 Days
+18 Mar -16 Apr 2026
+
+Content Mapping & End-to-End Workflow for Zerene
+Content creation → AI indexing → customer queries → AI recommendations.
+PHASE 1
+
+PHASE 2
+
+PHASE 3
+
+Content Creation
+
+Entity Optimization
+
+AI Platform Indexing
+
+• Zerene brand info
+• Product descriptions
+• Use cases & benefits
+
+• Structured data
+• Schema markup
+• Authority signals
+
+• ChatGPT training
+• Perplexity crawls
+• Google AI Overview
+
+Citation Frequency
+
+Share of Voice
+
+Saudi Arabia Focus
+
+Track mentions across
+ChatGPT, Perplexity, Claude
+
+vs competitors in
+aromatherapy & gifting
+
+Region-specific visibility
+and citation rankings
+
+Feb 2026
+
+GEO (Generative Engine Optimization)
+GEO is the "Next Gen" version of SEO.
+If SEO is the foundation, GEO is the skyscraper built on top of it.
+Machine Readability:
+AI (Gemini, ChatGPT, Perplexity) doesn't "index" pages; it extracts facts. Ensures your content is
+structured that AI can easily grab and cite.
+Authority Proof (E-E-A-T):
+AI prioritizes content from "Experts." ensure author bios, links to your social credentials, and
+ensures your "Scent Guides" are cited by other authoritative site
+Conversational Logic:
+GEO focuses on the Problem/Solution context.
+Optimize for "Prompts"
+(e.g., "Suggest a long-lasting, elegant scent for a modern Jeddah office").
+Traditional SEO focuses on "Oud Diffuser,"
+
+08 Jan 2026
+
+GEO
+
+10-Apr-2026
+
+GEO (Generative Engine Optimization)
+SEMRUSH
+
+Mar 2026
+
+GEO (Generative Engine Optimization)
+SEMRUSH
+
+Mar 2026
+
+GEO
+
+03-Apr-2026
+
+GEO (Generative Engine Optimization)
+SEMRUSH
+
+Mar 2026
+
+AI Analysis
+Reporting
+
+HubSpot
+Location: Saudi Arabia
+Industry: Retail
+Category: Home Fragrance Products
+
+https://www.hubspot.com/aeo-grader/
+
+Benchmark
+
+GEO testing + monitoring
+Quantitative Benchmark: 25% Citation Rate
+Run monthly checks in:
+Google AI
+Perplexity
+Claud
+Track:
+Citation frequency
+Share of voice vs competitors
+KSA-specific ranking/visibility
+
+AI Indexing
+Crawling
+
+Benchmark
+
+GEO monitoring
+
+https://otterly.ai/ranking/408/c-APAC/home+fragrance+products
+
+QA
+What is the difference between SEO and GEO?
+While SEO optimized for traditional search engines like Google, GEO
+focuses on AI-powered generative engines like ChatGPT, Claude, and
+Bard. These AI systems use different algorithms and content
+preferences, requiring specialized optimization strategies.
+How long does it take to see GEO results?
+Most clients see improvements in AI citations within 30-60 days of
+implementation. However, building strong AI authority can take 3-6
+months for competitive industries
+
+

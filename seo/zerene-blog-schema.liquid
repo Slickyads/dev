@@ -1,0 +1,97 @@
+{% comment %}
+  Zerene Luxury Home Fragrance — Advanced Blog & Editorial JSON-LD Schema
+  File placement: Shopify Admin > Snippets > zerene-blog-schema.liquid
+  Include in templates/article.json or layout/theme.liquid within {% if template contains 'article' %}
+{% endcomment %}
+
+{% if template contains 'article' %}
+
+{% comment %} 1. BLOG POSTING SCHEMA {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "{{ shop.url }}{{ article.url }}#article",
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": "{{ shop.url }}{{ blog.url }}",
+    "name": {{ blog.title | json }}
+  },
+  "headline": {{ article.title | json }},
+  "description": {{ article.excerpt_or_content | strip_html | truncatewords: 35 | json }},
+  "inLanguage": {% if article.url contains '/ar' %}"ar-SA"{% else %}"en-SA"{% endif %},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ article.url }}"
+  },
+  "image": [
+    {% if article.image %}
+      "https:{{ article.image | image_url: width: 1200 }}"
+    {% else %}
+      "https://zerene.com/cdn/shop/files/logo.png"
+    {% endif %}
+  ],
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "author": {
+    "@type": "Organization",
+    "name": "Zerene Editorial Team",
+    "url": "{{ shop.url }}",
+    "logo": "https://zerene.com/cdn/shop/files/logo.png"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zerene",
+    "url": "{{ shop.url }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://zerene.com/cdn/shop/files/logo.png"
+    }
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "Saudi Arabia Luxury Gifting & Wellness"
+    },
+    {
+      "@type": "Thing",
+      "name": "Aromatherapy & French Essential Oils"
+    }
+  ],
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Saudi Arabia",
+    "identifier": "SA"
+  }
+}
+</script>
+
+{% comment %} 2. BREADCRUMB SCHEMA FOR BLOGS {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ shop.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": {{ blog.title | json }},
+      "item": "{{ shop.url }}{{ blog.url }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": {{ article.title | json }},
+      "item": "{{ shop.url }}{{ article.url }}"
+    }
+  ]
+}
+</script>
+
+{% endif %}

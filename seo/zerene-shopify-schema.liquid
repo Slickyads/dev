@@ -1,0 +1,175 @@
+{% comment %}
+  Zerene Luxury Home Fragrance — Advanced JSON-LD Schema for GEO & AI Search
+  File placement: Shopify Admin > Online Store > Themes > Edit Code > Snippets > zerene-jsonld.liquid
+  Include in theme.liquid before </head>: {% render 'zerene-jsonld' %}
+{% endcomment %}
+
+{% comment %} === 1. BRAND & ORGANIZATION SCHEMA (Sitewide) === {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Brand",
+      "@id": "{{ shop.url }}/#brand",
+      "name": "Zerene",
+      "url": "{{ shop.url }}",
+      "logo": "https://zerene.com/cdn/shop/files/logo.png",
+      "description": "Luxury home fragrance and aromatherapy brand specializing in French essential oil reed diffusers, room sprays, and executive gift sets across Saudi Arabia, UAE, and the GCC.",
+      "sameAs": [
+        "https://www.instagram.com/zereneofficial/"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ shop.url }}/#organization",
+      "name": "Zerene",
+      "url": "{{ shop.url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://zerene.com/cdn/shop/files/logo.png"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Saudi Arabia",
+          "identifier": "SA"
+        },
+        {
+          "@type": "Country",
+          "name": "United Arab Emirates",
+          "identifier": "AE"
+        },
+        {
+          "@type": "Country",
+          "name": "GCC Countries"
+        }
+      ],
+      "knowsAbout": [
+        "Luxury Aromatherapy",
+        "French Essential Oils",
+        "Reed Diffusers",
+        "Room Sprays",
+        "Executive Gifting in Saudi Arabia & UAE",
+        "Majlis & Space Wellness"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ shop.url }}/#website",
+      "url": "{{ shop.url }}",
+      "name": "Zerene",
+      "description": "Scent for Serenity — Luxury Home Fragrances & French Essential Oils",
+      "publisher": {
+        "@id": "{{ shop.url }}/#organization"
+      },
+      "inLanguage": ["en", "ar"]
+    }
+  ]
+}
+</script>
+
+{% comment %} === 2. PRODUCT & OFFER SCHEMA (Product Pages Only) === {% endcomment %}
+{% if template contains 'product' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "@id": "{{ shop.url }}{{ product.url }}#product",
+  "name": {{ product.title | json }},
+  "image": [
+    {% for image in product.images %}
+      "https:{{ image.src | image_url: width: 1200 }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "description": {{ product.description | strip_html | escape | json }},
+  "sku": {{ product.selected_or_first_available_variant.sku | json | default: product.id | json }},
+  "brand": {
+    "@type": "Brand",
+    "name": "Zerene"
+  },
+  "material": "French Essential Oils, Alcohol-Free Formulation",
+  "category": "Home & Garden > Decor > Home Fragrances",
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ shop.url }}{{ product.url }}",
+    "priceCurrency": "{{ cart.currency.iso_code }}",
+    "price": "{{ product.selected_or_first_available_variant.price | divided_by: 100.0 }}",
+    "priceValidUntil": "2027-12-31",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+    "seller": {
+      "@type": "Organization",
+      "name": "Zerene"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingDestination": [
+        {
+          "@type": "DefinedRegion",
+          "addressCountry": "SA"
+        },
+        {
+          "@type": "DefinedRegion",
+          "addressCountry": "AE"
+        }
+      ],
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 2,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 2,
+          "maxValue": 4,
+          "unitCode": "DAY"
+        }
+      }
+    }
+  }
+}
+</script>
+{% endif %}
+
+{% comment %} === 3. ARTICLE SCHEMA (Blog Post Pages Only) === {% endcomment %}
+{% if template contains 'article' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ article.url }}"
+  },
+  "headline": {{ article.title | json }},
+  "image": [
+    {% if article.image %}
+      "https:{{ article.image | image_url: width: 1200 }}"
+    {% else %}
+      "https://zerene.com/cdn/shop/files/logo.png"
+    {% endif %}
+  ],
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+  "author": {
+    "@type": "Organization",
+    "name": "Zerene",
+    "url": "{{ shop.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zerene",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://zerene.com/cdn/shop/files/logo.png"
+    }
+  },
+  "description": {{ article.excerpt_or_content | strip_html | truncatewords: 30 | json }},
+  "inLanguage": "en"
+}
+</script>
+{% endif %}

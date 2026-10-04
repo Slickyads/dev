@@ -1,0 +1,469 @@
+
+Zerene B2B KSA GEO Strategy: Prompts, Measurement & Execution
+
+Here’s a structured guide covering prompts, measurement, and the KSA presence gap — tailored to your team’s needs.
+
+---
+
+1. Prompts to Show Zerene for B2B Clients in KSA
+
+These are ready-to-copy prompts you can add to Otterly.ai. They target the exact buyer personas you described:
+
+┌──────────────┬──────────────────────────────────┬──────────────┐
+│   Persona    │       Prompt (Copy-Paste)        │    Intent    │
+├──────────────┼──────────────────────────────────┼──────────────┤
+│ Corporate    │ "Best luxury corporate gifts for │              │
+│ Gifting      │  C-level executives in Riyadh    │ Commercial   │
+│              │ under 1,000 SAR"                 │              │
+├──────────────┼──────────────────────────────────┼──────────────┤
+│ Ramadan      │ "Customized luxury Ramadan gift  │              │
+│ Gifting      │ sets with Arabic calligraphy for │ Seasonal     │
+│              │  Saudi clients"                  │              │
+├──────────────┼──────────────────────────────────┼──────────────┤
+│              │ "Long-lasting signature scent    │              │
+│ Hospitality  │ diffusers for boutique hotel     │ Solution-led │
+│              │ lobbies in Riyadh"               │              │
+├──────────────┼──────────────────────────────────┼──────────────┤
+│ Majlis       │ "Oud and Rose luxury room sprays │              │
+│ Hospitality  │  for traditional majlis          │ Cultural     │
+│              │ hospitality KSA"                 │              │
+├──────────────┼──────────────────────────────────┼──────────────┤
+│              │ "Alcohol-free non-toxic room     │              │
+│ Healthcare   │ sprays for aesthetic medical     │ Safety-first │
+│              │ clinic waiting rooms Riyadh"     │              │
+├──────────────┼──────────────────────────────────┼──────────────┤
+│              │ "Compare Zerene vs [competitor]  │              │
+│ Procurement  │ for corporate executive gifting  │ Comparison   │
+│              │ in the GCC"                      │              │
+├──────────────┼──────────────────────────────────┼──────────────┤
+│              │ "Why do top Riyadh firms choose  │ Direct       │
+│ B2B Value    │ Zerene for VIP corporate         │ answer       │
+│              │ gifting?"                        │              │
+└──────────────┴──────────────────────────────────┴──────────────┘
+
+How to add them in Otterly:
+- Go to Report Settings → Prompts → Import
+- Use the CSV we created earlier (otterly_prompts_optimized.csv)
+- Mark these as Core baseline (fixed for trend tracking) or Exploratory (test first)
+
+---
+
+2. Why Should Customers Write These Prompts?
+
+The goal is intent signaling: when real users (or AI evaluation) type these prompts, AI engines notice Zerene being mentioned or cited. Even if no one types them yet, adding them to your Core Baseline creates a:
+
+- Measurement anchor — you track whether Zerene appears as you add content
+- Competitive benchmark — you see which competitors appear for these queries
+- Content gap identifier — if Zerene is missing, you know exactly what to build
+
+▎ The logic: AI models synthesize answers by looking for co-occurring entities. If a page mentions "Zerene" + "200ml reed diffusers" + "Riyadh" + "corporate gifting", AI volume skyrockets. Prompts are the trigger that makes AI look for those entities.
+
+---
+
+3. How to Find & Save Prompts in Otterly.ai
+
+Step 1: Search for Prompts
+
+In Otterly, use these search approaches:
+
+┌─────────────┬──────────────────────┬───────────────────────────┐
+│ Search Type │    What to Search    │          Example          │
+├─────────────┼──────────────────────┼───────────────────────────┤
+│ Brand +     │ "Zerene" "corporate  │ Finds prompts where       │
+│ Category    │ gifting" "Riyadh"    │ Zerene + gifting + city   │
+│             │                      │ appear                    │
+├─────────────┼──────────────────────┼───────────────────────────┤
+│ Competitor  │ "best corporate      │ Shows where competitors   │
+│ Gap         │ gifts KSA" minus     │ appear, Zerene absent     │
+│             │ Zerene               │                           │
+├─────────────┼──────────────────────┼───────────────────────────┤
+│ Intent      │ "alcohol-free room   │ Finds safety-conscious    │
+│ Clusters    │ spray" "KSA"         │ prompts                   │
+├─────────────┼──────────────────────┼───────────────────────────┤
+│ Arabic      │ "ةرخاف ةكرش ةيده     │ Arabic MSA for UAE/KSA    │
+│ Variants    │ ضايرلا"              │ market                    │
+└─────────────┴──────────────────────┴───────────────────────────┘
+
+Step 2: Save to Baseline
+
+- Core Baseline: Approved premium-intent prompts used for month-over-month reporting. Keep unchanged.
+- Exploratory: New or AI-generated prompts under review. Promote only after confirming ICP fit.
+- Excluded: Generic "fresh air" or commodity prompts — these would inflate count without measuring Zerene's intended customer.
+
+Step 3: Track Share of Voice (SoV)
+
+Otterly calculates: prompts mentioning Zerene ÷ all eligible prompts × 100
+
+- Start with your Core Baseline (the 15–20 prompts most relevant to premium ICP).
+- Report SoV alone, then show Exploratory separately.
+- Minimum mention threshold: Don't report NSS for prompts with <10 total mentions.
+
+---
+
+3. Metrics: What % Are We Seeing by AI in KSA?
+
+Based on the Aug 2026 audit, here’s where Zerene stands:
+
+┌──────────────────┬───────────────┬──────────────────────────────┐
+│      Metric      │     Value     │          Diagnosis           │
+├──────────────────┼───────────────┼──────────────────────────────┤
+│ AI Share of      │ 20.0% (3/15   │ Below target; missing on     │
+│ Voice (SoV)      │ prompts)      │ non-branded category queries │
+├──────────────────┼───────────────┼──────────────────────────────┤
+│ Direct URL       │ 20.0% (3/15)  │ Perplexity cites zerene.com  │
+│ Citations        │               │ for brand queries only       │
+├──────────────────┼───────────────┼──────────────────────────────┤
+│ KSA Category     │ 0/4 (0%)      │ Critical gap — competitors   │
+│ Intent           │               │ win all category prompts     │
+├──────────────────┼───────────────┼──────────────────────────────┤
+│ Executive        │               │ Gap — Bateel, Wah Gifts,     │
+│ Gifting          │ 0/3 (0%)      │ leather sets dominate        │
+│ (KSA/UAE)        │               │                              │
+├──────────────────┼───────────────┼──────────────────────────────┤
+│ Brand Direct     │ 3/3 (100%)    │ Strong — Zerene ranks #1 for │
+│ Queries          │               │  its own name                │
+├──────────────────┼───────────────┼──────────────────────────────┤
+│ Domain Coverage  │ 2.4%          │ Authority gap — low overall  │
+│                  │               │ market coverage              │
+└──────────────────┴───────────────┴──────────────────────────────┘
+
+What this means: Zerene is invisible for all category-based B2B prompts in KSA. It only appears when someone searches the brand name directly. For any functional query ("corporate gifts Riyadh," "scent diffuser hotel lobby"), competitors dominate.
+
+---
+
+4. How to Find Relevant Prompts & Keywords
+
+A. Start With Your Existing Audit
+
+The 40 blog audit already identified these critical gaps — turn them into prompts:
+
+┌───────────────┬─────────────────────────────────────────────────┐
+│   Audit Gap   │                  Prompt to Add                  │
+├───────────────┼─────────────────────────────────────────────────┤
+│ No pricing    │ "What is the price of Zerene luxury reed        │
+│               │ diffusers in Saudi Arabia?"                     │
+├───────────────┼─────────────────────────────────────────────────┤
+│ No product    │ "What volume does Zerene 200ml reed diffuser    │
+│ specs         │ come in?"                                       │
+├───────────────┼─────────────────────────────────────────────────┤
+│ No JSON-LD    │ (Not a prompt, but fix enables AI extraction)   │
+│ schema        │                                                 │
+├───────────────┼─────────────────────────────────────────────────┤
+│ Generic       │ "Zerene Alcohol-Free Oud Room Sprays Riyadh"    │
+│ anchors       │                                                 │
+└───────────────┴─────────────────────────────────────────────────┘
+
+B. Use These Keyword Patterns
+
+┌─────────────────────┬────────────────┬─────────────────────────┐
+│       Pattern       │    Example     │      Why It Works       │
+├─────────────────────┼────────────────┼─────────────────────────┤
+│ [Product] +         │ "luxury reed   │ Triggers                │
+│ [Location]          │ diffusers      │ location-specific AI    │
+│                     │ Riyadh"        │ results                 │
+├─────────────────────┼────────────────┼─────────────────────────┤
+│                     │ "corporate     │                         │
+│ [Use Case] +        │ gift sets for  │ Targets B2B procurement │
+│ [Audience]          │ executives     │  intent                 │
+│                     │ KSA"           │                         │
+├─────────────────────┼────────────────┼─────────────────────────┤
+│ [Safety/Compliance] │ "alcohol-free  │ Addresses               │
+│  + [Product]        │ room spray     │ healthcare/hospitality  │
+│                     │ Saudi Arabia"  │ concerns                │
+├─────────────────────┼────────────────┼─────────────────────────┤
+│ [Cultural] +        │ "oud perfume   │ Taps into local         │
+│ [Product]           │ gift Saudi     │ relevance               │
+│                     │ National Day"  │                         │
+├─────────────────────┼────────────────┼─────────────────────────┤
+│                     │ "Zerene vs     │ Triggers comparison     │
+│ Comparison          │ Diptyque       │ prompts where AI lists  │
+│                     │ corporate      │ brands                  │
+│                     │ gifting"       │                         │
+└─────────────────────┴────────────────┴─────────────────────────┘
+
+C. How to Increase Intent Volume in Otterly
+
+▎ Important: You cannot directly increase a prompt's intent volume — it is an estimate of how frequently that query intent is searched across AI engines, based on Google search volume (AI platforms don't publish their underlying query-usage data).
+
+To target higher-volume opportunities:
+
+1. Replace or add prompts that reflect real buyer questions — prioritize non-branded, middle-to-bottom-funnel questions that imply evaluation or purchase intent, rather than broad informational questions such as "What is X?"
+2. Use prompt variations: Source relevant variations through:
+   - Otterly's AI Prompt Research tool
+   - Query Fan-Out (start with one prompt, generate related variants)
+   - Google Search Console (see what queries already bring traffic)
+   - Customer surveys and sales/support conversations
+3. Prioritize prompts rated 4–5: In Otterly, the five-segment indicator ranges from very low (1) to very high (5). Levels 4–5 are the strongest candidates for GEO prioritization.
+4. Keep lower-volume prompts when commercially relevant: Intent volume helps prioritize demand, while prompt monitoring measures your brand coverage and website citations for each exact prompt.
+
+---
+
+5. Red Ocean vs Blue Ocean Strategy for Prompts
+
+Your Situation
+
+- Red Ocean: "corporate gifts KSA," "perfume gifts Saudi Arabia" — high competition, many brands bidding on same keywords, lower intent volume because the audience is broad and price-sensitive.
+- Blue Ocean: "alcohol-free luxury room spray aesthetic clinic Riyadh," "customized executive co-branding Saudi Arabia" — narrower, high-value segment, less competition, higher quality justification.
+
+Which Prompts to Target
+
+Strategy: Blue Ocean (Recommended)
+Prompt Type: Tier 3 & 4 B2B prompts (healthcare, corporate wellness,
+interior architecture)
+Why: Less competition, higher per-deal value, aligns with Zerene's
+premium positioning
+────────────────────────────────────────
+Strategy: Red Ocean (Avoid for Baseline)
+Prompt Type: General "corporate gifts KSA"
+Why: Low intent volume, price competition, doesn't match premium ICP
+────────────────────────────────────────
+Strategy: Hybrid
+Prompt Type: Mix of blue-ocean core prompts + 1–2 red-ocean exploratory
+prompts
+Why: Tests broad market while protecting baseline trend data
+
+Recommendation: Focus your Core Baseline on blue-ocean prompts (Tier 3: Healthcare, Tier 4: Corporate Wellness/Interior Architecture). Use exploratory prompts for red-ocean testing, but don't let them shift the baseline trend.
+
+---
+
+6. Why Low Intent Volume — and That's Expected
+
+Your concern: "We are targeting customers which are low in volume as its very specific segment of perfume gifting or executive corporate gifting premium and quality. This product can be bought by many customers in volume. That's why less people are target audience and due to which less intent volume can be seen."
+
+This is normal and expected. Here's why:
+
+┌─────────────┬───────────────────────────────────────────────────┐
+│   Factor    │                    Explanation                    │
+├─────────────┼───────────────────────────────────────────────────┤
+│             │ Executive corporate gifting and premium fragrance │
+│ Narrow ICP  │  for B2B is a small subset of all buyers. Most    │
+│             │ people buying air fresheners or cheap gifts       │
+│             │ aren't your ICP.                                  │
+├─────────────┼───────────────────────────────────────────────────┤
+│ High Price  │ Premium products have fewer buyers by design.     │
+│ Point       │ Intent volume is naturally lower for $1,000+      │
+│             │ purchases vs. $20 ones.                           │
+├─────────────┼───────────────────────────────────────────────────┤
+│ B2B         │ Procurement involves multiple stakeholders,       │
+│ Decision    │ contracts, approvals — fewer searches, but higher │
+│ Cycle       │  value per deal.                                  │
+├─────────────┼───────────────────────────────────────────────────┤
+│             │ If Zerene is not yet well-known in KSA (you noted │
+│ Brand       │  no KSA contacts/office), search volume will be   │
+│ Awareness   │ low. People can't search for a brand they don't   │
+│             │ know exists.                                      │
+└─────────────┴───────────────────────────────────────────────────┘
+
+The trade-off: Lower intent volume ↔ Higher quality/revenue per customer. This is why you track Core Baseline trends rather than absolute volume numbers.
+
+---
+
+7. How to Get Ranked in AI — Blue Ocean Prompt Framework
+
+Use this structure for every prompt you add to Otterly:
+
+[TARGET AUDIENCE] + [USE-CASE INTENT] + [PRODUCT SPEC/SAFETY] + [REGIONAL LOCATION]
+
+Examples:
+
+┌──────────────────────────────┬──────────────────────────────────┐
+│            Prompt            │            Components            │
+├──────────────────────────────┼──────────────────────────────────┤
+│ "Alcohol-free non-toxic room │ [Medical clinic] + [waiting      │
+│  sprays for aesthetic        │ room] + [alcohol-free/toxic] +   │
+│ medical clinic waiting rooms │ [Riyadh]                         │
+│  Riyadh"                     │                                  │
+├──────────────────────────────┼──────────────────────────────────┤
+│ "Long-lasting signature      │ [boutique hotel] + [lobby] +     │
+│ scent diffusers for boutique │ [signature scent/long-lasting] + │
+│  hotel lobbies in Riyadh"    │  [Riyadh]                        │
+├──────────────────────────────┼──────────────────────────────────┤
+│ "Customized luxury Ramadan   │ [Saudi clients] + [Ramadan gift] │
+│ gift sets with Arabic        │  + [Arabic                       │
+│ calligraphy for Saudi        │ calligraphy/customized]          │
+│ clients"                     │                                  │
+└──────────────────────────────┴──────────────────────────────────┘
+
+How to get ranked:
+
+1. On-page: Ensure the exact phrases appear on your website (product pages, blog posts, landing pages).
+2. Schema: Add JSON-LD FAQ/schema marking up these exact Q&A patterns.
+3. Internal links: Use keyword-rich anchor text (not "click here" or "our collection").
+4. Off-site: Get mentioned on GCC lifestyle portals, business directories, luxury gifting guides.
+5. Repeat testing: Re-run the same prompts monthly; AI needs repeated exposure to learn and recall.
+
+---
+
+8. Saudi-Based Contact & Office Details — How to Help AI Recognize KSA Presence
+
+The Problem
+
+Currently, Zerene's website shows presence in UAE only. When a KSA-based B2B client asks "Where is Zerene in KSA?" or "Can Zerene deliver to Saudi for corporate gifting?", AI engines have no signal that Zerene operates there.
+
+Why This Matters for GEO
+
+AI models use entity signals ( mentions, addresses, contact data) to determine geographic relevance. Without a KSA signal, Zerene will keep being recommended for UAE only — even if the product can ship there.
+
+Quick Wins to Show AI You're in KSA
+
+┌─────────────────────────────────┬─────────────────────┬────────┐
+│             Action              │   How It Helps AI   │ Effort │
+├─────────────────────────────────┼─────────────────────┼────────┤
+│ Add KSA office address to       │ Gives AI a          │        │
+│ footer/contact page (even a PO  │ "physical presence" │ < 1    │
+│ Box or co-working space)        │  entity signal for  │ hour   │
+│                                 │ KSA                 │        │
+├─────────────────────────────────┼─────────────────────┼────────┤
+│ List KSA delivery on product    │ Triggers AI to      │        │
+│ pages: "Express shipping to     │ extract fulfillment │ < 30   │
+│ Riyadh, Jeddah & Dammam within  │  + region data      │ mins   │
+│ 2–4 business days"              │                     │        │
+├─────────────────────────────────┼─────────────────────┼────────┤
+│ Create a /saudi or /ksa landing │ Gives AI a          │        │
+│  page with localized content    │ dedicated page to   │ 2–4    │
+│ (Arabic, cultural references,   │ associate with KSA  │ hours  │
+│ local case studies)             │ market              │        │
+├─────────────────────────────────┼─────────────────────┼────────┤
+│ Add KSA-specific schema:        │ Structured data     │        │
+│ Organization with address in    │ tells AI exactly    │ 1 hour │
+│ Riyadh, areaServed: ["Saudi     │ where you operate   │        │
+│ Arabia"]                        │                     │        │
+├─────────────────────────────────┼─────────────────────┼────────┤
+│ Get listed in KSA directories   │ Third-party         │        │
+│ (Saudi Business Directory,      │ citations build KSA │ 1–2    │
+│ local chambers, luxury gifting  │  authority          │ weeks  │
+│ guides)                         │                     │        │
+├─────────────────────────────────┼─────────────────────┼────────┤
+│ Publish a KSA-focused blog      │ Content +           │        │
+│ (e.g., "Executive Gifting       │ localization = AI   │ 1 week │
+│ Trends in Riyadh 2026")         │ relevance signal    │        │
+└─────────────────────────────────┴─────────────────────┴────────┘
+
+How to Help a KSA Customer Who Asks
+
+If a customer in KSA asks: "Where is Zerene located and can they deliver for B2B clients?"
+
+Your response framework:
+
+1. Acknowledge their location: "We service clients across the GCC, including Saudi Arabia."
+2. Provide what you have: "Our website shows our UAE base, and we offer express shipping to Riyadh, Jeddah & Dammam within 2–4 business days."
+3. Offer the missing detail: "I don't have a local office listing in KSA yet, but I can share our full product catalog, pricing in SAR, and compliance docs (IFRA, alcohol-free certs) for your review."
+4. Capture the request: "Would you like me to send you a customized corporate gifting proposal with MOQ and customization options for your team?"
+5. Follow up internally: Note the KSA inquiry and prioritize adding a local address/delivery page to the website.
+
+---
+
+9. Summary: What Your Team Should Do Next
+
+Priority: P1
+Action: Add 10–15 blue-ocean B2B prompts to Otterly Core Baseline (Tier
+3 & 4)
+Owner: Marketing/GEO lead
+Timeline: This week
+────────────────────────────────────────
+Priority: P2
+Action: Inject FAQPage JSON-LD schema into Shopify
+Owner: Technical/web team
+Timeline: Week 1
+────────────────────────────────────────
+Priority: P3
+Action: Add pricing (SAR) and product specs (200ml/100ml) to all 40
+blogs
+Owner: Content team
+Timeline: Week 1
+────────────────────────────────────────
+Priority: P4
+Action: Enable SAR currency in Shopify Markets
+Owner: E-commerce team
+Timeline: Week 1
+────────────────────────────────────────
+Priority: P5
+Action: Add KSA office address / delivery banner to website
+Owner: Marketing/Operations
+Timeline: Week 2
+────────────────────────────────────────
+Priority: P6
+Action: Create /saudi landing page with localized content
+Owner: Content/web team
+Timeline: Week 2–3
+────────────────────────────────────────
+Priority: P7
+Action: Pitch Zerene to 3 GCC lifestyle portals for roundup inclusion
+Owner: PR/Business dev
+Timeline: Month 2
+────────────────────────────────────────
+Priority: P8
+Action: Expand Otterly prompt set from 15 → 50+ using the optimized CSV
+Owner: GEO lead
+Timeline: Month 2
+────────────────────────────────────────
+Priority: P9
+Action: Establish fixed Core Baseline + monthly SoV reporting rhythm
+Owner: Marketing/GEO lead
+Timeline: Month 3
+────────────────────────────────────────
+Priority: P10
+Action: Quarterly review: promote high-relevance exploratory prompts to
+baseline
+Owner: Leadership
+Timeline: Quarterly
+
+---
+
+Quick FAQ for Your Team
+
+Question: Why does OTterly show 0% for KSA category prompts?
+Answer: Because your website has no pricing, specs, or KSA-specific
+signals. AI can't extract facts it doesn't have. Fix the on-page data
+ first.
+────────────────────────────────────────
+Question: Why is intent volume low for our segment?
+Answer: Because we're targeting a narrow premium B2B ICP. Lower volume
+is expected — track trends, not absolute numbers.
+────────────────────────────────────────
+Question: Should we target broad "corporate gifts KSA" prompts?
+Answer: No — these are red ocean, low relevance to your premium ICP.
+Focus on blue-ocean Tier 3/4 prompts instead.
+────────────────────────────────────────
+Question: How many prompts should we track in Core Baseline?
+Answer: Start with 15–20. The goal is a stable, fixed set for
+month-over-month comparison, not maximum count.
+────────────────────────────────────────
+Question: What if a prompt generates neutral or negative sentiment?
+Answer: Use the prompt-level drill-down to identify why (e.g., missing
+price, wrong audience). Then improve the relevant content (specs,
+proof, pricing) and remeasure the unchanged Core Baseline.
+────────────────────────────────────────
+Question: We don't have KSA contacts — how do we show AI we're present?
+Answer: Add a KSA address (even PO Box), list SAR pricing and 2–4 day
+shipping, create a /ksa page, get listed in local directories. These
+entity signals help AI associate your brand with the KSA market.
+────────────────────────────────────────
+Question: How often should we report SoV?
+Answer: Monthly, using the same Core Baseline. Report Core Baseline
+alone, then show Exploratory separately. Trend data is more useful
+than a single snapshot.
+
+---
+
+Bottom line: The fastest path to improving Zerene's AI visibility in KSA B2B is to (1) fix the on-page gaps (pricing, specs, schema), (2) add the blue-ocean prompts to Otterly, and (3) add a KSA presence signal (address/delivery page). The prompt work is important for measurement, but it will only show improvement once the underlying content gives AI something to cite.
+
+✻ Sautéed for 2m 7s · done Tuesday 11:56 PM
+
+❯ can we put in html file relvant information
+Interrupted · What should Claude do instead?
+
+❯ working?
+
+✻ 429 Rate limit exceeded: free-mode… · Retrying in 38s · attempt 8/10
+
+  ❯ working?
+
+────────────────────────────────────────────────────────────────────────
+❯ Press up to edit queued messages
+────────────────────
+
+
+
+Zerene GEO Strategy Review
+Generative Engine Optimization Progress Report

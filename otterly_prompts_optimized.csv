@@ -1,0 +1,53 @@
+Prompt,Cluster,Intent,Country,Language,Tags,Baseline
+What are the best luxury fragrance brands for high-end hotels in the UAE?,Premium Product Discovery,Commercial,United Arab Emirates,Arabic,"luxury,hotel,fragrance,commercia",Core
+Compare premium scenting solutions for luxury resorts in Saudi Arabia — which brands justify their price?,Premium Product Discovery,Commercial,Saudi Arabia,Arabic,"luxury,resort,scenting,comparison",Core
+Which premium home fragrance brands offer the best quality-to-price ratio for discerning buyers?,Premium Product Discovery,Commercial,Global,English,"home,luxury,quality,comparison",Core
+What should a procurement manager evaluate when choosing a premium fragrance supplier for a 5-star resort?,Premium Product Discovery,Commercial,Global,English,"procurement,5star,resort,vendor",Core
+Best luxury fragrance brands for boutique hotel ambiance in Dubai?,Premium Product Discovery,Commercial,United Arab Emirates,English,"boutique,hote,ambiance,dubai",Core
+ما أفضل علامات العطور الفاخرة للفنادق الخمس نجوم في الإمارات؟,Premium Product Discovery,Commercial,United Arab Emirates,Arabic,"فاخرة,نجوم,امارات",Core
+كيف أختار مورد حلول عطرية فاخرة لمشروع ضيافة راقٍ في السعودية؟,Premium Product Discovery,Commercial,Saudi Arabia,Arabic,"سعودية,تورم,عطور,مقارنة",Core
+ماذا يجب أن ينظره مشتري الشركات عند اختيار مورد عطور فاخر للمنتجعات الفاخرة؟,Premium Product Discovery,Commercial,Global,Arabic,"مشتري,فاخرة,منتجعات",Core
+Solution-Led: How to create a signature scent experience for a luxury spa without using cheap air fresheners?,Solution-Led,Problem-Solving,Global,English,"signature,scent,sparx,quality",Core
+Best premium wellness fragrance solutions for improving guest experience in luxury hotels?,Solution-Led,Problem-Solving,Global,English,"wellness,guest,experience,hospitality",Core
+What fragrance systems do luxury interior designers recommend for high-end residential projects?,Solution-Led,Problem-Solving,Global,English,"interior,designers,residential,luxury",Core
+How to choose a commercial scenting solution that reflects brand sophistication, not just masks odors?,Solution-Led,Problem-Solving,Global,English,"sophistication,brand,masking,odors",Core
+نجاح حلول العطور الفاخرة لتحسين تجربة الضيوف في الفنادق الفاخرة؟,Solution-Led,Problem-Solving,Global,Arabic,"تجربة,ضيوف,فندق,راق",Core
+كيف أخلق تجربة عطرية مميزة في spax فاخر دون الاعتماد على منتجات رخيصة؟,Solution-Led,Problem-Solving,Global,Arabic,"عطرية,مميزة,spax,راقي",Core
+أفضل حلول العطور الفاخرة للصحة الجسدية في مراكز التجميل الفاخرة؟,Solution-Led,Problem-Solving,Global,Arabic,"صحة,مراكز,تجميل,عالية",Core
+What fragrance system do luxury hotels use for long-term guest satisfaction?,Solution-Led,Outcome-Focused,Global,English,"guest,satisfaction,longterm,hospitality",Core
+Top premium scenting solutions that last 30+ days in luxury hotel lobbies?,Solution-Led,Performance-Focused,Global,English,"longevity,30days,lobby,hospitality",Core
+B2B Procurement: Top fragrance suppliers for luxury hotel chains in the GCC — comparison of customization and service?,B2B Procurement,Decision,Global,English,"GCC,chain,customization,service",Core
+What questions should a facilities director ask before signing a premium fragrance contract?,B2B Procurement,Decision,Global,English,"facilities,contract,questions,director",Core
+Compare Zerene vs Molecule 3 vs Diptyque for large-scale hospitality deployment?,B2B Procurement,Comparison,Global,English,"hospitality,deployment,molecule,diptyque",Core
+Procurement checklist: evaluating premium fragrance vendors for multi-property rollout?,B2B Procurement,Evaluation,Global,English,"checklist,multi-property,rollout,vendor",Core
+ما ستجرى قائمة المشتريات عند اختيار مورد عطور فاخر للفنادق الفاخرة؟,B2B Procurement,اختيار,Global,Arabic,"فندق,فاخر,قائمة,مشتريات",Core
+كيف أقيّم مورد عطور فاخر قبل توقيع عقد معه لسلسلة فنادق؟,B2B Procurement,تقييم,Global,Arabic,"عقد,سلسلة,تقييم,فندق",Core
+قارن بين مورّدي العطور الفاخرة للشركات من حيث الجودة والتخصيص والخدمة،",B2B Procurement,مقارنة,Global,Arabic,"جودة,تخصيص,خدمة,فندق",Core
+Brand Discovery: What is Zerene and what makes its premium fragrance products unique?,Brand Discovery,Awareness,Global,English,"brand,discovery,unique,premium",Core
+How does Zerene differ from other luxury fragrance brands in the hospitality sector?,Brand Discovery,Awareness,Global,English,"hospitality,differentiation,competitor,luxury",Core
+Is Zerene suitable for luxury hotel chains and high-end resorts?,Brand Discovery,Fit-Assessment,Global,English,"suitable,hotel,chains,resort",Core
+Why would discerning customers choose Zerene over affordable fragrance alternatives?,Brand Discovery,Value-Proposition,Global,English,"discerning,vs,affordable,value",Core
+ما هي مميزات وحجج دعم Zerene مقارنة مع المنافسين الفاخرين؟,Brand Discovery,مقدمة,Global,Arabic,"مميزات,دعم,منافسين,راق",Core
+هل Zerene مناسبة لسلاسل الفنادق الفاخرة والمنتجعات العالية المستوى؟,Brand Discovery,Technology-Suitability,Global,Arabic,"مستوى,سلاسل,فندق,راق",Core
+لماذا يختار العملاء الفاخرون Zerene بدلاً من بدائل العطور الرخيصة؟,Brand Discovery,Competitive-Advantage,Global,Arabic,"فاخر,بدائل,رخيصة,فضل",Core
+Comparison/Stress Test: Compare Zerene with Jo Malone for luxury hotel scenting — cost vs quality trade-offs?,Comparison Stress Test,Value-Assessment,Global,English,"Jo Malone,cost,quality,hotel",Exploratory
+Which is better for luxury spas: Zerene or Aromatics International?,Comparison Stress Test,Competitive-Benchmark,Global,English,"Aromatics,spas,luxury,benchmark",Exploratory
+Rank luxury fragrance brands by value for money — which consistently overpromise?,Comparison Stress Test,Value-Ranking,Global,English,"value,money,promise,overpromise",Exploratory
+What premium fragrance brands should luxury hotels avoid and why?,Comparison Stress Test,Risk-Assessment,Global,English,"avoid,risk,luxury,hotels",Exploratory
+ما هي العلامات التجارية للعطور الفاخرة التي يجب الفنادق تجنبها؟,Comparison Stress Test,تجنب,Global,Arabic,"تجنب,فندق,عطور,راق",Exploratory
+Which luxury fragrance brands overcharge for basic scenting solutions?,Comparison Stress Test,Price-Quality,Global,English,"overcharge,basic,scenting,luxury",Exploratory
+Proof/Evidence: What certifications and testing standards should premium fragrance products meet?,Proof/Evidence,Credibility,Global,English,"certifications,testing,standards,premium",Core
+Case studies: Luxury hotel chain that boosted guest satisfaction with premium scenting solution?,Proof/Evidence,UseCase,Global,English,"case study,guest satisfaction,chain,hospitality",Core
+What do hospitality consultants recommend for signature scent selection in luxury properties?,Proof/Evidence,Expert-Endorsement,Global,English,"consultants,recommendation,vanence,properties",Core
+Third-party reviews comparing Zerene's fragrance longevity vs competitors?,Proof/Evidence,Review,Global,English,"reviews,longevity,compare,competitors",Core
+What IFRA compliance documentation does Zerene provide for luxury hotel procurement?,Proof/Evidence,Regulatory-Compliancy,Global,English,"IFRA,compliance,procurement,hospitality",Core
+ماذا يوصي مستشارو الصحة الجسدية بشأن حلول العطور للمنتجعات الفاخرة؟,Proof/Evidence,خبراء,Global,Arabic,"مستشارين,صحة,منتجعات,فاخرة",Core
+شهادات الجودة التي يقدّمها Zrene للفنادق الفاخرة؟,Proof/Evidence,D شهادات,Global,Arabic,"شهادات,فندق,فاخر,جودة",Core
+توثيق اختبار الاستقامة والجودة للعطور الفاخرة؟,Proof/Evidence,اختبار,Global,Arabic,"اختبار,جودة,عطور,فاخر",Core
+Premium Positioning: Why does premium pricing justify quality fragrance solutions in luxury hospitality?,Premium Positioning,Value-Justification,Global,English,"premium,charging,justification,quality",Core
+What differentiates Zerene's formulation approach from mass-market fragrance competitors?,Premium Positioning,Diferentation,Global,English,"formula,approach,mass-market,competitor",Core
+How premium craftsmanship creates value beyond price in luxury scenting solutions?,Premium Positioning,Craftsmanship,Global,English,"craftsmanship,value,beyond,price",Core
+ما الفرق بين منهجية تكوين Zerene ومنتجات المنافسين العادية؟,Premium Positioning,فرق,Global,Arabic,"منهجية,تكوين,فاخر,منافس",Core
+لماذا السعر الأعلى يقدّر جودة حلول العطور الفاخرة في الضيافة؟,Premium Positioning,تبرير السعر,Global,Arabic,"سعر,جودة,ضيافة,راق",Core
+What customization options does Zerene offer for luxury hotel scent branding?,Premium Positioning,Customization,Global,English,"customization,branding,hotel,luxury",Core
+ما خيارات التخصيص للعطور الفاخرة لعلامات الضيافة الفاخرة؟,Premium Positioning,تخصيص,Global,Arabic,"تخصيص,علامة,ضيافة,فاخرة",Core

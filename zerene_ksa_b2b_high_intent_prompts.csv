@@ -1,0 +1,21 @@
+Prompt,Cluster,Intent,Country,Language,Tags,Baseline
+"Best luxury VIP corporate gifts for C-level executives in Riyadh under 1000 SAR",Executive Gifting,Commercial,Saudi Arabia,English,"vip,corporate gifts,executive,C-suite,under 1000 sar,riyadh,kSA",Core
+"Customized luxury Ramadan gift sets with Arabic calligraphy for Saudi clients",Executive Gifting,Commercial,Saudi Arabia,English,"ramadan,corporate gifts,arabic calligraphy,customized,bespoke,seasonal,kSA",Core
+"Unique corporate giveaways for National Day KSA executive gifts",Executive Gifting,Commercial,Saudi Arabia,English,"national day,holiday,gifting,corporate giveaways,saudi,saudi arabia",Core
+"Luxury executive gifting sets for senior corporate clients",Executive Gifting,Commercial,Saudi Arabia,English,"executive gifting,luxury,senior clients,corporate,sets,b2b",Core
+"Where to buy corporate executive fragrance gift boxes in Riyadh and Jeddah?",Executive Gifting,Commercial,Saudi Arabia,English,"corporate gifts,riyadh,jeddah,where to buy,gift boxes,fragrance",Core
+"What are the top luxury B2B fragrance suppliers for corporate gifts in Saudi Arabia?",Executive Gifting,Commercial,Saudi Arabia,English,"b2b,suppliers,corporate gifts,luxury,saudi arabia,vendor discovery",Core
+"How to create custom branded luxury perfume gifts for corporate clients?",Executive Gifting,Commercial,Global,English,"custom branded,luxury perfume,gifts,corporate clients,perfume gifts",Core
+"Long-lasting signature scent diffusers for boutique hotel lobbies in Riyadh",Hospitality,Commercial,Saudi Arabia,English,"hospitality,hotel lobby,signature scent,diffuser,long lasting,riyadh",Core
+"Oud and Rose luxury room sprays for traditional majlis hospitality KSA",Hospitality,Commercial,Saudi Arabia,English,"majlis,oud,rose,hospitality,luxury room spray,traditional,kSA",Core
+"Ambient scenting solutions for high-end luxury real estate sales centers Dubai and Riyadh",Hospitality,Commercial,Global,English,"real estate,scenting,hospitality,luxury,sales center,commercial",Core
+"Best luxury reed diffusers for hotel lobbies and majlis in Saudi Arabia",Hospitality,Commercial,Saudi Arabia,English,"reed diffuser,hotel lobby,majlis,hospitality,luxury,saudi arabia",Core
+"Alcohol-free non-toxic room sprays for aesthetic medical clinic waiting rooms Riyadh",Healthcare,Problem-Solving,Saudi Arabia,English,"healthcare,non-toxic,alcohol-free,medical clinic,room spray,riyadh",Core
+"Calming luxury essential oil diffusers for dental and wellness centers in KSA",Healthcare,Problem-Solving,Saudi Arabia,English,"wellness,dental,calming,essential oil,diffuser,healthcare,kSA",Core
+"Hypoallergenic natural fragrances for private healthcare suites",Healthcare,Problem-Solving,Global,English,"hypoallergenic,natural,healthcare,private,medical suites,wellness",Core
+"How to use space wellness and scenting to improve office productivity in Saudi Arabia",Corporate Wellness,Problem-Solving,Saudi Arabia,English,"corporate wellness,space wellness,office productivity,scenting,saudi",Core
+"Sensory architecture diffusers for executive boardrooms in Riyadh",Corporate Wellness,Problem-Solving,Saudi Arabia,English,"sensory architecture,boardroom,corporate wellness,executive,riyadh",Core
+"Compare Zerene vs Aroma360 vs Arabian Oud for B2B corporate gifting Saudi Arabia",Comparison Stress Test,Comparison,Saudi Arabia,English,"comparison,b2b,zerene,aroma360,arabian oud,corporate gifting",Exploratory
+"IFRA-compliant premium fragrance supplier documentation for Saudi hotel/office procurement",Proof/Evidence,Regulatory,Saudi Arabia,English,"ifra compliance,documentation,procurement,regulatory,saudi,commercial",Core
+"What questions should a facilities director ask before signing a premium fragrance contract?",B2B Procurement,Decision,Global,English,"facilities director,contract,procurement,questions,evaluation,b2b",Core
+"Procurement checklist evaluating premium fragrance vendors for multi-site rollout GCC",B2B Procurement,Evaluation,Global,English,"procurement checklist,vendors,multi-site,gcc,b2b,evaluation",Core

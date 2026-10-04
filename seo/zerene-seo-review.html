@@ -1,0 +1,743 @@
+<title>Zerene SEO Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  /* ---------- tokens: light is the bare :root ---------- */
+  :root {
+    --ground:        #F6F8F7;
+    --surface:       #FFFFFF;
+    --sunk:          #ECF0EE;
+    --ink:           #14201D;
+    --ink-soft:      #4A5A56;
+    --ink-faint:     #7C8C88;
+    --rule:          #DBE2E0;
+    --rule-strong:   #C3CECB;
+    --accent:        #1C5B57;
+    --accent-ink:    #16453F;
+    --accent-soft:   #E2EEEC;
+
+    --critical:      #9B2A1F;
+    --critical-soft: #FAEAE7;
+    --caution:       #8A5A12;
+    --caution-soft:  #FAF1E1;
+    --verified:      #3D6B2E;
+    --verified-soft: #EAF2E5;
+
+    --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    --arabic: "IBM Plex Sans Arabic", "Segoe UI", "Tahoma", sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+    --measure: 68ch;
+    --shell: 60rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:        #0E1614;
+      --surface:       #141E1C;
+      --sunk:          #1A2523;
+      --ink:           #E8EFEC;
+      --ink-soft:      #A3B3AE;
+      --ink-faint:     #74857F;
+      --rule:          #26332F;
+      --rule-strong:   #35443F;
+      --accent:        #74C2B7;
+      --accent-ink:    #9AD6CD;
+      --accent-soft:   #16302C;
+
+      --critical:      #E88375;
+      --critical-soft: #351916;
+      --caution:       #D9A552;
+      --caution-soft:  #322512;
+      --verified:      #8FC673;
+      --verified-soft: #1D2C18;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:        #0E1614;
+    --surface:       #141E1C;
+    --sunk:          #1A2523;
+    --ink:           #E8EFEC;
+    --ink-soft:      #A3B3AE;
+    --ink-faint:     #74857F;
+    --rule:          #26332F;
+    --rule-strong:   #35443F;
+    --accent:        #74C2B7;
+    --accent-ink:    #9AD6CD;
+    --accent-soft:   #16302C;
+
+    --critical:      #E88375;
+    --critical-soft: #351916;
+    --caution:       #D9A552;
+    --caution-soft:  #322512;
+    --verified:      #8FC673;
+    --verified-soft: #1D2C18;
+  }
+
+  /* ---------- base ---------- */
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding: 0 1.75rem 6rem;
+  }
+
+  p, li { max-width: var(--measure); }
+
+  a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  code, .mono { font-family: var(--mono); font-size: 0.85em; }
+
+  code {
+    background: var(--sunk);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.08em 0.34em;
+    word-break: break-all;
+  }
+
+  .ar {
+    font-family: var(--arabic);
+    font-size: 1.05em;
+    line-height: 1.9;
+    unicode-bidi: isolate;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- masthead ---------- */
+  header.masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 3.25rem 0 1.5rem;
+    margin-bottom: 2.25rem;
+  }
+
+  header.masthead h1 {
+    font-family: var(--display);
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    line-height: 1.04;
+    letter-spacing: -0.021em;
+    margin: 0.7rem 0 0;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    font-family: var(--display);
+    font-size: clamp(1.08rem, 2.1vw, 1.3rem);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0.9rem 0 0;
+    max-width: 46ch;
+  }
+
+  .provenance {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.6rem;
+    margin-top: 1.75rem;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+  }
+  .provenance span { white-space: nowrap; }
+  .provenance b { color: var(--ink-soft); font-weight: 500; }
+
+  /* ---------- verdict strip ---------- */
+  .verdicts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 3.5rem;
+  }
+
+  .verdict {
+    background: var(--surface);
+    padding: 1.15rem 1.25rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .verdict .file {
+    font-family: var(--mono);
+    font-size: 0.73rem;
+    color: var(--ink-faint);
+    word-break: break-all;
+  }
+
+  .verdict .call {
+    font-family: var(--display);
+    font-size: 1.28rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.012em;
+    max-width: none;
+  }
+  .verdict.is-critical .call { color: var(--critical); }
+  .verdict.is-caution  .call { color: var(--caution); }
+
+  .verdict p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    max-width: none;
+  }
+
+  /* ---------- sections ---------- */
+  section { margin-bottom: 4rem; }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: 0.55rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .sec-head h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.5rem, 3.2vw, 1.95rem);
+    letter-spacing: -0.016em;
+    line-height: 1.15;
+    margin: 0;
+    flex: 1;
+  }
+
+  .sec-head .tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  h3 {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 1.02rem;
+    line-height: 1.35;
+    letter-spacing: -0.004em;
+    margin: 0 0 0.5rem;
+    max-width: var(--measure);
+  }
+
+  /* ---------- findings ---------- */
+  .finding {
+    border-left: 3px solid var(--rule-strong);
+    padding: 0.1rem 0 0.1rem 1.15rem;
+    margin: 0 0 1.9rem;
+  }
+  .finding.is-critical { border-left-color: var(--critical); }
+  .finding.is-caution  { border-left-color: var(--caution); }
+  .finding.is-good     { border-left-color: var(--verified); }
+
+  .finding > p { margin: 0.5rem 0; }
+  .finding > p:last-child { margin-bottom: 0; }
+
+  .sev {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    padding: 0.16em 0.5em;
+    border-radius: 2px;
+    margin-bottom: 0.55rem;
+  }
+  .sev.critical { background: var(--critical-soft); color: var(--critical); }
+  .sev.caution  { background: var(--caution-soft);  color: var(--caution); }
+  .sev.note     { background: var(--sunk);          color: var(--ink-soft); }
+  .sev.good     { background: var(--verified-soft); color: var(--verified); }
+
+  ul.tight { margin: 0.65rem 0; padding-left: 1.1rem; }
+  ul.tight li { margin-bottom: 0.3rem; }
+
+  ul.bare { list-style: none; margin: 0.7rem 0; padding: 0; }
+  ul.bare li {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    padding: 0.28rem 0;
+    border-bottom: 1px dotted var(--rule);
+    word-break: break-all;
+    max-width: none;
+  }
+  ul.bare li:last-child { border-bottom: none; }
+  ul.bare .note-inline {
+    font-family: var(--body);
+    font-size: 0.88rem;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- redirect evidence ---------- */
+  .redirects {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--critical);
+    padding: 1rem 1.15rem;
+    margin: 1rem 0 1.1rem;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    display: grid;
+    gap: 0.55rem;
+  }
+  .redirects .row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+  .redirects .arrow { color: var(--critical); font-weight: 500; }
+  .redirects .code301 {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    background: var(--critical-soft);
+    color: var(--critical);
+    padding: 0.1em 0.45em;
+    border-radius: 2px;
+  }
+  .redirects .target { color: var(--accent-ink); }
+
+  /* ---------- tables ---------- */
+  .scroller {
+    overflow-x: auto;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    margin: 1.25rem 0 0.7rem;
+  }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.87rem; }
+
+  caption {
+    caption-side: top;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0 0 0.55rem;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 0.62rem 0.85rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+
+  thead th {
+    font-family: var(--mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: var(--sunk);
+    border-bottom: 1px solid var(--rule-strong);
+    white-space: nowrap;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+
+  td.url { font-family: var(--mono); font-size: 0.78rem; word-break: break-all; min-width: 13rem; }
+  td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.16em 0.5em;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .pill.remove { background: var(--critical-soft); color: var(--critical); }
+  .pill.keep   { background: var(--caution-soft);  color: var(--caution); }
+  .pill.noop   { background: var(--sunk);          color: var(--ink-soft); }
+  .pill.ok     { background: var(--verified-soft); color: var(--verified); }
+
+  /* ---------- callout ---------- */
+  .callout {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    padding: 1.3rem 1.4rem;
+    margin: 1.75rem 0;
+  }
+  .callout .eyebrow { color: var(--accent-ink); }
+  .callout h3 {
+    font-family: var(--display);
+    font-size: 1.22rem;
+    font-weight: 600;
+    margin: 0.45rem 0 0.6rem;
+    letter-spacing: -0.012em;
+  }
+  .callout p { margin: 0.5rem 0; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout .fix {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 0.55rem 0.75rem;
+    margin-top: 0.9rem;
+    max-width: none;
+  }
+
+  /* ---------- keyword intent list ---------- */
+  .kw {
+    border-top: 1px solid var(--rule);
+    padding: 1.1rem 0;
+    display: grid;
+    gap: 0.45rem;
+  }
+  .kw:last-of-type { border-bottom: 1px solid var(--rule); }
+  .kw .kw-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; }
+  .kw .term { font-weight: 500; font-size: 1.05rem; }
+  .kw .en { color: var(--ink-faint); font-size: 0.88rem; }
+  .kw p { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
+
+  /* ---------- next steps ---------- */
+  ol.steps { counter-reset: s; list-style: none; margin: 0; padding: 0; }
+  ol.steps li {
+    counter-increment: s;
+    position: relative;
+    padding: 0 0 1.15rem 2.6rem;
+    max-width: var(--measure);
+  }
+  ol.steps li::before {
+    content: counter(s, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.08em;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    border: 1px solid var(--rule-strong);
+    border-radius: 2px;
+    padding: 0.1em 0.4em;
+    font-variant-numeric: tabular-nums;
+  }
+  ol.steps b { font-weight: 600; }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+  footer p { max-width: 60ch; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="shell">
+
+  <header class="masthead">
+    <div class="eyebrow">Deliverables review &middot; 26 August 2026</div>
+    <h1>Zerene SEO Review</h1>
+    <p class="standfirst">Three files, checked against the live store. One should not be submitted, one needs numbers, and one needs two topics replaced.</p>
+    <div class="provenance">
+      <span><b>Reporting period</b> 19&ndash;26 Aug 2026</span>
+      <span><b>Verified against</b> zerene.com</span>
+      <span><b>Catalog</b> 13 products, EN&nbsp;+&nbsp;AR</span>
+      <span><b>Currency</b> AED</span>
+    </div>
+  </header>
+
+  <div class="verdicts">
+    <div class="verdict is-critical">
+      <div class="file">disavow_20260826.txt</div>
+      <div class="call">Hold &mdash; do not submit</div>
+      <p>The list includes two of Zerene&rsquo;s own domains and a different company&rsquo;s listings.</p>
+    </div>
+    <div class="verdict is-caution">
+      <div class="file">Zerene SEO Work Report</div>
+      <div class="call">Incomplete</div>
+      <p>No metrics, no URL list, and the competitor research output isn&rsquo;t attached.</p>
+    </div>
+    <div class="verdict is-caution">
+      <div class="file">Zerene 5 Blog Title Strategy</div>
+      <div class="call">Revise before writing</div>
+      <p>Two of five topics target products the store doesn&rsquo;t sell; four keywords are commercial-intent.</p>
+    </div>
+  </div>
+
+  <!-- ============ FILE 1 ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>The disavow file</h2>
+      <span class="tag">100 urls &middot; 100 hosts</span>
+    </div>
+
+    <div class="finding is-critical">
+      <span class="sev critical">Blocking</span>
+      <h3>Two entries are Zerene&rsquo;s own domains</h3>
+      <p>Both of these are on the disavow list, and both redirect into the main store:</p>
+      <div class="redirects">
+        <div class="row"><span>zerene.life</span> <span class="code301">301</span> <span class="arrow">&rarr;</span> <span class="target">zerene.com</span></div>
+        <div class="row"><span>zerene.co</span> <span class="code301">301</span> <span class="arrow">&rarr;</span> <span class="target">zerene.com</span></div>
+      </div>
+      <p>A 301 passes link equity. Disavowing these tells Google to discard whatever authority those domains consolidate into zerene.com &mdash; so this line item works against the site rather than for it. Confirm ownership at your registrar, but the recommendation holds either way: if they&rsquo;re yours, disavowing is self-harm; if they aren&rsquo;t, a redirect into your own store is harmless and still not worth disavowing.</p>
+    </div>
+
+    <div class="finding is-critical">
+      <span class="sev critical">Blocking</span>
+      <h3>Two entries belong to an unrelated business</h3>
+      <ul class="bare">
+        <li>places.singleplatform.com/zerene-salon/menu</li>
+        <li>cgmimm.vercel.app/biz/zerene-salon-1540-nw-56th-st-98107</li>
+      </ul>
+      <p>Zerene Salon at 1540 NW 56th St, 98107 is a hair salon in Seattle &mdash; a different company that happens to share the name. Those pages almost certainly don&rsquo;t link to zerene.com at all, which points at how the list was built: name-matching the word &ldquo;zerene&rdquo; rather than working from a backlink export for the domain. That&rsquo;s worth raising with the vendor, because it affects every other entry&rsquo;s credibility.</p>
+    </div>
+
+    <div class="finding is-caution">
+      <span class="sev caution">Would cost you</span>
+      <h3>Three entries are legitimate citations of the brand</h3>
+      <ul class="bare">
+        <li>ratingfacts.com/reviews/zerene.com</li>
+        <li>allare.io/businesses/zerene-com</li>
+        <li>storeleads.app/reports/technology/Amplitude/country/TH</li>
+      </ul>
+      <p>The first two are ordinary business listings. Storeleads is a real ecommerce technology database &mdash; it lists zerene.com because the store runs Amplitude, which is exactly how that directory is supposed to work. None of these are link schemes.</p>
+    </div>
+
+    <div class="finding is-caution">
+      <span class="sev caution">Wrong criterion</span>
+      <h3>Irrelevant is not the same as toxic</h3>
+      <p>Several entries look like real pages that simply have nothing to do with fragrance &mdash; a 2010 personal food blog post about natto spaghetti, a virtual-tours software roundup, a personal about page, a dry-shampoo top-ten list, and two of the three blogspot domains. Topical irrelevance isn&rsquo;t a disavow criterion, and pruning links for it gives up whatever small value they carry.</p>
+    </div>
+
+    <div class="finding">
+      <span class="sev note">Context</span>
+      <h3>72 of the 100 entries are scraper output Google already discounts</h3>
+      <p>The list has visible machine fingerprints &mdash; the same generated page path repeated across dozens of unrelated hosts:</p>
+      <div class="scroller">
+        <table>
+          <caption>Repeated path fingerprints across distinct hosts</caption>
+          <thead>
+            <tr><th>Generated path pattern</th><th>What produces it</th><th>Entries</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="url">page-c4ab3e51…d07.html</td><td>Backlink-checker mirror pages</td><td class="num">39</td></tr>
+            <tr><td class="url">…f7977374…dbdf.html</td><td>Same network, second hash</td><td class="num">9</td></tr>
+            <tr><td class="url">/domain/domain/part/270669</td><td>Domain-appraisal scrapers</td><td class="num">8</td></tr>
+            <tr><td class="url">/report/·/stats/·/share/117974–5</td><td>Stats-page generators</td><td class="num">11</td></tr>
+            <tr><td class="url">…e1f6b79c…7503-l/</td><td>Worth-checker mirrors</td><td class="num">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>These aren&rsquo;t links built to manipulate Zerene&rsquo;s rankings. They&rsquo;re auto-generated pages that mirror whatever domain someone looks up in an SEO tool &mdash; the domain was queried, so the pages exist. Google discounts this category wholesale.</p>
+    </div>
+
+    <div class="finding is-critical">
+      <span class="sev critical">Format</span>
+      <h3>Every line is a single URL, so the file wouldn&rsquo;t work even if submitting were right</h3>
+      <p>100 URLs across 100 distinct hosts, and not one <code>domain:</code> entry. Each of those scraper networks can generate unlimited pages per host, so a URL-level entry neutralizes exactly one page and leaves the rest. For site-wide problems the entry has to be domain-level:</p>
+      <div class="callout" style="margin:1rem 0 0;">
+        <div class="eyebrow">Correct form</div>
+        <p class="fix"># scraper mirrors<br>domain:backlinkshouse.com<br>domain:backlinksbank.com<br>domain:linksnatcher.com</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="eyebrow">Recommendation</div>
+      <h3>Don&rsquo;t submit anything yet &mdash; check for a manual action first</h3>
+      <p>Google&rsquo;s own guidance is that the disavow tool is for sites with a considerable volume of genuinely manipulative links <em>and</em> good reason to believe those links are causing harm; in most cases its systems assess link trust without help. Since 2016 spam links have been devalued algorithmically rather than counted against you.</p>
+      <p>So the first step is Search Console &rarr; <b>Security &amp; Manual Actions</b>. If there&rsquo;s no unnatural-links action &mdash; and with this profile there almost certainly isn&rsquo;t &mdash; the correct action is none. Keep the list as documentation, which is what the work report says it was for, and leave the tool alone.</p>
+      <p>If a manual action <em>does</em> exist, rebuild the list from Search Console&rsquo;s own link export rather than a single third-party tool, convert it to <code>domain:</code> entries, and remove zerene.life, zerene.co, and the real citations before anything is uploaded.</p>
+    </div>
+
+    <div class="scroller">
+      <table>
+        <caption>Sample classification &mdash; how the list breaks down</caption>
+        <thead>
+          <tr><th>Entry</th><th>What it actually is</th><th>Verdict</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="url">zerene.life · zerene.co</td><td>Zerene&rsquo;s own domains, 301 to zerene.com</td><td><span class="pill remove">Remove</span></td></tr>
+          <tr><td class="url">…/zerene-salon/menu</td><td>Seattle hair salon, unrelated company</td><td><span class="pill remove">Remove</span></td></tr>
+          <tr><td class="url">ratingfacts.com · allare.io</td><td>Ordinary business listings for the brand</td><td><span class="pill keep">Keep the link</span></td></tr>
+          <tr><td class="url">storeleads.app/…/Amplitude/…</td><td>Legitimate ecommerce tech database</td><td><span class="pill keep">Keep the link</span></td></tr>
+          <tr><td class="url">elliemay.com/…/natto-spaghetti/</td><td>Real 2010 blog post, merely irrelevant</td><td><span class="pill keep">Keep the link</span></td></tr>
+          <tr><td class="url">72 fingerprinted mirror pages</td><td>Scraper output, already discounted</td><td><span class="pill noop">No action needed</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ FILE 2 ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>The weekly work report</h2>
+      <span class="tag">19–26 aug 2026</span>
+    </div>
+
+    <div class="finding is-caution">
+      <span class="sev caution">Gap</span>
+      <h3>There are no numbers in it</h3>
+      <p>No impressions, clicks, CTR, average position, indexed-page count, rankings, or conversions &mdash; and no baseline to compare next week against. A weekly report without data can&rsquo;t be evaluated, and it can&rsquo;t show whether the work is producing anything. Ask for a standing metrics block: impressions, clicks, CTR and average position from Search Console, top queries and top pages, week-over-week and against the same period last month.</p>
+    </div>
+
+    <div class="finding is-caution">
+      <span class="sev caution">Gap</span>
+      <h3>The work isn&rsquo;t verifiable as written</h3>
+      <p>&ldquo;Optimized existing blog posts&rdquo; &mdash; which posts, and how many? &ldquo;Updated meta titles and meta descriptions&rdquo; needs a before-and-after table. &ldquo;Restructured headings&rdquo; needs the URLs. Right now none of the three claims can be checked, which also means next week&rsquo;s report can&rsquo;t build on them.</p>
+    </div>
+
+    <div class="finding is-caution">
+      <span class="sev caution">Missing deliverable</span>
+      <h3>Competitor research is reported as an activity, with no output</h3>
+      <p>Section 2 is a single sentence. The actual deliverable &mdash; who the competitors are, which queries they own, what content gaps were found &mdash; isn&rsquo;t in the document or attached to it. Without that, the finding can&rsquo;t inform the blog plan it was supposedly meant to feed.</p>
+    </div>
+
+    <div class="finding is-critical">
+      <span class="sev critical">Risk</span>
+      <h3>&ldquo;Removed unnecessary code and unwanted formatting&rdquo; needs to be checked</h3>
+      <p>This is the one line in the report that could have done damage. Bulk-cleaning blog HTML on Shopify can strip image <code>alt</code> attributes, internal links pointing to product pages, embedded structured data, and canonical or meta tags along with the cruft. Ask specifically what was removed, and whether internal links and alt text survived &mdash; a before-and-after on one representative post will settle it in a minute.</p>
+    </div>
+
+    <div class="finding">
+      <span class="sev note">Detail</span>
+      <h3>The CTR claim has nothing behind it yet</h3>
+      <p>&ldquo;Improve potential click-through rates&rdquo; is reasonable as an intent, but Google rewrites meta descriptions often and the only proof is Search Console CTR before and after. Capture the baseline now so the claim is checkable next month. Same for status hygiene: &ldquo;started reviewing backlink sources&rdquo; should carry an owner and a completion date.</p>
+    </div>
+
+    <div class="finding is-caution">
+      <span class="sev caution">Scope</span>
+      <h3>Everything in the report is blog work &mdash; the money pages aren&rsquo;t mentioned</h3>
+      <p>For a 13-product store, the product and collection pages are what convert and what rank for shopping queries, and none appear anywhere in the engagement. Also absent: indexation and coverage status, Product / Article / Organization / Breadcrumb schema, Core Web Vitals, internal linking from blog posts to products, hreflang for the English and Arabic versions, and Shopify&rsquo;s usual canonical handling for filtered collection URLs. The blog is the smallest available lever, and it&rsquo;s the only one being pulled.</p>
+    </div>
+  </section>
+
+  <!-- ============ FILE 3 ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>The five blog topics</h2>
+      <span class="tag">checked against catalog</span>
+    </div>
+
+    <div class="finding is-good">
+      <span class="sev good">Verified</span>
+      <h3>Most of the product matching was done carefully</h3>
+      <p>Room Spray Oud, Reed Diffuser Oud, Reed Diffuser Oud Lime, Reed Diffuser Oud Lemongrass, the Eternal Rose Set and the Executive Companion Collection all exist and are matched to sensible topics. That part of the document holds up against the live catalog.</p>
+    </div>
+
+    <div class="finding is-critical">
+      <span class="sev critical">Blocking</span>
+      <h3>Topic 2 is built on a product Zerene doesn&rsquo;t sell</h3>
+      <p class="ar" lang="ar" dir="rtl">بخور العود أم فواحة العود: أيهما أفضل لتعطير المنزل؟</p>
+      <p>The article&rsquo;s entire hook is bakhoor versus diffuser &mdash; and there is no bakhoor or incense in the catalog. It would bring bakhoor shoppers to a store that can&rsquo;t serve them, which converts at roughly zero and teaches Google the wrong thing about the site. Either cut it, or reframe it as a comparison the brand can actually win: reed diffuser versus room spray, where there are six and seven variants respectively to recommend.</p>
+    </div>
+
+    <div class="finding is-critical">
+      <span class="sev critical">Blocking</span>
+      <h3>Topic 5 targets a scent that isn&rsquo;t in the range &mdash; and contradicts the document&rsquo;s own strategy</h3>
+      <p class="ar" lang="ar" dir="rtl">روز فانيلا: لماذا تعد رائحة الورد والفانيلا من الروائح المفضلة؟</p>
+      <p>There is no rose-vanilla product. The rose line is the Rose reed diffuser and the two Eternal Rose sets. (One rose product didn&rsquo;t load on the collection page, so it&rsquo;s worth a confirm &mdash; but nothing rose-vanilla is visible.) On top of that, the document&rsquo;s closing SEO Direction says to avoid competing on perfume brand names, and <span class="ar" lang="ar" dir="rtl">روز فانيلا</span> is effectively a branded product query driven by another company&rsquo;s fragrance. The strategy needs to pick one position.</p>
+    </div>
+
+    <div class="finding is-critical">
+      <span class="sev critical">Strategy</span>
+      <h3>Four of the five keywords are shopping queries pointed at blog posts</h3>
+      <p>Google serves collection and product pages for these, not articles. Aiming blog posts at them means fighting an intent mismatch and competing against your own product pages at the same time.</p>
+
+      <div class="kw">
+        <div class="kw-top"><span class="term ar" lang="ar" dir="rtl">عطر العود</span> <span class="en">oud fragrance</span> <span class="pill remove">Commercial</span></div>
+        <p>Belongs on an Oud collection page. The article can support it, not replace it.</p>
+      </div>
+      <div class="kw">
+        <div class="kw-top"><span class="term ar" lang="ar" dir="rtl">بخور العود</span> <span class="en">oud bakhoor</span> <span class="pill noop">No product</span></div>
+        <p>The one genuinely blog-shaped topic in the set &mdash; and the one with nothing to sell against it.</p>
+      </div>
+      <div class="kw">
+        <div class="kw-top"><span class="term ar" lang="ar" dir="rtl">هدية عود</span> <span class="en">oud gift</span> <span class="pill remove">Commercial</span></div>
+        <p>Belongs on a gifting collection page, which would also serve the Executive Companion line.</p>
+      </div>
+      <div class="kw">
+        <div class="kw-top"><span class="term ar" lang="ar" dir="rtl">مجموعة عطور</span> <span class="en">fragrance set</span> <span class="pill remove">Commercial</span></div>
+        <p>Belongs on the gift-set collection page.</p>
+      </div>
+      <div class="kw">
+        <div class="kw-top"><span class="term ar" lang="ar" dir="rtl">روز فانيلا</span> <span class="en">rose vanilla</span> <span class="pill noop">No product</span></div>
+        <p>A branded product query for a scent the range doesn&rsquo;t include.</p>
+      </div>
+    </div>
+
+    <div class="finding is-caution">
+      <span class="sev caution">Prerequisite</span>
+      <h3>The collections the plan points to don&rsquo;t exist yet</h3>
+      <p>&ldquo;Luxury Gift Sets&rdquo;, &ldquo;Rose Fragrance Collection&rdquo; and &ldquo;Luxury Home Fragrance Collection&rdquo; aren&rsquo;t real pages. The store has <code>/collections/our-products</code> and <code>/collections/all</code>, plus scent filter facets for Oud, Oud Lime, Oud Lemongrass, Rose, Mandarin and Ylang Ylang&ndash;Lavender. Shopify filter URLs make poor landing pages and are often kept out of the index. So the plan quietly depends on building real collection pages first &mdash; that&rsquo;s the actual first task, and it isn&rsquo;t in either document.</p>
+    </div>
+
+    <div class="finding is-caution">
+      <span class="sev caution">Factual</span>
+      <h3>&ldquo;Saudi&rdquo; doesn&rsquo;t match the store</h3>
+      <p>The SEO Direction proposes positioning Zerene as &ldquo;a premium Saudi home fragrance brand,&rdquo; but the site prices in AED &mdash; the UAE. If Saudi is a deliberate expansion target, that&rsquo;s a far bigger project than five posts (ar-SA targeting, SAR pricing, Saudi market signals) and should be stated as one. If it&rsquo;s an error, fix it before anything gets written against that positioning.</p>
+    </div>
+
+    <div class="finding is-caution">
+      <span class="sev caution">Incomplete</span>
+      <h3>A topic plan needs the fields that let you prioritize</h3>
+      <p>Missing for each topic: search volume, keyword difficulty, a look at what currently ranks, the target URL and slug, draft meta title and description, target length, and which internal links it should carry. Five topics can&rsquo;t be sequenced without volume and difficulty. Also unresolved: the site is English and Arabic, and the plan doesn&rsquo;t say whether these publish Arabic-only or as hreflang-paired pairs. Topic 5 lists both Arabic and English keywords for one article, which suggests that question hasn&rsquo;t been settled.</p>
+    </div>
+
+    <div class="finding">
+      <span class="sev note">Worth naming</span>
+      <h3>This is a repositioning, not just a topic list</h3>
+      <p>The brand currently presents as aromatherapy and wellness &mdash; French essential oils, &ldquo;Scent for Serenity,&rdquo; and on-site blog categories of Luxury Wellness, Executive Gifting, Space Wellness and Sensory Branding. The strategy reframes it as Arabian oud atmosphere. Both are viable, but none of the five titles map to the existing content pillars, so this reads as a pivot arriving through keyword research rather than a decision anyone made. Make it an explicit call either way.</p>
+    </div>
+  </section>
+
+  <!-- ============ NEXT ============ -->
+  <section>
+    <div class="sec-head">
+      <h2>What to send back</h2>
+      <span class="tag">in this order</span>
+    </div>
+
+    <ol class="steps">
+      <li><b>Hold the disavow file.</b> Check Search Console &rarr; Security &amp; Manual Actions. No unnatural-links action means no submission &mdash; keep the list as documentation.</li>
+      <li><b>Ask how the list was built.</b> The Seattle salon entries suggest name-matching rather than a backlink export for the domain. That answer determines whether the rest of the list is trustworthy.</li>
+      <li><b>Get the blog work in writing:</b> the URLs touched, before-and-after meta titles and descriptions, and confirmation that alt text, internal links and structured data survived the code cleanup.</li>
+      <li><b>Ask for the competitor research output</b> &mdash; the findings themselves, not the fact that it happened.</li>
+      <li><b>Resolve Saudi versus UAE,</b> and whether the Arabic posts ship alone or hreflang-paired with English.</li>
+      <li><b>Replace topics 2 and 5,</b> and split the rest: commercial keywords onto collection pages, blog posts written to support them with internal links.</li>
+      <li><b>Set the report format</b> for next week: a standing metrics block, URLs for every claim, and an owner and date on each open item.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p>Findings verified against zerene.com on 26 August 2026 — catalog, collection structure, redirect behavior for zerene.life and zerene.co, and the 100 entries in disavow_20260826.txt. Ownership of zerene.life and zerene.co is inferred from their 301 targets and should be confirmed at the registrar.</p>
+  </footer>
+
+</div>
