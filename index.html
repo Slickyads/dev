@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEO Strategy & Research Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 50px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            color: #666;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.6);
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .testimonial {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid #6a11cb;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .testimonial-author::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #6a11cb;
+            border-radius: 50%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.25rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>GEO Strategy Services</h1>
+            <p>Specialized Generative Engine Optimization research and strategy for brands</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="features">
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Comprehensive GEO Audit</h3>
+                <p>Deep analysis of your current AI search visibility, identifying gaps and opportunities in the KSA luxury gifting market.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Targeted Strategy Development</h3>
+                <p>Custom GEO strategies focused on blue-ocean Tier 3-4 B2B intent keywords for healthcare, corporate wellness, and interior architecture sectors.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📈</div>
+                <h3>Performance Monitoring</h3>
+                <p>Ongoing tracking and optimization to improve your AI Share of Voice from 20% to 25%+ benchmark.</p>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready to Dominate AI Search?</h2>
+            <p>Our specialized GEO research helps luxury brands appear in AI-generated answers for high-value corporate gifting queries.</p>
+            <a href="https://wa.me/971508355477?text=Hi%2C%20I%27d%20like%20to%20discuss%20GEO%20Services" class="btn" target="_blank" rel="noopener noreferrer">Get Started Today</a>
+        </section>
+
+        <section class="testimonials">
+            <div class="testimonial">
+                <p>"The GEO audit revealed critical gaps we weren't seeing in traditional SEO. Their strategy gave us a clear roadmap to improve AI visibility in the Saudi market."</p>
+                <div class="testimonial-author">Luxury Brand Director</div>
+            </div>
+
+            <div class="testimonial">
+                <p>"Their focus on Tier 3-4 B2B intent keywords opened up entirely new customer segments we weren't reaching through conventional channels."</p>
+                <div class="testimonial-author">Marketing Manager, Wellness Company</div>
+            </div>
+
+            <div class="testimonial">
+                <p>"The actionable recommendations and prompt libraries have already started improving how AI engines understand and recommend our brand."</p>
+                <div class="testimonial-author">Executive Gifting Specialist</div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 GEO Strategy Services. All rights reserved.</p>
+            <p>Specializing in Generative Engine Optimization for brands.</p>
+        </div>
+    </footer>
+</body>
+</html>
