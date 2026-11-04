@@ -172,7 +172,7 @@
         "documentId": {
           "__rl": true,
           "mode": "url",
-          "value": "PASTE_GOOGLE_SHEET_URL"
+          "value": "={{ $env.GOOGLE_SHEET_URL }}"
         },
         "sheetName": {
           "__rl": true,

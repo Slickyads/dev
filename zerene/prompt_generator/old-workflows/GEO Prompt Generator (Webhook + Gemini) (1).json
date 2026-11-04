@@ -1,0 +1,3111 @@
+{
+  "name": "GEO Prompt Generator (Webhook + Gemini)",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "GEO Prompt Generator",
+        "formDescription": "Submit a website to generate 10 AI-engine prompts.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Website URL",
+              "placeholder": "https://example.com",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Brand Name"
+            },
+            {
+              "fieldLabel": "Tier",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Tier 1: Executive & VIP Corporate Gifting"
+                  },
+                  {
+                    "option": "Tier 2: Hospitality, Majlis & Boutique Hotel"
+                  },
+                  {
+                    "option": "Tier 3: Healthcare, Spas & Premium Medical Clinics"
+                  },
+                  {
+                    "option": "Tier 4: Corporate Wellness & Interior Architecture"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Market",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "KSA"
+                  },
+                  {
+                    "option": "UAE"
+                  },
+                  {
+                    "option": "GCC"
+                  },
+                  {
+                    "option": "Global"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Language",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "English"
+                  },
+                  {
+                    "option": "Arabic"
+                  },
+                  {
+                    "option": "English + Arabic"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "69603479-6533-4bb4-b02d-b4ce428b9ff2",
+      "name": "GEO Form",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "geo-prompt-generator"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json['Website URL'] }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "59a7a0c1-86b7-4b6c-a537-8492e9b51ff6",
+      "name": "Fetch Website",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const form = $('GEO Form').first().json;\nconst raw = String($input.first().json.data || '');\nconst clean = raw.replace(/<script[\\s\\S]*?<\\/script>/gi,' ').replace(/<style[\\s\\S]*?<\\/style>/gi,' ');\nconst title = (clean.match(/<title[^>]*>([\\s\\S]*?)<\\/title>/i)||[])[1]||'';\nconst meta = (clean.match(/<meta[^>]+name=[\"']description[\"'][^>]+content=[\"']([^\"']*)/i)||[])[1]||'';\nconst text = clean.replace(/<[^>]+>/g,' ').replace(/\\s+/g,' ').trim().slice(0,8000);\n\nconst tierGuide = {\n 'Tier 1: Executive & VIP Corporate Gifting': 'Buyers: HR heads, PAs, procurement, C-suite assistants. Topics: luxury corporate gifts, Ramadan/Eid/National Day gifting, VIP client gifts, branded premium hampers, bulk orders.',\n 'Tier 2: Hospitality, Majlis & Boutique Hotel': 'Buyers: hotel GMs, F&B/guest-experience managers, majlis owners, interior buyers. Topics: guest amenities, in-room scent, majlis hospitality, boutique hotel experience, Arabic hospitality.',\n 'Tier 3: Healthcare, Spas & Premium Medical Clinics': 'Buyers: clinic/spa owners, procurement, patient-experience managers. Topics: spa products, clinic ambience, premium patient experience, aromatherapy, wellness retail.',\n 'Tier 4: Corporate Wellness & Interior Architecture': 'Buyers: facility managers, interior architects, HR wellbeing leads, developers. Topics: office wellness, scent branding, lobby/interior design, fit-out specifications.'\n};\n\nconst market = form['Market'];\nconst lang = form['Language'];\nconst tier = form['Tier'];\nconst brand = form['Brand Name'] || title;\n\nconst system = 'You are a GEO (Generative Engine Optimization) strategist. You write realistic questions that real buyers type into AI engines (ChatGPT, Perplexity, Gemini, Claude, Google AI Overviews). Return ONLY valid JSON, no markdown, no commentary.';\n\nconst user = `BRAND: ${brand}\nWEBSITE: ${form['Website URL']}\nSITE TITLE: ${title}\nMETA: ${meta}\nSITE CONTENT (excerpt): ${text}\n\nSELECTED TIER: ${tier}\nTIER GUIDE: ${tierGuide[tier] || ''}\nMARKET: ${market}\nLANGUAGE: ${lang} (if \"English + Arabic\", make 5 English and 5 Arabic prompts)\n\nTASK: Write exactly 10 prompts a buyer in ${market} would ask an AI engine, based on what this website actually sells.\nDistribution:\n- 2 x \"Brand Direct Queries\" (segment: Brand)\n- 3 x \"KSA Category Intent\" (adapt the location to ${market}; segment: Category benchmark)\n- 2 x \"Executive Gifting\" (segment: Non-brand)\n- 3 x \"Problem-Solution\" (segment: Non-brand)\nRules: Non-brand and category prompts must NOT name the brand. Make them natural, specific, conversational, with city/market and seasonal or cultural context where relevant. Vary icp_search_type and keyword_intent.\n\nReturn JSON: {\"prompts\":[{\"category\":\"\",\"icp_search_type\":\"Commercial|Seasonal|Cultural|Comparison|Direct answer\",\"keyword_intent\":\"Informational|Commercial|Transactional\",\"market\":\"UAE|KSA|GCC|Global\",\"language\":\"English|Arabic\",\"segment\":\"Non-brand|Category benchmark|Brand\",\"target_keyword\":\"\",\"prompt_text\":\"\"}]}`;\n\nreturn [{ json: {\n  brand, website: form['Website URL'], tier, market,\n  body: { model: 'claude-sonnet-4-6', max_tokens: 4000, system, messages: [{ role:'user', content: user }] }\n}}];"
+      },
+      "id": "d347d0c9-ed8b-424b-ad9d-d967843d0459",
+      "name": "Build Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "dcd59714-9350-4d32-8447-ec812fdedab3",
+      "name": "Claude - Generate Prompts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "mAt6c50pp4zyHIsA",
+          "name": "X-RapidAPI-Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Build Prompt').first().json;\nlet txt = ($input.first().json.content || []).map(c => c.text || '').join('');\ntxt = txt.replace(/```json|```/g,'').trim();\nconst data = JSON.parse(txt);\nconst runId = Date.now().toString(36);\nreturn data.prompts.map((p, i) => ({ json: {\n  prompt_id: `${runId}-${String(i+1).padStart(2,'0')}`,\n  created_at: new Date().toISOString(),\n  brand: ctx.brand,\n  website: ctx.website,\n  tier: ctx.tier,\n  category: p.category,\n  icp_search_type: p.icp_search_type,\n  keyword_intent: p.keyword_intent,\n  market: p.market,\n  language: p.language,\n  segment: p.segment,\n  target_keyword: p.target_keyword,\n  prompt_text: p.prompt_text,\n  status: 'Pending scan'\n}}));"
+      },
+      "id": "af6dd466-ba80-4fb4-89a0-04c34104610a",
+      "name": "Parse to Rows",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1yAJ1LwDG3KI_aAQGKNnu2adc0SzSUdZI2EAPK4aWdRQ"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "prompts",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "prompt_id",
+              "displayName": "prompt_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "brand",
+              "displayName": "brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tier",
+              "displayName": "tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "icp_search_type",
+              "displayName": "icp_search_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "keyword_intent",
+              "displayName": "keyword_intent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "market",
+              "displayName": "market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "language",
+              "displayName": "language",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "segment",
+              "displayName": "segment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "target_keyword",
+              "displayName": "target_keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prompt_text",
+              "displayName": "prompt_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "d3191a74-872d-4fbf-b491-7a05d56aa712",
+      "name": "Save to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1200,
+        0
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgnyofgisVUtb1JQ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "geo-prompts",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "240dab4d-08ea-4349-ab0e-219d70bfe167",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -16,
+        256
+      ],
+      "webhookId": "geo-prompts"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, prompts: $('Parse to Rows1').all().map(i => i.json) } }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "d470a2d1-c492-47d4-95a0-721f0f717a92",
+      "name": "Respond to Page",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1424,
+        256
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "url": "={{ /^https?:/i.test($json.body.website_url) ? $json.body.website_url : 'https://' + $json.body.website_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 20000
+        }
+      },
+      "id": "b26c3ea0-9197-4459-9441-a37c98bcd51a",
+      "name": "Fetch Website1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        224,
+        256
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $('Webhook').first().json.body || {};\nconst raw = String($input.first().json.data || '');\nconst website = /^https?:/i.test(body.website_url || '') ? body.website_url : 'https://' + (body.website_url || '');\nconst clean = raw.replace(/<script[\\s\\S]*?<\\/script>/gi,' ').replace(/<style[\\s\\S]*?<\\/style>/gi,' ');\nconst title = (clean.match(/<title[^>]*>([\\s\\S]*?)<\\/title>/i)||[])[1]||'';\nconst meta = (clean.match(/<meta[^>]+name=[\"']description[\"'][^>]+content=[\"']([^\"']*)/i)||[])[1]||'';\nconst text = clean.replace(/<[^>]+>/g,' ').replace(/\\s+/g,' ').trim().slice(0,8000);\n\nconst tierGuide = {\n 'Tier 1: Executive & VIP Corporate Gifting': 'Buyers: HR heads, PAs, procurement, C-suite assistants. Topics: luxury corporate gifts, Ramadan/Eid/National Day gifting, VIP client gifts, branded premium hampers, bulk orders.',\n 'Tier 2: Hospitality, Majlis & Boutique Hotel': 'Buyers: hotel GMs, F&B/guest-experience managers, majlis owners, interior buyers. Topics: guest amenities, in-room scent, majlis hospitality, boutique hotel experience, Arabic hospitality.',\n 'Tier 3: Healthcare, Spas & Premium Medical Clinics': 'Buyers: clinic/spa owners, procurement, patient-experience managers. Topics: spa products, clinic ambience, premium patient experience, aromatherapy, wellness retail.',\n 'Tier 4: Corporate Wellness & Interior Architecture': 'Buyers: facility managers, interior architects, HR wellbeing leads, developers. Topics: office wellness, scent branding, lobby/interior design, fit-out specifications.'\n};\n\nconst market = body.market || 'KSA';\nconst lang = body.language || 'English';\nconst tier = body.tier;\nconst brand = body.brand_name || title || website;\n\nconst system = 'You are a GEO (Generative Engine Optimization) strategist. You write realistic questions that real buyers type into AI engines (ChatGPT, Perplexity, Gemini, Claude, Google AI Overviews). Return ONLY valid JSON, no markdown, no commentary.';\n\nconst user = `BRAND: ${brand}\nWEBSITE: ${website}\nSITE TITLE: ${title}\nMETA: ${meta}\nSITE CONTENT (excerpt): ${text}\n\nSELECTED TIER: ${tier}\nTIER GUIDE: ${tierGuide[tier] || ''}\nMARKET: ${market}\nLANGUAGE: ${lang} (if \"English + Arabic\", make 5 English and 5 Arabic prompts)\n\nTASK: Write exactly 10 prompts a buyer in ${market} would ask an AI engine, based on what this website actually sells.\nDistribution:\n- 2 x \"Brand Direct Queries\" (segment: Brand)\n- 3 x \"KSA Category Intent\" (adapt the location to ${market}; segment: Category benchmark)\n- 2 x \"Executive Gifting\" (segment: Non-brand)\n- 3 x \"Problem-Solution\" (segment: Non-brand)\nRules: Non-brand and category prompts must NOT name the brand. Make them natural, specific, conversational, with city/market and seasonal or cultural context where relevant. Vary icp_search_type and keyword_intent.\n\nReturn JSON: {\"prompts\":[{\"category\":\"\",\"icp_search_type\":\"Commercial|Seasonal|Cultural|Comparison|Direct answer\",\"keyword_intent\":\"Informational|Commercial|Transactional\",\"market\":\"UAE|KSA|GCC|Global\",\"language\":\"English|Arabic\",\"segment\":\"Non-brand|Category benchmark|Brand\",\"target_keyword\":\"\",\"prompt_text\":\"\"}]}`;\n\nreturn [{ json: {\n  brand, website, tier, market,\n  body: { model: 'claude-sonnet-4-6', max_tokens: 4000, system, messages: [{ role:'user', content: user }] }\n}}];"
+      },
+      "id": "c447e3ee-2b44-4aec-bb58-260cab9fe54a",
+      "name": "Build Prompt1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "2638583b-450f-47c0-b5a0-ed1d98b4eb09",
+      "name": "Claude - Generate Prompts1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        256
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "mAt6c50pp4zyHIsA",
+          "name": "X-RapidAPI-Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Build Prompt1').first().json;\nlet txt = ($input.first().json.content || []).map(c => c.text || '').join('');\ntxt = txt.replace(/```json|```/g,'').trim();\nconst data = JSON.parse(txt);\nconst runId = Date.now().toString(36);\nreturn data.prompts.map((p, i) => ({ json: {\n  prompt_id: `${runId}-${String(i+1).padStart(2,'0')}`,\n  created_at: new Date().toISOString(),\n  brand: ctx.brand,\n  website: ctx.website,\n  tier: ctx.tier,\n  category: p.category,\n  icp_search_type: p.icp_search_type,\n  keyword_intent: p.keyword_intent,\n  market: p.market,\n  language: p.language,\n  segment: p.segment,\n  target_keyword: p.target_keyword,\n  prompt_text: p.prompt_text,\n  status: 'Pending scan'\n}}));"
+      },
+      "id": "d4d4a389-d6d2-428e-9b57-1ec691233015",
+      "name": "Parse to Rows1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        944,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1yAJ1LwDG3KI_aAQGKNnu2adc0SzSUdZI2EAPK4aWdRQ"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "prompts",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "prompt_id",
+              "displayName": "prompt_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "brand",
+              "displayName": "brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tier",
+              "displayName": "tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "icp_search_type",
+              "displayName": "icp_search_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "keyword_intent",
+              "displayName": "keyword_intent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "market",
+              "displayName": "market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "language",
+              "displayName": "language",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "segment",
+              "displayName": "segment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "target_keyword",
+              "displayName": "target_keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prompt_text",
+              "displayName": "prompt_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "d9a2830a-9a44-4ee4-baa4-757f091ef460",
+      "name": "Save to Google Sheet1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1184,
+        256
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgnyofgisVUtb1JQ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "b169be54-0969-489a-9634-c17a62f5df3b",
+      "name": "Gemini - Generate Prompts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        496
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Mk0SsX9Ws5QQLkdz",
+          "name": "Gemini_geo_prompts"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "geo-prompts",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "26b8cd12-1fdb-4d6a-8227-c1aaba301c46",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        496
+      ],
+      "webhookId": "geo-prompts"
+    },
+    {
+      "parameters": {
+        "url": "={{ /^https?:/i.test($json.body.website_url) ? $json.body.website_url : 'https://' + $json.body.website_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 20000
+        }
+      },
+      "id": "75151489-d43e-468b-be19-88609e18c334",
+      "name": "Fetch Website2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        496
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $('Webhook1').first().json.body || {};\nconst raw = String($input.first().json.data || '');\nconst website = /^https?:/i.test(body.website_url || '') ? body.website_url : 'https://' + (body.website_url || '');\nconst clean = raw.replace(/<script[\\s\\S]*?<\\/script>/gi,' ').replace(/<style[\\s\\S]*?<\\/style>/gi,' ');\nconst title = (clean.match(/<title[^>]*>([\\s\\S]*?)<\\/title>/i)||[])[1]||'';\nconst meta = (clean.match(/<meta[^>]+name=[\"']description[\"'][^>]+content=[\"']([^\"']*)/i)||[])[1]||'';\nconst text = clean.replace(/<[^>]+>/g,' ').replace(/\\s+/g,' ').trim().slice(0,8000);\n\nconst tierGuide = {\n 'Tier 1: Executive & VIP Corporate Gifting': 'Buyers: HR heads, PAs, procurement, C-suite assistants. Topics: luxury corporate gifts, Ramadan/Eid/National Day gifting, VIP client gifts, branded premium hampers, bulk orders.',\n 'Tier 2: Hospitality, Majlis & Boutique Hotel': 'Buyers: hotel GMs, F&B/guest-experience managers, majlis owners, interior buyers. Topics: guest amenities, in-room scent, majlis hospitality, boutique hotel experience, Arabic hospitality.',\n 'Tier 3: Healthcare, Spas & Premium Medical Clinics': 'Buyers: clinic/spa owners, procurement, patient-experience managers. Topics: spa products, clinic ambience, premium patient experience, aromatherapy, wellness retail.',\n 'Tier 4: Corporate Wellness & Interior Architecture': 'Buyers: facility managers, interior architects, HR wellbeing leads, developers. Topics: office wellness, scent branding, lobby/interior design, fit-out specifications.'\n};\n\nconst market = body.market || 'KSA';\nconst lang = body.language || 'English';\nconst tier = body.tier;\nconst brand = body.brand_name || title || website;\n\nconst system = 'You are a GEO (Generative Engine Optimization) strategist. You write realistic questions that real buyers type into AI engines (ChatGPT, Perplexity, Gemini, Claude, Google AI Overviews). Return ONLY valid JSON, no markdown, no commentary.';\n\nconst user = `BRAND: ${brand}\nWEBSITE: ${website}\nSITE TITLE: ${title}\nMETA: ${meta}\nSITE CONTENT (excerpt): ${text}\n\nSELECTED TIER: ${tier}\nTIER GUIDE: ${tierGuide[tier] || ''}\nMARKET: ${market}\nLANGUAGE: ${lang} (if \"English + Arabic\", make 5 English and 5 Arabic prompts)\n\nTASK: Write exactly 10 prompts a buyer in ${market} would ask an AI engine, based on what this website actually sells.\nDistribution:\n- 2 x \"Brand Direct Queries\" (segment: Brand)\n- 3 x \"KSA Category Intent\" (adapt the location to ${market}; segment: Category benchmark)\n- 2 x \"Executive Gifting\" (segment: Non-brand)\n- 3 x \"Problem-Solution\" (segment: Non-brand)\nRules: Non-brand and category prompts must NOT name the brand. Make them natural, specific, conversational, with city/market and seasonal or cultural context where relevant. Vary icp_search_type and keyword_intent.\n\nReturn JSON: {\"prompts\":[{\"category\":\"\",\"icp_search_type\":\"Commercial|Seasonal|Cultural|Comparison|Direct answer\",\"keyword_intent\":\"Informational|Commercial|Transactional\",\"market\":\"UAE|KSA|GCC|Global\",\"language\":\"English|Arabic\",\"segment\":\"Non-brand|Category benchmark|Brand\",\"target_keyword\":\"\",\"prompt_text\":\"\"}]}`;\n\nreturn [{ json: {\n  brand, website, tier, market,\n  body: {\n    systemInstruction: { parts: [{ text: system }] },\n    contents: [{ role: 'user', parts: [{ text: user }] }],\n    generationConfig: { temperature: 0.8, maxOutputTokens: 8000, responseMimeType: 'application/json', thinkingConfig: { thinkingBudget: 0 } }\n  }\n}}];"
+      },
+      "id": "4a9fd943-9214-4b5c-b54a-1707ccdc151f",
+      "name": "Build Prompt2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        496
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Build Prompt2').first().json;\nlet txt = ((($input.first().json.candidates || [])[0] || {}).content?.parts || []).map(c => c.text || '').join('');\ntxt = txt.replace(/```json|```/g,'').trim();\nconst data = JSON.parse(txt);\nconst runId = Date.now().toString(36);\nreturn data.prompts.map((p, i) => ({ json: {\n  prompt_id: `${runId}-${String(i+1).padStart(2,'0')}`,\n  created_at: new Date().toISOString(),\n  brand: ctx.brand,\n  website: ctx.website,\n  tier: ctx.tier,\n  category: p.category,\n  icp_search_type: p.icp_search_type,\n  keyword_intent: p.keyword_intent,\n  market: p.market,\n  language: p.language,\n  segment: p.segment,\n  target_keyword: p.target_keyword,\n  prompt_text: p.prompt_text,\n  status: 'Pending scan'\n}}));"
+      },
+      "id": "90fbb52f-4c46-4595-96fd-e3afc6855f9e",
+      "name": "Parse to Rows2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        496
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1yAJ1LwDG3KI_aAQGKNnu2adc0SzSUdZI2EAPK4aWdRQ"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "prompts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yAJ1LwDG3KI_aAQGKNnu2adc0SzSUdZI2EAPK4aWdRQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "prompt_id",
+              "displayName": "prompt_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "brand",
+              "displayName": "brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tier",
+              "displayName": "tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "icp_search_type",
+              "displayName": "icp_search_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "keyword_intent",
+              "displayName": "keyword_intent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "market",
+              "displayName": "market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "language",
+              "displayName": "language",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "segment",
+              "displayName": "segment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "target_keyword",
+              "displayName": "target_keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prompt_text",
+              "displayName": "prompt_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "ddb5cb4c-469b-4162-a0f5-b07aa7f4d29c",
+      "name": "Save to Google Sheet2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1200,
+        496
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgnyofgisVUtb1JQ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, prompts: $('Parse to Rows2').all().map(i => i.json) } }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "6525551b-4050-481c-897e-ada1b4bb5976",
+      "name": "Respond to Page1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1424,
+        496
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "formTitle": "GEO Prompt Generator",
+        "formDescription": "Submit a website to generate 10 AI-engine prompts.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Website URL",
+              "placeholder": "https://example.com",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Brand Name"
+            },
+            {
+              "fieldLabel": "Tier",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Tier 1: Executive & VIP Corporate Gifting"
+                  },
+                  {
+                    "option": "Tier 2: Hospitality, Majlis & Boutique Hotel"
+                  },
+                  {
+                    "option": "Tier 3: Healthcare, Spas & Premium Medical Clinics"
+                  },
+                  {
+                    "option": "Tier 4: Corporate Wellness & Interior Architecture"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Market",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "KSA"
+                  },
+                  {
+                    "option": "UAE"
+                  },
+                  {
+                    "option": "GCC"
+                  },
+                  {
+                    "option": "Global"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Language",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "English"
+                  },
+                  {
+                    "option": "Arabic"
+                  },
+                  {
+                    "option": "English + Arabic"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "18631c5f-60dc-479f-bc34-40b46a1bab57",
+      "name": "GEO Form1",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        752
+      ],
+      "webhookId": "bee3d6f3-6c77-4ee7-aa74-87faaf7ac3a3"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json['Website URL'] }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "0004b557-8fcb-4fc6-a665-8b42a68f2ef2",
+      "name": "Fetch Website3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const form = $('GEO Form1').first().json;\nconst raw = String($input.first().json.data || '');\nconst clean = raw.replace(/<script[\\s\\S]*?<\\/script>/gi,' ').replace(/<style[\\s\\S]*?<\\/style>/gi,' ');\nconst title = (clean.match(/<title[^>]*>([\\s\\S]*?)<\\/title>/i)||[])[1]||'';\nconst meta = (clean.match(/<meta[^>]+name=[\"']description[\"'][^>]+content=[\"']([^\"']*)/i)||[])[1]||'';\nconst text = clean.replace(/<[^>]+>/g,' ').replace(/\\s+/g,' ').trim().slice(0,8000);\n\nconst tierGuide = {\n 'Tier 1: Executive & VIP Corporate Gifting': 'Buyers: HR heads, PAs, procurement, C-suite assistants. Topics: luxury corporate gifts, Ramadan/Eid/National Day gifting, VIP client gifts, branded premium hampers, bulk orders.',\n 'Tier 2: Hospitality, Majlis & Boutique Hotel': 'Buyers: hotel GMs, F&B/guest-experience managers, majlis owners, interior buyers. Topics: guest amenities, in-room scent, majlis hospitality, boutique hotel experience, Arabic hospitality.',\n 'Tier 3: Healthcare, Spas & Premium Medical Clinics': 'Buyers: clinic/spa owners, procurement, patient-experience managers. Topics: spa products, clinic ambience, premium patient experience, aromatherapy, wellness retail.',\n 'Tier 4: Corporate Wellness & Interior Architecture': 'Buyers: facility managers, interior architects, HR wellbeing leads, developers. Topics: office wellness, scent branding, lobby/interior design, fit-out specifications.'\n};\n\nconst market = form['Market'];\nconst lang = form['Language'];\nconst tier = form['Tier'];\nconst brand = form['Brand Name'] || title;\n\nconst system = 'You are a GEO (Generative Engine Optimization) strategist. You write realistic questions that real buyers type into AI engines (ChatGPT, Perplexity, Gemini, Claude, Google AI Overviews). Return ONLY valid JSON, no markdown, no commentary.';\n\nconst user = `BRAND: ${brand}\nWEBSITE: ${form['Website URL']}\nSITE TITLE: ${title}\nMETA: ${meta}\nSITE CONTENT (excerpt): ${text}\n\nSELECTED TIER: ${tier}\nTIER GUIDE: ${tierGuide[tier] || ''}\nMARKET: ${market}\nLANGUAGE: ${lang} (if \"English + Arabic\", make 5 English and 5 Arabic prompts)\n\nTASK: Write exactly 10 prompts a buyer in ${market} would ask an AI engine, based on what this website actually sells.\nDistribution:\n- 2 x \"Brand Direct Queries\" (segment: Brand)\n- 3 x \"KSA Category Intent\" (adapt the location to ${market}; segment: Category benchmark)\n- 2 x \"Executive Gifting\" (segment: Non-brand)\n- 3 x \"Problem-Solution\" (segment: Non-brand)\nRules: Non-brand and category prompts must NOT name the brand. Make them natural, specific, conversational, with city/market and seasonal or cultural context where relevant. Vary icp_search_type and keyword_intent.\n\nReturn JSON: {\"prompts\":[{\"category\":\"\",\"icp_search_type\":\"Commercial|Seasonal|Cultural|Comparison|Direct answer\",\"keyword_intent\":\"Informational|Commercial|Transactional\",\"market\":\"UAE|KSA|GCC|Global\",\"language\":\"English|Arabic\",\"segment\":\"Non-brand|Category benchmark|Brand\",\"target_keyword\":\"\",\"prompt_text\":\"\"}]}`;\n\nreturn [{ json: {\n  brand, website: form['Website URL'], tier, market,\n  body: { model: 'claude-sonnet-4-6', max_tokens: 4000, system, messages: [{ role:'user', content: user }] }\n}}];"
+      },
+      "id": "3b382a83-12a9-4ec4-84d8-0f4250f61df5",
+      "name": "Build Prompt3",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "b87585a8-015a-4dc5-b48f-e6832a4dd5e3",
+      "name": "Claude - Generate Prompts2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        1008
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "mAt6c50pp4zyHIsA",
+          "name": "X-RapidAPI-Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Build Prompt3').first().json;\nlet txt = ($input.first().json.content || []).map(c => c.text || '').join('');\ntxt = txt.replace(/```json|```/g,'').trim();\nconst data = JSON.parse(txt);\nconst runId = Date.now().toString(36);\nreturn data.prompts.map((p, i) => ({ json: {\n  prompt_id: `${runId}-${String(i+1).padStart(2,'0')}`,\n  created_at: new Date().toISOString(),\n  brand: ctx.brand,\n  website: ctx.website,\n  tier: ctx.tier,\n  category: p.category,\n  icp_search_type: p.icp_search_type,\n  keyword_intent: p.keyword_intent,\n  market: p.market,\n  language: p.language,\n  segment: p.segment,\n  target_keyword: p.target_keyword,\n  prompt_text: p.prompt_text,\n  status: 'Pending scan'\n}}));"
+      },
+      "id": "cab7aa04-4d2d-4075-8695-8cfccc93e114",
+      "name": "Parse to Rows3",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1yAJ1LwDG3KI_aAQGKNnu2adc0SzSUdZI2EAPK4aWdRQ"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "prompts",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "prompt_id",
+              "displayName": "prompt_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "brand",
+              "displayName": "brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tier",
+              "displayName": "tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "icp_search_type",
+              "displayName": "icp_search_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "keyword_intent",
+              "displayName": "keyword_intent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "market",
+              "displayName": "market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "language",
+              "displayName": "language",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "segment",
+              "displayName": "segment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "target_keyword",
+              "displayName": "target_keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prompt_text",
+              "displayName": "prompt_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "9f6e7dd1-6069-4f7d-af77-c770862288ad",
+      "name": "Save to Google Sheet3",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1200,
+        752
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgnyofgisVUtb1JQ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "c358e8de-9919-4c92-b8eb-a155284e1c7c",
+      "name": "Gemini - Generate Prompts1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        752
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Mk0SsX9Ws5QQLkdz",
+          "name": "Gemini_geo_prompts"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ /^https?:/i.test($json.body.website_url) ? $json.body.website_url : 'https://' + $json.body.website_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 20000
+        }
+      },
+      "id": "b6f2d81f-9db8-42ef-b5fa-28c71d0b8586",
+      "name": "Fetch Website4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        608,
+        1408
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $('Webhook2').first().json.body || {};\nconst raw = String($input.first().json.data || '');\nconst website = /^https?:/i.test(body.website_url || '') ? body.website_url : 'https://' + (body.website_url || '');\nconst clean = raw.replace(/<script[\\s\\S]*?<\\/script>/gi,' ').replace(/<style[\\s\\S]*?<\\/style>/gi,' ');\nconst title = (clean.match(/<title[^>]*>([\\s\\S]*?)<\\/title>/i)||[])[1]||'';\nconst meta = (clean.match(/<meta[^>]+name=[\"']description[\"'][^>]+content=[\"']([^\"']*)/i)||[])[1]||'';\nconst text = clean.replace(/<[^>]+>/g,' ').replace(/\\s+/g,' ').trim().slice(0,8000);\n\nconst tierGuide = {\n 'Tier 1: Executive & VIP Corporate Gifting': 'Buyers: HR heads, PAs, procurement, C-suite assistants. Topics: luxury corporate gifts, Ramadan/Eid/National Day gifting, VIP client gifts, branded premium hampers, bulk orders.',\n 'Tier 2: Hospitality, Majlis & Boutique Hotel': 'Buyers: hotel GMs, F&B/guest-experience managers, majlis owners, interior buyers. Topics: guest amenities, in-room scent, majlis hospitality, boutique hotel experience, Arabic hospitality.',\n 'Tier 3: Healthcare, Spas & Premium Medical Clinics': 'Buyers: clinic/spa owners, procurement, patient-experience managers. Topics: spa products, clinic ambience, premium patient experience, aromatherapy, wellness retail.',\n 'Tier 4: Corporate Wellness & Interior Architecture': 'Buyers: facility managers, interior architects, HR wellbeing leads, developers. Topics: office wellness, scent branding, lobby/interior design, fit-out specifications.'\n};\n\nconst market = body.market || 'KSA';\nconst lang = body.language || 'English';\nconst tier = body.tier;\nconst brand = body.brand_name || title || website;\n\nconst system = 'You are a GEO (Generative Engine Optimization) strategist. You write realistic questions that real buyers type into AI engines (ChatGPT, Perplexity, Gemini, Claude, Google AI Overviews). Return ONLY valid JSON, no markdown, no commentary.';\n\nconst user = `BRAND: ${brand}\nWEBSITE: ${website}\nSITE TITLE: ${title}\nMETA: ${meta}\nSITE CONTENT (excerpt): ${text}\n\nSELECTED TIER: ${tier}\nTIER GUIDE: ${tierGuide[tier] || ''}\nMARKET: ${market}\nLANGUAGE: ${lang} (if \"English + Arabic\", make 5 English and 5 Arabic prompts)\n\nTASK: Write exactly 10 prompts a buyer in ${market} would ask an AI engine, based on what this website actually sells.\nDistribution:\n- 2 x \"Brand Direct Queries\" (segment: Brand)\n- 3 x \"KSA Category Intent\" (adapt the location to ${market}; segment: Category benchmark)\n- 2 x \"Executive Gifting\" (segment: Non-brand)\n- 3 x \"Problem-Solution\" (segment: Non-brand)\nRules: Non-brand and category prompts must NOT name the brand. Make them natural, specific, conversational, with city/market and seasonal or cultural context where relevant. Vary icp_search_type and keyword_intent.\n\nReturn JSON: {\"prompts\":[{\"category\":\"\",\"icp_search_type\":\"Commercial|Seasonal|Cultural|Comparison|Direct answer\",\"keyword_intent\":\"Informational|Commercial|Transactional\",\"market\":\"UAE|KSA|GCC|Global\",\"language\":\"English|Arabic\",\"segment\":\"Non-brand|Category benchmark|Brand\",\"target_keyword\":\"\",\"prompt_text\":\"\"}]}`;\n\nreturn [{ json: {\n  brand, website, tier, market,\n  body: {\n    systemInstruction: { parts: [{ text: system }] },\n    contents: [{ role: 'user', parts: [{ text: user }] }],\n    generationConfig: { temperature: 0.8, maxOutputTokens: 8000, responseMimeType: 'application/json', thinkingConfig: { thinkingBudget: 0 } }\n  }\n}}];"
+      },
+      "id": "730ff076-b10e-40dd-8235-09b0ca4ac300",
+      "name": "Build Prompt4",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        848,
+        1408
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "fc3c741a-87ad-4f2b-b1a9-d73ec17aaced",
+      "name": "Gemini - Generate Prompts2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1088,
+        1408
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Mk0SsX9Ws5QQLkdz",
+          "name": "Gemini_geo_prompts"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Build Prompt4').first().json;\nlet txt = ((($input.first().json.candidates || [])[0] || {}).content?.parts || []).map(c => c.text || '').join('');\ntxt = txt.replace(/```json|```/g,'').trim();\nif (!txt) throw new Error('Gemini returned no text: ' + JSON.stringify($input.first().json).slice(0,500));\nconst data = JSON.parse(txt);\nif (!data.prompts || !data.prompts.length) throw new Error('No prompts in Gemini response');\nconst runId = Date.now().toString(36);\nreturn data.prompts.map((p, i) => ({ json: {\n  prompt_id: `${runId}-${String(i+1).padStart(2,'0')}`,\n  created_at: new Date().toISOString(),\n  brand: ctx.brand,\n  website: ctx.website,\n  tier: ctx.tier,\n  category: p.category,\n  icp_search_type: p.icp_search_type,\n  keyword_intent: p.keyword_intent,\n  market: p.market,\n  language: p.language,\n  segment: p.segment,\n  target_keyword: p.target_keyword,\n  prompt_text: p.prompt_text,\n  status: 'Pending scan'\n}}));"
+      },
+      "id": "f9e01214-cacf-4274-a502-cde5e5585f03",
+      "name": "Parse to Rows4",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1328,
+        1408
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1yAJ1LwDG3KI_aAQGKNnu2adc0SzSUdZI2EAPK4aWdRQ"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "prompts"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "prompt_id": "={{ $json.prompt_id }}",
+            "created_at": "={{ $json.created_at }}",
+            "brand": "={{ $json.brand }}",
+            "website": "={{ $json.website }}",
+            "tier": "={{ $json.tier }}",
+            "category": "={{ $json.category }}",
+            "icp_search_type": "={{ $json.icp_search_type }}",
+            "keyword_intent": "={{ $json.keyword_intent }}",
+            "market": "={{ $json.market }}",
+            "language": "={{ $json.language }}",
+            "segment": "={{ $json.segment }}",
+            "target_keyword": "={{ $json.target_keyword }}",
+            "prompt_text": "={{ $json.prompt_text }}",
+            "status": "={{ $json.status }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "prompt_id",
+              "displayName": "prompt_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "brand",
+              "displayName": "brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tier",
+              "displayName": "tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "icp_search_type",
+              "displayName": "icp_search_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "keyword_intent",
+              "displayName": "keyword_intent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "market",
+              "displayName": "market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "language",
+              "displayName": "language",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "segment",
+              "displayName": "segment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "target_keyword",
+              "displayName": "target_keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prompt_text",
+              "displayName": "prompt_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "6e328b2f-6900-4acb-a771-06a5305af228",
+      "name": "Save to Google Sheet4",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1568,
+        1408
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgnyofgisVUtb1JQ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, prompts: $('Parse to Rows4').all().map(i => i.json) } }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "d02238a4-e763-485e-97db-3d2dcbe9aaca",
+      "name": "Respond to Page2",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1808,
+        1408
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "formTitle": "GEO Prompt Generator",
+        "formDescription": "Submit a website to generate 10 AI-engine prompts.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Website URL",
+              "placeholder": "https://example.com",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Brand Name"
+            },
+            {
+              "fieldLabel": "Tier",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Tier 1: Executive & VIP Corporate Gifting"
+                  },
+                  {
+                    "option": "Tier 2: Hospitality, Majlis & Boutique Hotel"
+                  },
+                  {
+                    "option": "Tier 3: Healthcare, Spas & Premium Medical Clinics"
+                  },
+                  {
+                    "option": "Tier 4: Corporate Wellness & Interior Architecture"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Market",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "KSA"
+                  },
+                  {
+                    "option": "UAE"
+                  },
+                  {
+                    "option": "GCC"
+                  },
+                  {
+                    "option": "Global"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Language",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "English"
+                  },
+                  {
+                    "option": "Arabic"
+                  },
+                  {
+                    "option": "English + Arabic"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "67a84a44-2566-48a8-a68e-f30c552a2cee",
+      "name": "GEO Form2",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        352,
+        1408
+      ],
+      "webhookId": "04010ebf-8c2e-4598-89b2-54212c35e964"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "geo-prompts",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "d5b8b2ac-aaf8-49de-a3b5-186d426a9043",
+      "name": "Webhook2",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        80,
+        1888
+      ],
+      "webhookId": "geo-prompts"
+    },
+    {
+      "parameters": {
+        "url": "={{ /^https?:/i.test($json.body.website_url) ? $json.body.website_url : 'https://' + $json.body.website_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 20000
+        }
+      },
+      "id": "8d6d325d-4ea7-4300-bc6e-8160810158c1",
+      "name": "Fetch Website5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        320,
+        1888
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $('Webhook2').first().json.body || {};\nconst raw = String($input.first().json.data || '');\nconst website = /^https?:/i.test(body.website_url || '') ? body.website_url : 'https://' + (body.website_url || '');\nconst clean = raw.replace(/<script[\\s\\S]*?<\\/script>/gi,' ').replace(/<style[\\s\\S]*?<\\/style>/gi,' ');\nconst title = (clean.match(/<title[^>]*>([\\s\\S]*?)<\\/title>/i)||[])[1]||'';\nconst meta = (clean.match(/<meta[^>]+name=[\"']description[\"'][^>]+content=[\"']([^\"']*)/i)||[])[1]||'';\nconst text = clean.replace(/<[^>]+>/g,' ').replace(/\\s+/g,' ').trim().slice(0,8000);\n\nconst tierGuide = {\n 'Tier 1: Executive & VIP Corporate Gifting': 'Buyers: HR heads, PAs, procurement, C-suite assistants. Topics: luxury corporate gifts, Ramadan/Eid/National Day gifting, VIP client gifts, branded premium hampers, bulk orders.',\n 'Tier 2: Hospitality, Majlis & Boutique Hotel': 'Buyers: hotel GMs, F&B/guest-experience managers, majlis owners, interior buyers. Topics: guest amenities, in-room scent, majlis hospitality, boutique hotel experience, Arabic hospitality.',\n 'Tier 3: Healthcare, Spas & Premium Medical Clinics': 'Buyers: clinic/spa owners, procurement, patient-experience managers. Topics: spa products, clinic ambience, premium patient experience, aromatherapy, wellness retail.',\n 'Tier 4: Corporate Wellness & Interior Architecture': 'Buyers: facility managers, interior architects, HR wellbeing leads, developers. Topics: office wellness, scent branding, lobby/interior design, fit-out specifications.'\n};\n\nconst market = body.market || 'KSA';\nconst lang = body.language || 'English';\nconst tier = body.tier;\nconst brand = body.brand_name || title || website;\n\nconst system = 'You are a GEO (Generative Engine Optimization) strategist. You write realistic questions that real buyers type into AI engines (ChatGPT, Perplexity, Gemini, Claude, Google AI Overviews). Return ONLY valid JSON, no markdown, no commentary.';\n\nconst user = `BRAND: ${brand}\nWEBSITE: ${website}\nSITE TITLE: ${title}\nMETA: ${meta}\nSITE CONTENT (excerpt): ${text}\n\nSELECTED TIER: ${tier}\nTIER GUIDE: ${tierGuide[tier] || ''}\nMARKET: ${market}\nLANGUAGE: ${lang} (if \"English + Arabic\", make 5 English and 5 Arabic prompts)\n\nTASK: Write exactly 10 prompts a buyer in ${market} would ask an AI engine, based on what this website actually sells.\nDistribution:\n- 2 x \"Brand Direct Queries\" (segment: Brand)\n- 3 x \"KSA Category Intent\" (adapt the location to ${market}; segment: Category benchmark)\n- 2 x \"Executive Gifting\" (segment: Non-brand)\n- 3 x \"Problem-Solution\" (segment: Non-brand)\nRules: Non-brand and category prompts must NOT name the brand. Make them natural, specific, conversational, with city/market and seasonal or cultural context where relevant. Vary icp_search_type and keyword_intent.\n\nReturn JSON: {\"prompts\":[{\"category\":\"\",\"icp_search_type\":\"Commercial|Seasonal|Cultural|Comparison|Direct answer\",\"keyword_intent\":\"Informational|Commercial|Transactional\",\"market\":\"UAE|KSA|GCC|Global\",\"language\":\"English|Arabic\",\"segment\":\"Non-brand|Category benchmark|Brand\",\"target_keyword\":\"\",\"prompt_text\":\"\"}]}`;\n\nreturn [{ json: {\n  brand, website, tier, market,\n  body: {\n    systemInstruction: { parts: [{ text: system }] },\n    contents: [{ role: 'user', parts: [{ text: user }] }],\n    generationConfig: { temperature: 0.8, maxOutputTokens: 8000, responseMimeType: 'application/json', thinkingConfig: { thinkingBudget: 0 } }\n  }\n}}];"
+      },
+      "id": "9fbe1b57-3cc4-421f-a97a-d27a2825f960",
+      "name": "Build Prompt5",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        1888
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "e2064190-b9f4-41ae-96ff-d1c23754c2ff",
+      "name": "Gemini - Generate Prompts3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        800,
+        1888
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "Mk0SsX9Ws5QQLkdz",
+          "name": "Gemini_geo_prompts"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Build Prompt5').first().json;\nlet txt = ((($input.first().json.candidates || [])[0] || {}).content?.parts || []).map(c => c.text || '').join('');\ntxt = txt.replace(/```json|```/g,'').trim();\nif (!txt) throw new Error('Gemini returned no text: ' + JSON.stringify($input.first().json).slice(0,500));\nconst data = JSON.parse(txt);\nif (!data.prompts || !data.prompts.length) throw new Error('No prompts in Gemini response');\nconst runId = Date.now().toString(36);\nreturn data.prompts.map((p, i) => ({ json: {\n  prompt_id: `${runId}-${String(i+1).padStart(2,'0')}`,\n  created_at: new Date().toISOString(),\n  brand: ctx.brand,\n  website: ctx.website,\n  tier: ctx.tier,\n  category: p.category,\n  icp_search_type: p.icp_search_type,\n  keyword_intent: p.keyword_intent,\n  market: p.market,\n  language: p.language,\n  segment: p.segment,\n  target_keyword: p.target_keyword,\n  prompt_text: p.prompt_text,\n  status: 'Pending scan'\n}}));"
+      },
+      "id": "1c1f1c4a-5e13-4180-b024-257fb85704d7",
+      "name": "Parse to Rows5",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        1888
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1yAJ1LwDG3KI_aAQGKNnu2adc0SzSUdZI2EAPK4aWdRQ"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "prompts"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "prompt_id": "={{ $json.prompt_id }}",
+            "created_at": "={{ $json.created_at }}",
+            "brand": "={{ $json.brand }}",
+            "website": "={{ $json.website }}",
+            "tier": "={{ $json.tier }}",
+            "category": "={{ $json.category }}",
+            "icp_search_type": "={{ $json.icp_search_type }}",
+            "keyword_intent": "={{ $json.keyword_intent }}",
+            "market": "={{ $json.market }}",
+            "language": "={{ $json.language }}",
+            "segment": "={{ $json.segment }}",
+            "target_keyword": "={{ $json.target_keyword }}",
+            "prompt_text": "={{ $json.prompt_text }}",
+            "status": "={{ $json.status }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "prompt_id",
+              "displayName": "prompt_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "brand",
+              "displayName": "brand",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "website",
+              "displayName": "website",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tier",
+              "displayName": "tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "icp_search_type",
+              "displayName": "icp_search_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "keyword_intent",
+              "displayName": "keyword_intent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "market",
+              "displayName": "market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "language",
+              "displayName": "language",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "segment",
+              "displayName": "segment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "target_keyword",
+              "displayName": "target_keyword",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "prompt_text",
+              "displayName": "prompt_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "852aff82-d315-44de-bff4-acd44174e631",
+      "name": "Save to Google Sheet5",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1280,
+        1888
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgnyofgisVUtb1JQ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, prompts: $('Parse to Rows5').all().map(i => i.json) } }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "1db86818-4148-4dc9-858c-855c0d011989",
+      "name": "Respond to Page3",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1520,
+        1888
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {},
+      "id": "20197d01-bf58-448a-abaa-8548f15c912f",
+      "name": "Run manually",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        2512,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1
+              ],
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "id": "352e530a-58dc-448f-80db-b5855a9d451c",
+      "name": "Weekly Monday 09:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        2512,
+        672
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1AGF5u9JJPj0HiWGAnVep6vBKM8gv3ynU5ADnAYmT8yM",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1947991051,
+          "mode": "list",
+          "cachedResultName": "Prompts_Input",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AGF5u9JJPj0HiWGAnVep6vBKM8gv3ynU5ADnAYmT8yM/edit#gid=1947991051"
+        },
+        "options": {}
+      },
+      "id": "77656bcb-9705-4730-afeb-d484333155c5",
+      "name": "Read prompts",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2752,
+        576
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgnyofgisVUtb1JQ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// One item per prompt x engine x run\nconst ENGINES = ['openai', 'perplexity', 'gemini'];\nconst RUNS = 3; // runs per engine per prompt\nconst out = [];\nfor (const it of $input.all()) {\n  const j = it.json;\n  const promptId = j.ID || j.id;\n  const prompt = j.Prompt || j.prompt;\n  if (!promptId || !prompt) continue;\n  const market = j.Market || '';\n  const country = market === 'KSA' ? 'SA' : 'AE';\n  for (const engine of ENGINES) {\n    for (let run = 1; run <= RUNS; run++) {\n      out.push({ json: { promptId, prompt, segment: j.Segment || '', market, language: j.Language || '', country, engine, run } });\n    }\n  }\n}\nreturn out;"
+      },
+      "id": "9af325f4-e2cf-4c6d-8748-eb358b9f2c95",
+      "name": "Expand runs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2992,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "openai",
+                    "leftValue": "={{ $json.engine }}",
+                    "rightValue": "openai",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "openai"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "perplexity",
+                    "leftValue": "={{ $json.engine }}",
+                    "rightValue": "perplexity",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "perplexity"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "gemini",
+                    "leftValue": "={{ $json.engine }}",
+                    "rightValue": "gemini",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "gemini"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a971bc05-d08c-4922-a513-5c577f274292",
+      "name": "By engine",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        3232,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: \"gpt-4.1\", tools: [{ type: \"web_search\", user_location: { type: \"approximate\", country: $json.country } }], input: $json.prompt }) }}",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 3,
+              "batchInterval": 2000
+            }
+          },
+          "timeout": 180000
+        }
+      },
+      "id": "7aa3f903-1450-4dd5-9102-37eec89661d2",
+      "name": "OpenAI web search",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3488,
+        384
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "mAt6c50pp4zyHIsA",
+          "name": "X-RapidAPI-Key"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.perplexity.ai/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: \"sonar\", messages: [{ role: \"user\", content: $json.prompt }] }) }}",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 3,
+              "batchInterval": 2000
+            }
+          },
+          "timeout": 180000
+        }
+      },
+      "id": "5df9743f-a181-4e03-98b9-3a7752021882",
+      "name": "Perplexity Sonar",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3488,
+        576
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "mAt6c50pp4zyHIsA",
+          "name": "X-RapidAPI-Key"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ contents: [{ parts: [{ text: $json.prompt }] }], tools: [{ google_search: {} }] }) }}",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 3,
+              "batchInterval": 2000
+            }
+          },
+          "timeout": 180000
+        }
+      },
+      "id": "bedb2257-6e60-416e-8577-a1e7c48bebca",
+      "name": "Gemini grounded",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3488,
+        752
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "mAt6c50pp4zyHIsA",
+          "name": "X-RapidAPI-Key"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const meta = $('Expand runs').item.json;\nconst r = $input.item.json;\nconst BRAND = /zerene|زيرين/i;\nconst DOMAIN = /zerene\\.com/i;\nconst COMPETITORS = ['ScentAir','Prolitec','Air Aroma','Vectair','Aromatech','Kayali','The Scent Library']; // edit list\nlet text = '', refs = [], ok = true, err = '';\nif (r.error || !r) { ok = false; err = JSON.stringify(r.error || 'no response').slice(0, 200); }\nelse {\n\n  for (const o of (r.output || [])) {\n    if (o.type === 'message') for (const c of (o.content || [])) {\n      text += (c.text || '') + '\\n';\n      for (const a of (c.annotations || [])) if (a.type === 'url_citation' && a.url) refs.push(a.url);\n    }\n  }\n  if (!text) { ok = false; err = 'empty answer'; }\n\n}\nconst host = (u) => { try { return new URL(u).hostname.replace(/^www\\./, ''); } catch (e) { return String(u).slice(0, 60); } };\nconst named = ok && BRAND.test(text);\nconst cited = ok && refs.some(u => DOMAIN.test(u));\nconst competitors = COMPETITORS.filter(c => new RegExp(c, 'i').test(text));\nconst domains = [...new Set(refs.map(u => /^https?:/.test(u) ? host(u) : u.trim()))].slice(0, 8);\nreturn { json: { promptId: meta.promptId, prompt: meta.prompt, segment: meta.segment, market: meta.market, language: meta.language, engine: meta.engine, run: meta.run, ok, err, named, cited, competitors, domains } };"
+      },
+      "id": "b81421b2-e372-44a6-a581-eb188adb6985",
+      "name": "Parse OpenAI",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3728,
+        384
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const meta = $('Expand runs').item.json;\nconst r = $input.item.json;\nconst BRAND = /zerene|زيرين/i;\nconst DOMAIN = /zerene\\.com/i;\nconst COMPETITORS = ['ScentAir','Prolitec','Air Aroma','Vectair','Aromatech','Kayali','The Scent Library']; // edit list\nlet text = '', refs = [], ok = true, err = '';\nif (r.error || !r) { ok = false; err = JSON.stringify(r.error || 'no response').slice(0, 200); }\nelse {\n\n  text = (r.choices && r.choices[0] && r.choices[0].message && r.choices[0].message.content) || '';\n  refs = (r.citations || []).concat((r.search_results || []).map(x => x.url).filter(Boolean));\n  if (!text) { ok = false; err = 'empty answer'; }\n\n}\nconst host = (u) => { try { return new URL(u).hostname.replace(/^www\\./, ''); } catch (e) { return String(u).slice(0, 60); } };\nconst named = ok && BRAND.test(text);\nconst cited = ok && refs.some(u => DOMAIN.test(u));\nconst competitors = COMPETITORS.filter(c => new RegExp(c, 'i').test(text));\nconst domains = [...new Set(refs.map(u => /^https?:/.test(u) ? host(u) : u.trim()))].slice(0, 8);\nreturn { json: { promptId: meta.promptId, prompt: meta.prompt, segment: meta.segment, market: meta.market, language: meta.language, engine: meta.engine, run: meta.run, ok, err, named, cited, competitors, domains } };"
+      },
+      "id": "3dbc7728-7622-4863-bc54-a8ce02a0260c",
+      "name": "Parse Perplexity",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3728,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const meta = $('Expand runs').item.json;\nconst r = $input.item.json;\nconst BRAND = /zerene|زيرين/i;\nconst DOMAIN = /zerene\\.com/i;\nconst COMPETITORS = ['ScentAir','Prolitec','Air Aroma','Vectair','Aromatech','Kayali','The Scent Library']; // edit list\nlet text = '', refs = [], ok = true, err = '';\nif (r.error || !r) { ok = false; err = JSON.stringify(r.error || 'no response').slice(0, 200); }\nelse {\n\n  const cand = (r.candidates || [])[0] || {};\n  text = ((cand.content && cand.content.parts) || []).map(p => p.text || '').join('\\n');\n  // Gemini grounding links are redirect URLs; the readable domain is in web.title\n  const chunks = (cand.groundingMetadata && cand.groundingMetadata.groundingChunks) || [];\n  refs = chunks.map(c => (c.web && (c.web.title || c.web.uri)) || '').filter(Boolean);\n  if (!text) { ok = false; err = 'empty answer'; }\n\n}\nconst host = (u) => { try { return new URL(u).hostname.replace(/^www\\./, ''); } catch (e) { return String(u).slice(0, 60); } };\nconst named = ok && BRAND.test(text);\nconst cited = ok && refs.some(u => DOMAIN.test(u));\nconst competitors = COMPETITORS.filter(c => new RegExp(c, 'i').test(text));\nconst domains = [...new Set(refs.map(u => /^https?:/.test(u) ? host(u) : u.trim()))].slice(0, 8);\nreturn { json: { promptId: meta.promptId, prompt: meta.prompt, segment: meta.segment, market: meta.market, language: meta.language, engine: meta.engine, run: meta.run, ok, err, named, cited, competitors, domains } };"
+      },
+      "id": "6875a07b-99bf-4777-bfbb-ed075e934ff5",
+      "name": "Parse Gemini",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3728,
+        752
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f55d8a37-9408-4d09-ad2e-123f2117cd25",
+      "name": "Merge 1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        3968,
+        464
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3c444fcc-638f-4d77-911e-a864330522da",
+      "name": "Merge 2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        4192,
+        592
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const groups = {};\nfor (const it of $input.all()) {\n  const j = it.json;\n  const key = j.promptId + '|' + j.engine;\n  const g = groups[key] || (groups[key] = { promptId: j.promptId, prompt: j.prompt, segment: j.segment, market: j.market, language: j.language, engine: j.engine, runs: 0, runsOk: 0, named: 0, cited: 0, errors: 0, comps: new Set(), doms: new Set() });\n  g.runs++;\n  if (j.ok) { g.runsOk++; if (j.named) g.named++; if (j.cited) g.cited++; } else g.errors++;\n  (j.competitors || []).forEach(c => g.comps.add(c));\n  (j.domains || []).forEach(d => g.doms.add(d));\n}\nconst date = new Date().toISOString().slice(0, 10);\nreturn Object.values(groups).map(g => ({ json: {\n  RunDate: date, PromptID: g.promptId, Prompt: g.prompt, Segment: g.segment, Market: g.market, Language: g.language,\n  Engine: g.engine, Runs: g.runsOk, Named: g.named, Cited: g.cited, Errors: g.errors,\n  Competitors: [...g.comps].join(', '), CitedDomains: [...g.doms].slice(0, 12).join(', ')\n} }));"
+      },
+      "id": "7cd3c549-84f7-4afb-99c6-f42782bceabe",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4416,
+        592
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1AGF5u9JJPj0HiWGAnVep6vBKM8gv3ynU5ADnAYmT8yM",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 873800542,
+          "mode": "list",
+          "cachedResultName": "API_Results",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AGF5u9JJPj0HiWGAnVep6vBKM8gv3ynU5ADnAYmT8yM/edit#gid=873800542"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "RunDate",
+              "displayName": "RunDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "PromptID",
+              "displayName": "PromptID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Prompt",
+              "displayName": "Prompt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Segment",
+              "displayName": "Segment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Market",
+              "displayName": "Market",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Language",
+              "displayName": "Language",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Engine",
+              "displayName": "Engine",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Runs",
+              "displayName": "Runs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Named",
+              "displayName": "Named",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cited",
+              "displayName": "Cited",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Errors",
+              "displayName": "Errors",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Competitors",
+              "displayName": "Competitors",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CitedDomains",
+              "displayName": "CitedDomains",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "4f58ac9b-832c-4e3a-86e5-097699f17699",
+      "name": "Append to API_Results",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4640,
+        592
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UgnyofgisVUtb1JQ",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "GEO Form": {
+      "main": [
+        [
+          {
+            "node": "Fetch Website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Website": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt": {
+      "main": [
+        [
+          {
+            "node": "Claude - Generate Prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude - Generate Prompts": {
+      "main": [
+        [
+          {
+            "node": "Parse to Rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse to Rows": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Fetch Website1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Website1": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt1": {
+      "main": [
+        [
+          {
+            "node": "Claude - Generate Prompts1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude - Generate Prompts1": {
+      "main": [
+        [
+          {
+            "node": "Parse to Rows1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse to Rows1": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Google Sheet1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini - Generate Prompts": {
+      "main": [
+        [
+          {
+            "node": "Parse to Rows2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Fetch Website2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Website2": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt2": {
+      "main": [
+        [
+          {
+            "node": "Gemini - Generate Prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse to Rows2": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Google Sheet2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Page1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GEO Form1": {
+      "main": [
+        [
+          {
+            "node": "Fetch Website3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Website3": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt3": {
+      "main": [
+        [
+          {
+            "node": "Gemini - Generate Prompts1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude - Generate Prompts2": {
+      "main": [
+        []
+      ]
+    },
+    "Parse to Rows3": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheet3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini - Generate Prompts1": {
+      "main": [
+        [
+          {
+            "node": "Parse to Rows3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Website4": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt4": {
+      "main": [
+        [
+          {
+            "node": "Gemini - Generate Prompts2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini - Generate Prompts2": {
+      "main": [
+        [
+          {
+            "node": "Parse to Rows4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse to Rows4": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheet4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Google Sheet4": {
+      "main": [
+        [
+          {
+            "node": "Respond to Page2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GEO Form2": {
+      "main": [
+        [
+          {
+            "node": "Fetch Website4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "Fetch Website5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Website5": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt5": {
+      "main": [
+        [
+          {
+            "node": "Gemini - Generate Prompts3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini - Generate Prompts3": {
+      "main": [
+        [
+          {
+            "node": "Parse to Rows5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse to Rows5": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheet5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Google Sheet5": {
+      "main": [
+        [
+          {
+            "node": "Respond to Page3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run manually": {
+      "main": [
+        [
+          {
+            "node": "Read prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Weekly Monday 09:00": {
+      "main": [
+        [
+          {
+            "node": "Read prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read prompts": {
+      "main": [
+        [
+          {
+            "node": "Expand runs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Expand runs": {
+      "main": [
+        [
+          {
+            "node": "By engine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "By engine": {
+      "main": [
+        [
+          {
+            "node": "OpenAI web search",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Perplexity Sonar",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gemini grounded",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI web search": {
+      "main": [
+        [
+          {
+            "node": "Parse OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity Sonar": {
+      "main": [
+        [
+          {
+            "node": "Parse Perplexity",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini grounded": {
+      "main": [
+        [
+          {
+            "node": "Parse Gemini",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Merge 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Perplexity": {
+      "main": [
+        [
+          {
+            "node": "Merge 1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Parse Gemini": {
+      "main": [
+        [
+          {
+            "node": "Merge 2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge 1": {
+      "main": [
+        [
+          {
+            "node": "Merge 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge 2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Append to API_Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "timezone": "Asia/Dubai",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "43d95d7b-7840-41ed-994f-e1d20b03676d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fd209dd22b734fab58ecb57a0144cc748bbe424653e5215160bfd904ea78d6a4"
+  },
+  "id": "JFkPg1UXqDTBURDj",
+  "tags": []
+}

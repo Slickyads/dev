@@ -1,0 +1,156 @@
+{
+  "name": "Zerene GEO - 01 Form Submission Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "zerene-form-submit",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "n1",
+      "name": "Form Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "zerene-form-submit"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $('Form Webhook').first().json.body || {};\nconst runId = Date.now().toString(36);\n\n// Map form fields to structured data\nconst formData = {\n  submission_id: runId,\n  created_at: new Date().toISOString(),\n  website_url: body['Website URL'] || '',\n  brand_name: body['Brand name'] || '',\n  market: body['Market'] || 'KSA',\n  language: body['Language'] || 'English',\n  business_name: body['Business name'] || '',\n  business_description: body['Business description'] || '',\n  location: body['Location'] || '',\n  primary_goal: body['Primary goal'] || '',\n  primary_cta_url: body['Primary CTA and URL'] || '',\n  offer_tiers: body['Offer tiers'] || '',\n  products_collections: body['Products or collections'] || '',\n  customization_options: body['Customization options'] || '',\n  key_differentiators: body['Key differentiators'] || '',\n  target_markets: body['Target markets'] || '',\n  languages: body['Languages'] || '',\n  audience_segments: body['Audience segments'] || '',\n  customer_questions: body['Customer questions'] || '',\n  existing_keywords: body['Existing keywords'] || '',\n  seasonal_campaigns: body['Seasonal campaigns'] || '',\n  competitors: body['Competitors or benchmark brands'] || '',\n  high_performing_pages: body['Existing high-performing pages'] || '',\n  brand_claims: body['Brand claims that can be verified'] || '',\n  proof_points: body['Available proof points'] || ''\n};\n\nreturn [{ json: formData }];"
+      },
+      "id": "n2",
+      "name": "Parse Form Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "={{ $env.GOOGLE_SHEET_URL }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "form"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "SN": "={{ $json.submission_id }}",
+            "Website URL": "={{ $json.website_url }}",
+            "Brand name": "={{ $json.brand_name }}",
+            "Market": "={{ $json.market }}",
+            "Language": "={{ $json.language }}",
+            "Dated": "={{ new Date().toLocaleDateString() }}",
+            "Business name": "={{ $json.business_name }}",
+            "Business description": "={{ $json.business_description }}",
+            "Location": "={{ $json.location }}",
+            "Primary goal": "={{ $json.primary_goal }}",
+            "Primary CTA and URL": "={{ $json.primary_cta_url }}",
+            "Offer tiers": "={{ $json.offer_tiers }}",
+            "Products or collections": "={{ $json.products_collections }}",
+            "Customization options": "={{ $json.customization_options }}",
+            "Key differentiators": "={{ $json.key_differentiators }}",
+            "Target markets": "={{ $json.target_markets }}",
+            "Languages": "={{ $json.languages }}",
+            "Audience segments": "={{ $json.audience_segments }}",
+            "Customer questions": "={{ $json.customer_questions }}",
+            "Existing keywords": "={{ $json.existing_keywords }}",
+            "Seasonal campaigns": "={{ $json.seasonal_campaigns }}",
+            "Competitors or benchmark brands": "={{ $json.competitors }}",
+            "Existing high-performing pages": "={{ $json.high_performing_pages }}",
+            "Brand claims that can be verified": "={{ $json.brand_claims }}",
+            "Available proof points": "={{ $json.proof_points }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "n3",
+      "name": "Save to Form Tab",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, submission_id: $('Parse Form Data').first().json.submission_id, message: 'Form submitted successfully. Ready for opportunity analysis.' } }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "n4",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        0
+      ],
+      "executeOnce": true
+    }
+  ],
+  "connections": {
+    "Form Webhook": {
+      "main": [
+        [
+          {
+            "node": "Parse Form Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Form Data": {
+      "main": [
+        [
+          {
+            "node": "Save to Form Tab",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Form Tab": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "name": "Zerene GEO - 03 Keyword Dataset",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const opps = $('02 Opportunity Analysis').first().json.opportunities || [];\nconst formData = $('01 Form Submission Webhook').first().json || {};\nconst runId = Date.now().toString(36);\n\n// Topic clusters from workflow\ntopicClusters = [\n  'Zerene brand and entity',\n  'Corporate fragrance gifting',\n  'Executive and VIP gifting',\n  'Private-label and bespoke fragrance',\n  'Hospitality and hotel scenting',\n  'Majlis fragrance solutions',\n  'Spa and wellness fragrance',\n  'Healthcare and premium medical clinic scenting',\n  'Interior architecture scenting',\n  'Ramadan and Eid corporate gifting',\n  'Saudi National Day gifting',\n  'Year-end and corporate event gifting',\n  'B2B fragrance supplier selection',\n  'Fragrance customization and branding',\n  'Ambient scenting solutions'\n];\n\n// Deterministic keyword generation based on opportunity data\nconst keywords = [];\nconst searchIntents = ['Informational', 'Commercial', 'Transactional'];\nconst icpSignals = ['Commercial', 'Seasonal', 'Cultural', 'Comparison', 'Direct answer'];\nconst markets = ['KSA', 'UAE', 'GCC', 'Global'];\nconst languages = ['English', 'Arabic'];\nconst segments = ['Non-brand', 'Category benchmark', 'Brand'];\n\n// Process each opportunity and generate 5 keywords per opportunity\nopps.forEach((opp, oppIdx) => {\n  // Use deterministic indexing based on opp.id and keyword index\n  for (let i = 0; i < 5; i++) {\n    // Deterministic seed from opp.id and i\n    const seed = (oppIdx * 10 + i).toString(36);\n    const intentIdx = (seed.charCodeAt(0) % searchIntents.length);\n    const signalIdx = ((seed.charCodeAt(1) - 97) % icpSignals.length + icpSignals.length) % icpSignals.length;\n    const marketIdx = ((seed.charCodeAt(2) - 97) % markets.length + markets.length) % markets.length;\n    const langIdx = ((seed.charCodeAt(3) - 97) % languages.length + languages.length) % languages.length;\n    const segmentIdx = ((seed.charCodeAt(4) - 97) % segments.length + segments.length) % segments.length;\n\n    const tierCode = opp.tier.replace('Tier ', 'T');\n    const categoryCode = opp.theme.split(' ').map(w => w[0].toUpperCase()).join('');\n    const intentCode = searchIntents[intentIdx][0];\n    const marketCode = markets[marketIdx];\n    const langCode = languages[langIdx][0].toUpperCase();\n    const num = String(i + 1).padStart(3, '0');\n\n    const kwId = `KW-ZERENE-${tierCode}-${categoryCode}-${intentCode}-${marketCode}-${langCode}-${num}`;\n    const clusterIdx = oppIdx % topicClusters.length;\n\n    keywords.push({\n      keyword_id: kwId,\n      keyword: opp.search_query || opp.theme.toLowerCase(),\n      ai_prompt: `What are the best ${opp.theme.toLowerCase()} options in ${marketCode}?`,\n      keyword_type: intentIdx === 0 ? 'Question' : intentIdx === 1 ? 'Comparison' : 'Purchase',\n      topic_cluster: topicClusters[clusterIdx],\n      parent_topic: opp.theme,\n      prompt_category: opp.tier === 'Tier 1' ? 'Executive Gifting' : opp.tier === 'Tier 2' ? 'KSA Category Intent' : opp.tier === 'Tier 3' ? 'Problem-Solution' : 'KSA Category Intent',\n      offer_tier: opp.tier,\n      audience: opp.audience,\n      search_intent: searchIntents[intentIdx],\n      icp_signal: icpSignals[signalIdx],\n      market: marketCode,\n      language: languages[langIdx],\n      segment: segments[segmentIdx],\n      funnel_stage: intentIdx === 0 ? 'Top' : intentIdx === 1 ? 'Middle' : 'Bottom',\n      content_type: intentIdx === 0 ? 'Guide/Article' : intentIdx === 1 ? 'Comparison Page' : 'Landing Page',\n      linked_opportunity_id: opp.id,\n      priority: oppIdx < 2 ? 'High' : 'Medium',\n      search_volume: '[TO VERIFY]',\n      keyword_difficulty: '[TO VERIFY]',\n      ai_prompt_volume: '[TO VERIFY]',\n      notes: `From ${opp.theme} - ${icpSignals[signalIdx]} intent`\n    });\n  }\n});\n\nreturn [{ json: { runId, keywords } }];\n      }\n    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "={{ $env.GOOGLE_SHEET_URL }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "keywords"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "keyword_id": "={{ $json.keyword_id }}",
+            "created_at": "={{ new Date().toISOString() }}",
+            "brand": "={{ $('01 Form Submission Webhook').first().json.brand_name }}",
+            "website": "={{ $('01 Form Submission Webhook').first().json.website_url }}",
+            "tier": "={{ $json.offer_tier }}",
+            "market": "={{ $json.market }}",
+            "language": "={{ $json.language }}",
+            "keyword": "={{ $json.keyword }}",
+            "intent": "={{ $json.search_intent }}",
+            "icp_search_type": "={{ $json.icp_signal }}",
+            "volume_estimate": "={{ $json.search_volume }}",
+            "difficulty": "={{ $json.keyword_difficulty }}",
+            "content_pillar": "={{ $json.topic_cluster }}",
+            "suggested_blog_topic": "={{ $json.ai_prompt }}",
+            "ai_cited_content": "={{ $json.ai_prompt }}",
+            "status": "Pending"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, runId, keywordsGenerated: $('Generate Keywords').first().json.keywords.length, message: 'Keyword dataset complete. Saved to keywords tab.' } } }",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "02 Opportunity Analysis": {
+      "main": [
+        [
+          {
+            "node": "Generate Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Keywords": {
+      "main": [
+        [
+          {
+            "node": "Save to Keywords Tab",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Keywords Tab": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

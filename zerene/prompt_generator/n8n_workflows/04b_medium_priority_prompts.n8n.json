@@ -1,0 +1,115 @@
+{
+  "name": "Zerene GEO - 04B Medium Priority Prompts",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const keywords = $('03 Keyword Dataset').first().json.keywords || [];\nconst formData = $('01 Form Submission Webhook').first().json || {};\nconst runId = Date.now().toString(36);\n\nconst mediumPriorityKWsKWs = keywords.filter(k => k.priority === 'Medium').slice(0, 15);\n\nconst prompts = mediumPriorityKWsKWs.map((kw, idx) => {\n  const tierCode = kw.offer_tier.replace('Tier ', 'T');\n  const catCode = kw.prompt_category.replace(/\\s+/g, '').replace('&', 'AND');\n  const intentCode = kw.search_intent[0];\n  const signalCode = kw.icp_signal.replace(' ', '');\n  const marketCode = kw.market;\n  const langCode = kw.language[0].toUpperCase();\n  const typeCode = kw.content_type.replace(/\\s+/g, '').replace('/', '');\n\n  const promptId = `ZERENE_${tierCode}_${catCode}_${intentCode}_${signalCode}_${marketCode}_${langCode}_${typeCode}`;\n\n  return {\n    priority: 'Medium',\n    prompt_id: promptId,\n    prompt_category: kw.prompt_category,\n    offer_tier: kw.offer_tier,\n    audience: kw.audience,\n    search_intent: kw.search_intent,\n    icp_signal: kw.icp_signal,\n    market: kw.market,\n    language: kw.language,\n    segment: kw.segment,\n    content_type: kw.content_type,\n    target_ai_prompt: kw.ai_prompt,\n    primary_keyword: kw.keyword,\n    secondary_keywords: kw.ai_prompt,\n    business_objective: 'High-intent lead generation',\n    expected_geo_outcome: 'Brand visibility, share of voice, qualified leads',\n    linked_keyword_ids: kw.keyword_id,\n    ready_to_use_prompt: kw.ai_prompt\n  };\n}});\n\nreturn prompts.map((p) => [{ json: p }]);\n"
+      },
+      "id": "n1",
+      "name": "Generate Medium Priority Prompts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "={{ $env.GOOGLE_SHEET_URL }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "prompts"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "prompt_id": "={{ $json.prompt_id }}",
+            "created_at": "={{ new Date().toISOString() }}",
+            "brand": "={{ $('01 Form Submission Webhook').first().json.brand_name }}",
+            "website": "={{ $('01 Form Submission Webhook').first().json.website_url }}",
+            "tier": "={{ $json.offer_tier }}",
+            "category": "={{ $json.prompt_category }}",
+            "icp_search_type": "={{ $json.icp_signal }}",
+            "keyword_intent": "={{ $json.search_intent }}",
+            "market": "={{ $json.market }}",
+            "language": "={{ $json.language }}",
+            "segment": "={{ $json.segment }}",
+            "target_keyword": "={{ $json.primary_keyword }}",
+            "prompt_text": "={{ $json.ready_to_use_prompt }}",
+            "status": "Pending review"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "n2",
+      "name": "Save to Prompts Tab",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "= { success: true, runId, promptsGenerated: $('Generate ...').first().json.prompts.length, message: 'Done.' }",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "n3",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        480,
+        0
+      ],
+      "executeOnce": true
+    }
+  ],
+  "connections": {
+    "Generate Medium Priority Prompts": {
+      "main": [
+        [
+          {
+            "node": "Save to Prompts Tab",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Prompts Tab": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

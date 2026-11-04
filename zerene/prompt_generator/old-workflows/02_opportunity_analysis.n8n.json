@@ -1,0 +1,86 @@
+{
+  "name": "Zerene GEO - 02 Opportunity Analysis",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const formData = $('01 Form Submission Webhook').first().json || {};\nconst runId = Date.now().toString(36);\n\n// Build opportunity analysis keywords and themes based on form data\nconst opportunities = [\n  {\n    id: `${runId}-O1`,\n    theme: 'Corporate gifting for executives',\n    buyer_intent: 'Corporate gifting, bulk orders, VIP presents',\n    tier: 'Tier 1',\n    audience: 'HR heads, PAs, procurement officers, C-suite assistants',\n    market: formData['market'] || 'KSA',\n    language: formData['language'] || 'English',\n    search_query: 'corporate gifts ' + (formData['market'] || 'KSA'),\n    seasonal: 'Ramadan, Eid, Saudi National Day, year-end gifting',\n    cultural: 'Majlis hospitality, Arabic gifting traditions',\n    competitor: 'Other B2B fragrance/gift suppliers in KSA',\n    gap: 'Limited digital presence for corporate gifting options'\n  },\n  {\n    id: `${runId}-O2`,\n    theme: 'Hotel and hospitality scent solutions',\n    buyer_intent: 'Hotel scenting, majlis fragrance, boutique hotel amenities',\n    tier: 'Tier 2',\n    audience: 'Hotel GMs, F&B managers, majlis owners, interior buyers',\n    market: formData['market'] || 'KSA',\n    language: formData['language'] || 'English',\n    search_query: 'hotel scenting ' + (formData['market'] || 'KSA'),\n    seasonal: 'Seasonal hospitality events, conferences',\n    cultural: 'Arabic hospitality traditions, Majlis scenting',\n    competitor: 'Other hospitality scent providers',\n    gap: 'Seasonal menu and event scent offerings'\n  },\n  {\n    id: `${runId}-O3`,\n    theme: 'Healthcare and spa fragrance solutions',\n    buyer_intent: 'Clinic scenting, spa ambience, premium medical environment',\n    tier: 'Tier 3',\n    audience: 'Clinic owners, spa managers, procurement',\n    market: formData['market'] || 'KSA',\n    language: formData['language'] || 'English',\n    search_query: 'clinic fragrance ' + (formData['market'] || 'KSA'),\n    seasonal: 'Health awareness months, wellness trends',\n    cultural: 'Premium healthcare environment expectations',\n    competitor: 'Medical and spa scenting companies',\n    gap: 'Wellness-focused fragrance positioning'\n  },\n  {\n    id: `${runId}-O4`,\n    theme: 'Corporate wellness and interior architecture scenting',\n    buyer_intent: 'Office wellness, scent branding, fit-out specifications',\n    tier: 'Tier 4',\n    audience: 'Facility managers, interior architects, HR wellbeing leads',\n    market: formData['market'] || 'KSA',\n    language: formData['language'] || 'English',\n    search_query: 'office wellness scent ' + (formData['market'] || 'KSA'),\n    seasonal: 'Corporate wellness programs, year-end',\n    cultural: 'Workplace culture and scent preferences',\n    competitor: 'Corporate wellness and scent branding firms',\n    gap: 'B2B scent branding for interior projects'\n  }\n];\n\nreturn [{ json: { runId, opportunities } }];\n      }\n    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "={{ $env.GOOGLE_SHEET_URL }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "opportunities"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Opp ID": "={{ $json.opportunities[0].id }}",
+            "Theme": "={{ $json.opportunities[0].theme }}",
+            "Buyer Intent": "={{ $json.opportunities[0].buyer_intent }}",
+            "Tier": "={{ $json.opportunities[0].tier }}",
+            "Audience": "={{ $json.opportunities[0].audience }}",
+            "Market": "={{ $json.opportunities[0].market }}",
+            "Language": "={{ $json.opportunities[0].language }}",
+            "Search Query": "={{ $json.opportunities[0].search_query }}",
+            "Seasonal": "={{ $json.opportunities[0].seasonal }}",
+            "Cultural": "={{ $json.opportunities[0].cultural }}",
+            "Competitor": "={{ $json.opportunities[0].competitor }}",
+            "Gap": "={{ $json.opportunities[0].gap }}"
+          }
+        },
+        "schema": {}
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, runId, opportunities: $('Build Opportunities').first().json.opportunities.length, message: 'Opportunity analysis complete. Saved to opportunities tab.' } } }",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "01 Form Submission Webhook": {
+      "main": [
+        [
+          {
+            "node": "Build Opportunities",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Opportunities": {
+      "main": [
+        [
+          {
+            "node": "Save to Opportunities Tab",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Opportunities Tab": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

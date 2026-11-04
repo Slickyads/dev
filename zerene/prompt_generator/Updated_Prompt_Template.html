@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene Prompt Template for GEO</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --fg: #1a1a1a;
+      --muted: #666;
+      --border: #e0e0e0;
+      --card-bg: #fff;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --info: #0284c7;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --fg: #f3f4f6;
+        --muted: #9ca3af;
+        --border: #374151;
+        --card-bg: #1f2937;
+        --accent: #60a5fa;
+        --accent-light: #1e3a5f;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --info: #38bdf8;
+      }
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--fg); margin: 0; padding: 2rem; line-height: 1.6; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--accent); }
+    h3 { font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .meta-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
+    .meta-label { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .meta-value { font-weight: 500; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.875rem; }
+    th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+    th { font-weight: 600; color: var(--muted); font-size: 0.875rem; }
+    .badge { display: inline-block; background: var(--accent-light); color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; margin: 0.25rem; }
+    .footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.875rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { background: #f3f4f6; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎯 ZERENE PROMPT TEMPLATE</h1>
+      <p style="color: var(--muted);">B2B Fragrance E-commerce — Saudi Arabia GEO Prompt Generation</p>
+    </header>
+
+    <section class="meta-grid">
+      <div class="meta-card"><div class="meta-label">Brand</div><div class="meta-value">Zerene</div></div>
+      <div class="meta-card"><div class="meta-label">Website Type</div><div class="meta-value">B2B Fragrance E-commerce</div></div>
+      <div class="meta-card"><div class="meta-label">Location</div><div class="meta-value">Saudi Arabia</div></div>
+      <div class="meta-card"><div class="meta-label">Primary Goal</div><div class="meta-value">Generate B2B Leads & Sales</div></div>
+      <div class="meta-card"><div class="meta-label">CTA</div><div class="meta-value"><a href="https://zerene.com/pages/partnerships" target="_blank">Request a Quote</a></div></div>
+      <div class="meta-card"><div class="meta-label">Language</div><div class="meta-value">English & Arabic</div></div>
+    </section>
+
+    <section style="margin-top: 2rem;">
+      <h2>📦 Offer Tiers</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <span class="badge">Tier 1: Executive & VIP Corporate Gifting</span>
+        <span class="badge">Tier 2: Hospitality, Majlis & Boutique Hotel</span>
+        <span class="badge">Tier 3: Healthcare, Spas & Premium Medical Clinics</span>
+        <span class="badge">Tier 4: Corporate Wellness & Interior Architecture</span>
+      </div>
+    </section>
+
+    <section style="margin-top: 2rem;">
+      <h2>📂 Prompt Categories</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem;">
+        <span class="badge">Brand Direct Queries</span>
+        <span class="badge">KSA Category Intent</span>
+        <span class="badge">Executive Gifting</span>
+        <span class="badge">Problem-Solution</span>
+      </div>
+    </section>
+
+    <section style="margin-top: 2rem;">
+      <h2>🔍 Signals & Search Components</h2>
+      <table style="font-size: 0.8rem;">
+        <tr><th>ICP Signal</th><th>Examples</th></tr>
+        <tr><td>Commercial</td><td>B2B buyers, bulk quotes, partnership inquiries</td></tr>
+        <tr><td>Seasonal</td><td>Ramadan gifting, Saudi National Day, Eid</td></tr>
+        <tr><td>Cultural</td><td>Majlis Majlis, Arabic hospitality traditions</td></tr>
+        <tr><td>Comparison</td><td>Zerene vs competitors, fragrance notes comparison</td></tr>
+        <tr><td>Direct answer</td><td>Where to buy B2B fragrances in KSA</td></tr>
+      </table>
+      <table style="margin-top: 1.5rem; font-size: 0.8rem;">
+        <tr><th>Keyword Intent</th><th>Examples</th></tr>
+        <tr><td>Informational</td><td>fragrance notes guide, buying B2B perfumes</td></tr>
+        <tr><td>Commercial</td><td>buy B2B fragrances Saudi, fragrance supplier KSA</td></tr>
+        <tr><td>Transactional</td><td>request quote bulk perfume, order fragrance online</td></tr>
+      </table>
+      <table style="margin-top: 1.5rem; font-size: 0.8rem;">
+        <tr><th>Market</th><th>Regions</th></tr>
+        <tr><td>UAE</td><td>United Arab Emirates</td></tr>
+        <tr><td>KSA</td><td>Kingdom of Saudi Arabia</td></tr>
+        <tr><td>GCC</td><td>Gulf Cooperation Council</td></tr>
+        <tr><td>Global</td><td>International markets</td></tr>
+      </table>
+      <table style="margin-top: 1.5rem; font-size: 0.8rem;">
+        <tr><th>Segment</th><th>Categories</th></tr>
+        <tr><td>Non-brand</td><td>General category searches</td></tr>
+        <tr><td>Category benchmark</td><td>Comparing fragrance categories</td></tr>
+        <tr><td>Brand</td><td>Zerene specific searches</td></tr>
+      </table>
+    </section>
+
+    <section style="margin-top: 3rem;">
+      <h2>📋 Required Prompt ID Format</h2>
+      <pre style="background: #f3f4f6; padding: 1rem; border-radius: 6; font-family: monospace; font-size: 0.85rem; overflow-x: auto;">
+ZERENE_[TIER]_[CATEGORY]_[INTENT]_[ICP-SIGNAL]_[MARKET]_[LANGUAGE]_[CONTENT-TYPE]
+      </pre>
+    </section>
+
+    <section style="margin-top: 3rem;">
+      <h2>📊 Output Quantity</h2>
+      <ul style="font-size: 1rem;">
+        <li><strong>10 high-priority prompts</strong> — High-intent lead generation</li>
+        <li><strong>15 medium-priority prompts</strong> — Commercial content</li>
+        <li><strong>10 long-term GEO prompts</strong> — AI answer engine optimization</li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      Template for Zerene B2B Fragrance — GEO & SEO Prompt Library<br>
+      Generated: <span id="gen-date"></span>
+    </footer>
+    <script>document.getElementById('gen-date').textContent = new Date().toLocaleString();</script>
+  </div>
+</body>
+</html>

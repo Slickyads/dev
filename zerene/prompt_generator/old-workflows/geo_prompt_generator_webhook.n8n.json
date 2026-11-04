@@ -56,6 +56,42 @@
       ]
     },
     {
+      "id": "n8",
+      "name": "Save Form",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1000,
+        0
+      ],
+      "documentId": {
+        "__rl": true,
+        "mode": "url",
+        "value": "={{ $env.GOOGLE_SHEET_URL }}"
+      },
+      "sheetName": {
+        "__rl": true,
+        "mode": "name",
+        "value": "Form"
+      },
+      "columns": {
+        "mappingMode": "defineBelow",
+        "value": {
+          "submission_id": "={{ $runId = Date.now().toString(36); $runId }}",
+          "created_at": "={{ new Date().toISOString() }}",
+          "brand": "={{ $json.brand }}",
+          "website": "={{ $json.website }}",
+          "tier": "={{ $json.tier }}",
+          "market": "={{ $json.market }}",
+          "language": "={{ ($('Webhook').first().json.body.language || 'English') }}",
+          "prompts_generated": "={{ 0 }}"
+        },
+        "matchingColumns": [],
+        "schema": []
+      },
+      "options": {}
+    },
+    {
       "parameters": {
         "method": "POST",
         "url": "https://api.anthropic.com/v1/messages",
@@ -105,7 +141,7 @@
         "documentId": {
           "__rl": true,
           "mode": "url",
-          "value": "PASTE_GOOGLE_SHEET_URL"
+          "value": "={{ $env.GOOGLE_SHEET_URL }}"
         },
         "sheetName": {
           "__rl": true,
@@ -197,7 +233,7 @@
       "main": [
         [
           {
-            "node": "Claude - Generate Prompts",
+            "node": "Save Form",
             "type": "main",
             "index": 0
           }
@@ -231,6 +267,17 @@
         [
           {
             "node": "Respond to Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Form": {
+      "main": [
+        [
+          {
+            "node": "Claude - Generate Prompts",
             "type": "main",
             "index": 0
           }

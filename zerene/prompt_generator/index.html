@@ -69,6 +69,7 @@
   .prompt p { margin: 0 0 10px; font-size: 16px; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip { background: var(--chip); color: var(--muted); font-size: 12px; padding: 3px 9px; border-radius: 999px; }
+  .chip.pri { background: var(--accent); color: var(--accent-text); font-weight: 600; }
   .actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
   button.secondary { padding: 10px 16px; font-size: 14px; font-family: inherit; font-weight: 600; background: transparent; color: var(--text); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; }
   @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .card { padding: 20px; } }
@@ -78,7 +79,7 @@
 <div class="wrap">
   <div class="eyebrow">Generative Engine Optimization</div>
   <h1>See what buyers ask AI about your category</h1>
-  <p class="lead">Enter your website and we will write 10 questions your buyers are likely to type into ChatGPT, Perplexity, Gemini and other AI engines.</p>
+  <p class="lead">Enter your website and we will write the questions your buyers are likely to type into ChatGPT, Perplexity, Gemini and other AI engines, with the keywords behind them.</p>
 
   <div class="card">
     <form id="geoForm" novalidate>
@@ -112,8 +113,15 @@
             <option>English</option><option>Arabic</option><option>English + Arabic</option>
           </select>
         </div>
+        <div class="full">
+          <label for="prompt_count">Number of prompts</label>
+          <select id="prompt_count" name="prompt_count">
+            <option value="10">10 prompts (starter)</option>
+            <option value="25">25 prompts (full set)</option>
+          </select>
+        </div>
       </div>
-      <button class="primary" id="submitBtn" type="submit">Generate 10 prompts</button>
+      <button class="primary" id="submitBtn" type="submit">Generate prompts</button>
       <div class="status" id="status" role="status" aria-live="polite"></div>
     </form>
   </div>
@@ -130,9 +138,7 @@
 </div>
 
 <script>
-  // 1) Paste your n8n PRODUCTION webhook URL here (workflow must be Active).
-  //    Use the /webhook-test/ URL only while testing with "Listen for test event".
-  
+  // n8n PRODUCTION webhook URL (the workflow must be Active).
   const WEBHOOK_URL = "https://n8n.srv1234249.hstgr.cloud/webhook/geo-prompts";
 
   const form = document.getElementById("geoForm");
@@ -154,12 +160,14 @@
     return d.innerHTML;
   }
 
-  function render(prompts) {
+  function render(json) {
+    const prompts = json.prompts;
     current = prompts;
     listEl.innerHTML = prompts.map(p => `
       <div class="prompt">
         <p dir="auto">${esc(p.prompt_text)}</p>
         <div class="chips">
+          <span class="chip pri">${esc(p.priority)}</span>
           <span class="chip">${esc(p.category)}</span>
           <span class="chip">${esc(p.keyword_intent)}</span>
           <span class="chip">${esc(p.icp_search_type)}</span>
@@ -168,8 +176,10 @@
           <span class="chip">${esc(p.segment)}</span>
         </div>
       </div>`).join("");
+    const c = json.counts || {};
     document.getElementById("resultsSub").textContent =
-      prompts.length + " prompts saved to your Google Sheet.";
+      (c.prompts || prompts.length) + " prompts, " + (c.keywords || 0) + " keywords and " +
+      (c.opportunities || 0) + " opportunities saved to your Google Sheet.";
     resultsEl.style.display = "block";
     resultsEl.scrollIntoView({ behavior: "smooth", block: "start" });
   }
@@ -183,14 +193,10 @@
       setStatus("Please enter a valid website URL.", "error");
       return;
     }
-    if (WEBHOOK_URL.includes("YOUR-N8N-DOMAIN")) {
-      setStatus("Set your n8n webhook URL in the page script first.", "error");
-      return;
-    }
 
     btn.disabled = true;
     resultsEl.style.display = "none";
-    setStatus("Reading your website and writing prompts. This takes about 30–60 seconds…", "loading");
+    setStatus("Reading your website and writing prompts. This can take 30–90 seconds…", "loading");
 
     try {
       const res = await fetch(WEBHOOK_URL, {
@@ -202,7 +208,7 @@
       const json = await res.json();
       if (!json.prompts || !json.prompts.length) throw new Error("No prompts returned");
       statusEl.className = "status";
-      render(json.prompts);
+      render(json);
     } catch (err) {
       setStatus("Something went wrong: " + err.message + ". Please try again.", "error");
     } finally {

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Generator Workflow - Zerene</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --fg: #1a1a1a;
+      --muted: #666;
+      --border: #e0e0e0;
+      --card-bg: #fff;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --success: #059669;
+      --pending: #d97706;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --fg: #f3f4f6;
+        --muted: #9ca3af;
+        --border: #374151;
+        --card-bg: #1f2937;
+        --accent: #60a5fa;
+        --accent-light: #1e3a5f;
+        --success: #34d399;
+        --pending: #fbbf24;
+      }
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--fg); margin: 0; padding: 2rem; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    h3 { font-size: 1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--accent); }
+    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .meta-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
+    .meta-label { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); letter-spacing: 0.05em; }
+    .meta-value { font-weight: 500; margin-top: 0.25rem; }
+    .step-list { list-style: none; padding: 0; }
+    .step-list li { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 1rem; }
+    .step-num { background: var(--accent); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.875rem; flex-shrink: 0; }
+    .step-text { flex: 1; }
+    .template-box { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; white-space: pre-wrap; font-family: monospace; font-size: 0.875rem; overflow-x: auto; max-height: 400px; overflow-y: auto; }
+    .tag { display: inline-block; background: var(--accent-light); color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; margin: 0.25rem; }
+    .status-badge { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.875rem; padding: 0.25rem 0.75rem; border-radius: 9999px; }
+    .status-badge.success { background: #d1fae5; color: var(--success); }
+    .status-badge.pending { background: #fef3c7; color: var(--pending); }
+    .status-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { text-align: left; padding: 0.75rem; border-bottom: 1px solid var(--border); }
+    th { font-weight: 600; color: var(--muted); font-size: 0.875rem; }
+    .footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.875rem; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📋 Prompt Generator Workflow</h1>
+      <p style="color: var(--muted);">Zerene — E-commerce Prompt Generation for Saudi Arabia</p>
+    </header>
+
+    <section>
+      <h2>Business Information</h2>
+      <div class="meta-grid">
+        <div class="meta-card"><div class="meta-label">Business</div><div class="meta-value">Zerene</div></div>
+        <div class="meta-card"><div class="meta-label">Website</div><div class="meta-value"><a href="https://www.zerene.com" target="_blank">zerene.com</a></div></div>
+        <div class="meta-card"><div class="meta-label">Market</div><div class="meta-value">Saudi Arabia</div></div>
+        <div class="meta-card"><div class="meta-label">Language</div><div class="meta-value">English</div></div>
+        <div class="meta-card"><div class="meta-label">Template Type</div><div class="meta-value">E-commerce</div></div>
+        <div class="meta-card"><div class="meta-label">Setup Date</div><div class="meta-value">04-Nov-2026</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>📋 11-Step Workflow</h2>
+      <ol class="step-list">
+        <li><span class="step-num">1</span><span class="step-text">Check submit data in form tab</span></li>
+        <li><span class="step-num">2</span><span class="step-text">Generate questions for buyers intent and content pillars</span></li>
+        <li><span class="step-num">3</span><span class="step-text">Ask AI about your business</span></li>
+        <li><span class="step-num">4</span><span class="step-text">Step1. Select Tier e.g. Guest Experience</span></li>
+        <li><span class="step-num">5</span><span class="step-text">Step2. Find keyword based on tier and located e.g. hospitality + KSA (location)</span></li>
+        <li><span class="step-num">6</span><span class="step-text">Step3. Find relevant blog content cited or ranked in AI engine</span></li>
+        <li><span class="step-num">7</span><span class="step-text">Step4. Common brand corporate - blog content</span></li>
+        <li><span class="step-num">8</span><span class="step-text">Save keywords in spreadsheet</span></li>
+        <li><span class="step-num">9</span><span class="step-text">Save prompt in spreadsheet</span></li>
+        <li><span class="step-num">10</span><span class="step-text">Generate n8n workflow</span></li>
+        <li><span class="step-num">11</span><span class="step-text">Use Gemini AI engine</span></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>💡 Website Prompt Template</h2>
+      <div class="template-box">Create a [type of website] for [business name], a [short business description] based in [location].
+
+Primary goal: [get leads / bookings / sales / showcase work / build trust].
+Target audience: [who they are and what they need].
+Main call to action: [e.g., "Request a quote," "Book a consultation," "Shop now"].
+
+Use a [modern / minimal / luxury / friendly / corporate] design style.
+Brand colors: [colors]. Typography preference: [font style].
+Brand voice: [professional, warm, confident, playful, etc.].
+
+Include these pages: [Home, About, Services, Pricing, Portfolio, Contact, etc.].
+Include these sections/features: [hero, testimonials, FAQ, contact form, booking calendar, gallery, newsletter signup, Google Maps, WhatsApp button, etc.].
+
+Make sure the site is:
+- Mobile-friendly and fast
+- Clear and easy to navigate
+- SEO-friendly with suggested page titles and meta descriptions
+- Accessible, with readable text and clear buttons
+
+Do not invent customer reviews, certifications, prices, statistics, or claims. Mark missing information as [TO ADD].
+
+Output: a complete website structure, page copy, image suggestions, and a list of required features.</div>
+    </section>
+
+    <section>
+      <h2>🔧 Template Values (Zerene)</h2>
+      <table>
+        <tr><th>Placeholder</th><th>Value</th></tr>
+        <tr><td>type of website</td><td>e-commerce</td></tr>
+        <tr><td>business name</td><td>Zerene</td></tr>
+        <tr><td>short business description</td><td><em>[to add]</em></td></tr>
+        <tr><td>location</td><td>Saudi Arabia</td></tr>
+        <tr><td>Primary goal</td><td>get leads/Sales</td></tr>
+        <tr><td>Target audience</td><td>B2b fragrance</td></tr>
+        <tr><td>Main call to action</td><td>Request a quote</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>🎯 4-Tier Intent</h2>
+      <div>
+        <span class="tag">Tier 1: Executive & VIP Corporate Gifting</span>
+        <span class="tag">Tier 2: Hospitality, Majlis & Boutique Hotel</span>
+        <span class="tag">Tier 3: Healthcare, Spas & Premium Medical Clinics</span>
+        <span class="tag">Tier 4: Corporate Wellness & Interior Architecture</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>📂 Prompt Categories</h2>
+      <div>
+        <span class="tag">Brand Direct Queries</span>
+        <span class="tag">KSA Category Intent</span>
+        <span class="tag">Executive Gifting</span>
+        <span class="tag">Problem-Solution</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>🔍 Signals — Search Type & Components</h2>
+      <table>
+        <tr><th>Component</th><th>Values</th></tr>
+        <tr><td>ICP</td><td>Commercial, Seasonal, Cultural, Comparison, Direct answer</td></tr>
+        <tr><td>Keyword Intent</td><td>Informational, Commercial, Transactional</td></tr>
+        <tr><td>Market</td><td>UAE, KSA, GCC, Global</td></tr>
+        <tr><td>Language</td><td>English, Arabic</td></tr>
+        <tr><td>Segment</td><td>Non-brand, Category benchmark, Brand</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>📊 Current Status</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        <span class="status-badge success">Form tab: Data ready (1 entry)</span>
+        <span class="status-badge success">Credentials: Gemini API configured</span>
+        <span class="status-badge success">Templates: Populated with Zerene values</span>
+        <span class="status-badge pending">Prompts tab: Empty (awaiting generation)</span>
+        <span class="status-badge pending">Keywords tab: Empty (awaiting generation)</span>
+        <span class="status-badge pending">Citations tab: Empty (awaiting generation)</span>
+        <span class="status-badge pending">Answers tab: Empty (awaiting generation)</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>🔗 Google Sheet Links</h2>
+      <table>
+        <tr><th>Item</th><th>Details</th></tr>
+        <tr><td>Spreadsheet ID</td><td><code>1yAJ1LwDG3KI_aAQGKNnu2adc0SzSUdZI2EAPK4aWdRQ</code></td></tr>
+        <tr><td>Edit URL</td><td><a href="https://docs.google.com/spreadsheets/d/1yAJ1LwDG3KI_aAQGKNnu2adc0SzSUdZI2EAPK4aWdRQ/edit?gid=0#gid=0" target="_blank">Open in Google Sheets</a></td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>▶️ Next Steps</h2>
+      <ol style="padding-left: 1.5rem;">
+        <li>Run the 11-step workflow</li>
+        <li>Fill in <code>[to add]</code> placeholders</li>
+        <li>Save keywords to <strong>keywords</strong> tab</li>
+        <li>Save prompt to <strong>prompts</strong> tab</li>
+        <li>Generate the n8n workflow</li>
+        <li>Use Gemini AI engine to create content</li>
+      </ol>
+    </section>
+
+    <footer class="footer">
+      Saved from Google Sheet on <strong id="date"></strong> · Service account: <code>n8n-402@slickyads-n8n.iam.gserviceaccount.com</code>
+    </footer>
+  </div>
+  <script>document.getElementById('date').textContent = new Date().toLocaleDateString();</script>
+</body>
+</html>
