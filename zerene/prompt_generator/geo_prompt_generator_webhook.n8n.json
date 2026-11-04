@@ -1,0 +1,244 @@
+{
+  "name": "GEO Prompt Generator (Webhook)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "geo-prompts",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "id": "n1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "geo-prompts"
+    },
+    {
+      "parameters": {
+        "url": "={{ /^https?:/i.test($json.body.website_url) ? $json.body.website_url : 'https://' + $json.body.website_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 20000
+        }
+      },
+      "id": "n2",
+      "name": "Fetch Website",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        0
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $('Webhook').first().json.body || {};\nconst raw = String($input.first().json.data || '');\nconst website = /^https?:/i.test(body.website_url || '') ? body.website_url : 'https://' + (body.website_url || '');\nconst clean = raw.replace(/<script[\\s\\S]*?<\\/script>/gi,' ').replace(/<style[\\s\\S]*?<\\/style>/gi,' ');\nconst title = (clean.match(/<title[^>]*>([\\s\\S]*?)<\\/title>/i)||[])[1]||'';\nconst meta = (clean.match(/<meta[^>]+name=[\"']description[\"'][^>]+content=[\"']([^\"']*)/i)||[])[1]||'';\nconst text = clean.replace(/<[^>]+>/g,' ').replace(/\\s+/g,' ').trim().slice(0,8000);\n\nconst tierGuide = {\n 'Tier 1: Executive & VIP Corporate Gifting': 'Buyers: HR heads, PAs, procurement, C-suite assistants. Topics: luxury corporate gifts, Ramadan/Eid/National Day gifting, VIP client gifts, branded premium hampers, bulk orders.',\n 'Tier 2: Hospitality, Majlis & Boutique Hotel': 'Buyers: hotel GMs, F&B/guest-experience managers, majlis owners, interior buyers. Topics: guest amenities, in-room scent, majlis hospitality, boutique hotel experience, Arabic hospitality.',\n 'Tier 3: Healthcare, Spas & Premium Medical Clinics': 'Buyers: clinic/spa owners, procurement, patient-experience managers. Topics: spa products, clinic ambience, premium patient experience, aromatherapy, wellness retail.',\n 'Tier 4: Corporate Wellness & Interior Architecture': 'Buyers: facility managers, interior architects, HR wellbeing leads, developers. Topics: office wellness, scent branding, lobby/interior design, fit-out specifications.'\n};\n\nconst market = body.market || 'KSA';\nconst lang = body.language || 'English';\nconst tier = body.tier;\nconst brand = body.brand_name || title || website;\n\nconst system = 'You are a GEO (Generative Engine Optimization) strategist. You write realistic questions that real buyers type into AI engines (ChatGPT, Perplexity, Gemini, Claude, Google AI Overviews). Return ONLY valid JSON, no markdown, no commentary.';\n\nconst user = `BRAND: ${brand}\nWEBSITE: ${website}\nSITE TITLE: ${title}\nMETA: ${meta}\nSITE CONTENT (excerpt): ${text}\n\nSELECTED TIER: ${tier}\nTIER GUIDE: ${tierGuide[tier] || ''}\nMARKET: ${market}\nLANGUAGE: ${lang} (if \"English + Arabic\", make 5 English and 5 Arabic prompts)\n\nTASK: Write exactly 10 prompts a buyer in ${market} would ask an AI engine, based on what this website actually sells.\nDistribution:\n- 2 x \"Brand Direct Queries\" (segment: Brand)\n- 3 x \"KSA Category Intent\" (adapt the location to ${market}; segment: Category benchmark)\n- 2 x \"Executive Gifting\" (segment: Non-brand)\n- 3 x \"Problem-Solution\" (segment: Non-brand)\nRules: Non-brand and category prompts must NOT name the brand. Make them natural, specific, conversational, with city/market and seasonal or cultural context where relevant. Vary icp_search_type and keyword_intent.\n\nReturn JSON: {\"prompts\":[{\"category\":\"\",\"icp_search_type\":\"Commercial|Seasonal|Cultural|Comparison|Direct answer\",\"keyword_intent\":\"Informational|Commercial|Transactional\",\"market\":\"UAE|KSA|GCC|Global\",\"language\":\"English|Arabic\",\"segment\":\"Non-brand|Category benchmark|Brand\",\"target_keyword\":\"\",\"prompt_text\":\"\"}]}`;\n\nreturn [{ json: {\n  brand, website, tier, market,\n  body: { model: 'claude-sonnet-4-6', max_tokens: 4000, system, messages: [{ role:'user', content: user }] }\n}}];"
+      },
+      "id": "n3",
+      "name": "Build Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "n4",
+      "name": "Claude - Generate Prompts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Build Prompt').first().json;\nlet txt = ($input.first().json.content || []).map(c => c.text || '').join('');\ntxt = txt.replace(/```json|```/g,'').trim();\nconst data = JSON.parse(txt);\nconst runId = Date.now().toString(36);\nreturn data.prompts.map((p, i) => ({ json: {\n  prompt_id: `${runId}-${String(i+1).padStart(2,'0')}`,\n  created_at: new Date().toISOString(),\n  brand: ctx.brand,\n  website: ctx.website,\n  tier: ctx.tier,\n  category: p.category,\n  icp_search_type: p.icp_search_type,\n  keyword_intent: p.keyword_intent,\n  market: p.market,\n  language: p.language,\n  segment: p.segment,\n  target_keyword: p.target_keyword,\n  prompt_text: p.prompt_text,\n  status: 'Pending scan'\n}}));"
+      },
+      "id": "n5",
+      "name": "Parse to Rows",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "url",
+          "value": "PASTE_GOOGLE_SHEET_URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "Prompts"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "prompt_id": "={{ $json.prompt_id }}",
+            "created_at": "={{ $json.created_at }}",
+            "brand": "={{ $json.brand }}",
+            "website": "={{ $json.website }}",
+            "tier": "={{ $json.tier }}",
+            "category": "={{ $json.category }}",
+            "icp_search_type": "={{ $json.icp_search_type }}",
+            "keyword_intent": "={{ $json.keyword_intent }}",
+            "market": "={{ $json.market }}",
+            "language": "={{ $json.language }}",
+            "segment": "={{ $json.segment }}",
+            "target_keyword": "={{ $json.target_keyword }}",
+            "prompt_text": "={{ $json.prompt_text }}",
+            "status": "={{ $json.status }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "n6",
+      "name": "Save to Google Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1200,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, prompts: $('Parse to Rows').all().map(i => i.json) } }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "n7",
+      "name": "Respond to Page",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        0
+      ],
+      "executeOnce": true
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Fetch Website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Website": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt": {
+      "main": [
+        [
+          {
+            "node": "Claude - Generate Prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude - Generate Prompts": {
+      "main": [
+        [
+          {
+            "node": "Parse to Rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse to Rows": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Google Sheet": {
+      "main": [
+        [
+          {
+            "node": "Respond to Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

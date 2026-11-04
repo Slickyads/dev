@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How GEO works for Zerene</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EAF0ED; --surface:#F7FAF8; --ink:#12332F; --muted:#4B6560; --line:#C5D3CE;
+  --accent:#B8790F; --accent-soft:#F2E3C4; --warn:#A23B52; --warn-soft:#F1D6DC;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1D1B; --surface:#152A27; --ink:#E4EEEA; --muted:#9DB5AF; --line:#2A423E;
+    --accent:#E0A23A; --accent-soft:#3A2D12; --warn:#E58AA0; --warn-soft:#3A1B24; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1D1B; --surface:#152A27; --ink:#E4EEEA; --muted:#9DB5AF; --line:#2A423E;
+  --accent:#E0A23A; --accent-soft:#3A2D12; --warn:#E58AA0; --warn-soft:#3A1B24; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:40px 20px 64px}
+h1,h2,h3{font-family:Fraunces,Georgia,"Times New Roman",serif;font-weight:700;line-height:1.15;margin:0}
+h1{font-size:clamp(30px,5.2vw,50px);max-width:20ch;letter-spacing:-.01em}
+h2{font-size:clamp(22px,3.4vw,30px);margin-bottom:6px}
+h3{font-size:19px;font-weight:500}
+.lede{font-size:18px;color:var(--muted);max-width:60ch;margin:16px 0 0}
+section{margin-top:56px}
+.sub{color:var(--muted);margin:0 0 24px;max-width:62ch}
+.outcomes{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:28px;border-top:2px solid var(--ink)}
+.outcomes div{padding:14px 16px 0 0}
+.outcomes b{display:block;font-family:Fraunces,Georgia,serif;font-size:19px}
+.outcomes span{color:var(--muted);font-size:15px}
+
+/* pipeline */
+.pipe{position:relative;margin:0;padding:0;list-style:none}
+.pipe::before{content:"";position:absolute;left:21px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--accent),var(--line))}
+.stage{position:relative;display:grid;grid-template-columns:44px 1fr;gap:0 18px;padding:0 0 30px}
+.stage:last-child{padding-bottom:0}
+.num{width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font:700 18px Fraunces,Georgia,serif;position:relative;z-index:1}
+:root[data-theme="dark"] .num{color:#1b1405}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .num{color:#1b1405}}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-size:15px}
+.box small{display:block;font-weight:600;color:var(--muted);margin-bottom:2px;font-size:13px}
+.box.z{border-left:4px solid var(--accent)}
+.q{font-style:italic;color:var(--muted);font-size:15px;margin:4px 0 0}
+
+/* loop */
+.loop{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:0;padding:0;list-style:none;counter-reset:s}
+.loop li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;font-size:14.5px;position:relative;counter-increment:s}
+.loop li b{display:block;font-family:Fraunces,Georgia,serif;font-size:16px;margin-bottom:3px}
+.loop li:not(:last-child)::after{content:"";position:absolute;right:-9px;top:50%;width:8px;height:8px;border-top:2px solid var(--accent);border-right:2px solid var(--accent);transform:translateY(-50%) rotate(45deg)}
+.back{margin-top:12px;font-size:14.5px;color:var(--muted)}
+
+/* results */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:13.5px}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:13px;font-weight:600;background:var(--accent-soft);color:var(--accent)}
+.note{margin-top:16px;padding:12px 14px;border-left:4px solid var(--warn);background:var(--warn-soft);border-radius:0 6px 6px 0;font-size:15px}
+.fixes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0 0;padding:0;list-style:none}
+.fixes li{border-top:2px solid var(--accent);padding-top:8px;font-size:15px}
+.fixes b{display:block;font-family:Fraunces,Georgia,serif;font-size:17px;margin-bottom:2px}
+footer{margin-top:48px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);padding-top:14px}
+@media (max-width:760px){
+  .outcomes,.fixes{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  .loop{grid-template-columns:1fr}
+  .loop li:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-9px;transform:translateX(-50%) rotate(135deg)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>How AI engines decide which scenting brands to name</h1>
+  <p class="lede">GEO ranking is not a list of ten links. An AI engine writes one answer, then chooses which brands to mention and which pages to cite. This page shows how that works and where Zerene stands.</p>
+  <div class="outcomes">
+    <div><b>Mentioned</b><span>Zerene is named in the answer.</span></div>
+    <div><b>Cited</b><span>A zerene.com page is linked as a source.</span></div>
+    <div><b>Recommended</b><span>Named first, described correctly, with a reason to choose it.</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>From prompt to answer</h2>
+  <p class="sub">Engines differ in detail, but most follow these five steps. The right-hand box says what Zerene does at each one.</p>
+  <ol class="pipe">
+    <li class="stage"><span class="num">1</span><div>
+      <h3>The prompt is understood</h3>
+      <p class="q">"Who supplies scenting for boutique hotels in Dubai?"</p>
+      <div class="cols"><div class="box"><small>The engine</small>Reads the buyer's intent, market and language.</div>
+      <div class="box z"><small>Zerene</small>Writes pages in the buyer's own wording, in English and Arabic.</div></div></div></li>
+    <li class="stage"><span class="num">2</span><div>
+      <h3>It splits into smaller searches</h3>
+      <p class="q">"hotel scenting supplier UAE", "scent marketing companies", "hotel scent cost"</p>
+      <div class="cols"><div class="box"><small>The engine</small>Runs several short searches, often called query fan-out.</div>
+      <div class="box z"><small>Zerene</small>Builds one page per topic cluster and covers the related questions on it.</div></div></div></li>
+    <li class="stage"><span class="num">3</span><div>
+      <h3>Pages are retrieved from a search index</h3>
+      <div class="cols"><div class="box"><small>The engine</small>Can only pull pages that are indexed and not blocked.</div>
+      <div class="box z"><small>Zerene</small>Fixes indexation (56% of pages indexed in the audit), allows AI crawlers, adds Bing Webmaster Tools.</div></div></div></li>
+    <li class="stage"><span class="num">4</span><div>
+      <h3>Passages are picked, not whole pages</h3>
+      <div class="cols"><div class="box"><small>The engine</small>Prefers short, self-contained answers, tables and specific numbers.</div>
+      <div class="box z"><small>Zerene</small>Answers in the first two sentences, with real AED and SAR prices, MOQ and delivery times.</div></div></div></li>
+    <li class="stage"><span class="num">5</span><div>
+      <h3>The answer is written and brands are named</h3>
+      <div class="cols"><div class="box"><small>The engine</small>Names brands from pages it just read and from what it remembers. Third-party sources weigh heavily.</div>
+      <div class="box z"><small>Zerene</small>Earns listings, trade-media coverage and hotel case studies, and describes itself the same way everywhere.</div></div></div></li>
+  </ol>
+</section>
+
+<section>
+  <h2>How we measure it</h2>
+  <p class="sub">The same 50 prompts are run on a schedule, so progress is a trend instead of a guess.</p>
+  <ol class="loop">
+    <li><b>50 prompts</b>Informational, commercial and transactional, in English and Arabic.</li>
+    <li><b>Run on engines</b>3 runs each on ChatGPT, Perplexity and Gemini through n8n.</li>
+    <li><b>Log the counts</b>Mentions, citations, competitors and cited sources go to a sheet.</li>
+    <li><b>Read the summary</b>Rates by intent, market and language. Non-brand first.</li>
+    <li><b>Fix and re-run</b>Change the pages, then measure again after four to six weeks.</li>
+  </ol>
+  <p class="back">Google AI Overviews has no official API, so it needs a separate search-data service or manual checks.</p>
+</section>
+
+<section>
+  <h2>Where Zerene stands</h2>
+  <p class="sub">Baseline for non-brand prompts. No engine runs have been logged yet, so the rates are blank on purpose.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Prompt intent</th><th>Prompts</th><th>Mention rate</th><th>Citation rate</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Informational</td><td class="n">11</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td><span class="pill">Run pending</span></td></tr>
+      <tr><td>Commercial</td><td class="n">21</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td><span class="pill">Run pending</span></td></tr>
+      <tr><td>Transactional</td><td class="n">12</td><td class="n">&ndash;</td><td class="n">&ndash;</td><td><span class="pill">Run pending</span></td></tr>
+    </tbody></table></div>
+  <div class="note"><b>Early hint, not a result.</b> One web search combining Zerene with hotel and scent terms returned no Zerene pages. That is a web-search check only, not data from ChatGPT, Perplexity or Gemini.</div>
+
+  <h3 style="margin-top:32px">First three fixes</h3>
+  <ul class="fixes">
+    <li><b>Get pages indexed</b>Find out why 163 pages are excluded, then publish.</li>
+    <li><b>Add buyer pages</b>Hotel scenting service, pricing and quote, and a Saudi landing page.</li>
+    <li><b>Earn outside mentions</b>Trade media, supplier listings and named hotel case studies.</li>
+  </ul>
+</section>
+
+<footer>Prepared 14 October 2026. Engine results update after each scheduled run; the Arabic prompts are drafts pending native-speaker review.</footer>
+</div>
+</body>
+</html>
