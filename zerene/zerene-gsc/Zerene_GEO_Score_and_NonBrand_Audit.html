@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene - GEO Score & Non-Brand Citation Audit</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --fg: #1a1a1a;
+      --muted: #666;
+      --border: #e0e0e0;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --table-header: #f1f5f9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --fg: #f3f4f6;
+        --muted: #9ca3af;
+        --border: #374151;
+        --card-bg: #1f2937;
+        --accent: #60a5fa;
+        --accent-light: #1e3a5f;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --table-header: #374151;
+      }
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--fg);
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .meta-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .meta-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    .meta-value {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-weight: 600;
+      background: var(--table-header);
+      color: var(--fg);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-cited { background: #dcfce7; color: #15803d; }
+    .badge-uncited { background: #fee2e2; color: #b91c1c; }
+    .score-badge {
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .arabic-text {
+      direction: rtl;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📊 ZERENE — GEO Score & Non-Brand Citation Audit</h1>
+      <p class="subtitle">Analysis of Search Console Queries, Non-Brand Impression Share, and AI Engine Citation Potential</p>
+    </header>
+
+    <!-- KPI SUMMARY GRID -->
+    <section class="meta-grid">
+      <div class="meta-card">
+        <div class="meta-label">Calculated GEO Score</div>
+        <div class="meta-value">42.5 / 100</div>
+        <div class="meta-desc" style="font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem;">Moderate readiness (High impressions, low top-10 positions)</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Non-Brand Query Volume</div>
+        <div class="meta-value">383 Queries</div>
+        <div class="meta-desc" style="font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem;">2,633 total non-brand impressions</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Non-Brand Citation Clicks</div>
+        <div class="meta-value">1 Clic</div>
+        <div class="meta-desc" style="font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem;">Captured via `zerene meaning` (Position 7.49)</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Primary Optimization Target</div>
+        <div class="meta-value">Positions 11 - 85</div>
+        <div class="meta-desc" style="font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem;">Informational essential oil & room spray queries</div>
+      </div>
+    </section>
+
+    <!-- SECTION 1 -->
+    <h2>1. Understanding the GEO Score & Citation Analysis</h2>
+    <p>Your current Search Console data contains **413 total queries**, of which **383 are Non-Brand informational and product queries** generating over 2,600 impressions. However, because most of these queries rank between **Positions 15 and 85**, traditional search engines and AI engines are not yet pulling your links into top-tier citations.</p>
+    <p><strong>The GEO Score (42.5/100)</strong> reflects a site with strong thematic indexing (Google knows your pages are about rose oil, mandarin oil, and luxury scenting), but lacking the **fact density, schema markup, and off-page consensus** required to win AI Overviews and Perplexity citations.</p>
+
+    <!-- SECTION 2 -->
+    <h2>2. Top Non-Brand Queries & Citation Potential Matrix</h2>
+    <p>Below are the highest-impression non-brand queries from your Search Console data where Zerene is accumulating indexing impressions but needs targeted optimization to secure direct AI engine citations:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Non-Brand Query / Prompt</th>
+          <th>Impressions</th>
+          <th>Clicks</th>
+          <th>Avg Position</th>
+          <th>Citation Status</th>
+          <th>Optimization Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>how does rose oil work</code></td>
+          <td>194</td>
+          <td>0</td>
+          <td>76.55</td>
+          <td><span class="badge badge-uncited">Uncited</span></td>
+          <td>High (Add Nervous System FAQ)</td>
+        </tr>
+        <tr>
+          <td><code>generous gesture meaning</code></td>
+          <td>185</td>
+          <td>0</td>
+          <td>8.48</td>
+          <td><span class="badge badge-cited">Rank 8.48</span></td>
+          <td>High (Saudi Hospitality Hub)</td>
+        </tr>
+        <tr>
+          <td><code>mandarin orange essential oil</code></td>
+          <td>185</td>
+          <td>0</td>
+          <td>12.16</td>
+          <td><span class="badge badge-cited">Rank 12.16</span></td>
+          <td>High (Product Comparison Table)</td>
+        </tr>
+        <tr>
+          <td><code>rose oil aromatherapy benefits</code></td>
+          <td>181</td>
+          <td>0</td>
+          <td>78.45</td>
+          <td><span class="badge badge-uncited">Uncited</span></td>
+          <td>High (Clinical Study References)</td>
+        </tr>
+        <tr>
+          <td><code>mandarin orange oil</code></td>
+          <td>178</td>
+          <td>0</td>
+          <td>26.36</td>
+          <td><span class="badge badge-uncited">Uncited</span></td>
+          <td>Medium (Citrus Oil Hub)</td>
+        </tr>
+        <tr>
+          <td><code>mandarin essential oil benefits</code></td>
+          <td>80</td>
+          <td>0</td>
+          <td>20.21</td>
+          <td><span class="badge badge-uncited">Uncited</span></td>
+          <td>Medium (Aromatherapy FAQ)</td>
+        </tr>
+        <tr>
+          <td class="arabic-text">أين أجد معطر غرفة برائحة اللافندر والإيلانغ يلانغ؟</td>
+          <td>77</td>
+          <td>0</td>
+          <td>3.83</td>
+          <td><span class="badge badge-cited">Rank 3.83 (Top 5!)</span></td>
+          <td>Critical (Arabic Landing Page CTA)</td>
+        </tr>
+        <tr>
+          <td><code>rose essential oil benefits</code></td>
+          <td>66</td>
+          <td>0</td>
+          <td>84.97</td>
+          <td><span class="badge badge-uncited">Uncited</span></td>
+          <td>Medium (Deep Content Restructuring)</td>
+        </tr>
+        <tr>
+          <td><code>aromatherapy jasmine benefits</code></td>
+          <td>51</td>
+          <td>0</td>
+          <td>79.65</td>
+          <td><span class="badge badge-uncited">Uncited</span></td>
+          <td>Low (Expansion Topic)</td>
+        </tr>
+        <tr>
+          <td><code>rose room spray</code></td>
+          <td>47</td>
+          <td>0</td>
+          <td>63.53</td>
+          <td><span class="badge badge-uncited">Uncited</span></td>
+          <td>High (Commercial Product Hub)</td>
+        </tr>
+        <tr>
+          <td><code>oud oil benefits lifestyle</code></td>
+          <td>43</td>
+          <td>0</td>
+          <td>25.21</td>
+          <td><span class="badge badge-uncited">Uncited</span></td>
+          <td>High (GCC Luxury Cultural Hub)</td>
+        </tr>
+        <tr>
+          <td><code>lavender essential oil benefits scientific evidence</code></td>
+          <td>36</td>
+          <td>0</td>
+          <td>16.14</td>
+          <td><span class="badge badge-cited">Rank 16.14</span></td>
+          <td>High (PubMed Study Citations)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- SECTION 3 -->
+    <h2>3. Key Actionable Takeaways for Non-Brand AI Citations</h2>
+    <ol style="line-height: 1.8;">
+      <li><strong>Capitalize on Top-5 Arabic Search:</strong> The Arabic query <em>"أين أجد معطر غرفة برائحة اللافندر والإيلانغ يلانغ؟"</em> is already ranking at **Position 3.83** with 77 impressions. Directing this traffic to an Arabic product page with clear purchasing CTAs will immediately generate conversions.</li>
+      <li><strong>Push Page-3/Page-8 Informational Queries into Page 1:</strong> Queries like `how does rose oil work` (194 imp) and `rose oil aromatherapy benefits` (181 imp) receive strong impression volume but sit past position 75. Adding 40-word definition blocks and schema will rapidly improve these rankings.</li>
+      <li><strong>Deploy Structured FAQ Schema:</strong> Ensure all non-brand informational questions are formatted as H2/H3 headers accompanied by JSON-LD `FAQPage` markup so AI search scrapers can easily extract and cite Zerene.</li>
+    </ol>
+
+    <footer class="footer">
+      Zerene GEO Score & Non-Brand Citation Analysis — Generated for Team Strategy & Implementation
+    </footer>
+  </div>
+</body>
+</html>

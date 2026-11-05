@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene - Master GEO & SEO Optimization Audit Checklist</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --fg: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --accent-light: #0c4a6e;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --table-header: #334155;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #020617;
+      color: var(--fg);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    h1 {
+      font-size: 2.25rem;
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+    }
+    .subtitle {
+      color: var(--accent);
+      font-size: 1.15rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+    }
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .checklist-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .checklist-card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .item-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .item-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.925rem;
+      color: #e2e8f0;
+    }
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--accent);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .item-desc {
+      color: var(--muted);
+      font-size: 0.825rem;
+      margin-top: 0.2rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: auto;
+    }
+    .badge-critical { background: #7f1d1d; color: #fecaca; }
+    .badge-high { background: #78350f; color: #fef3c7; }
+    .badge-medium { background: #1e3a8a; color: #bfdbfe; }
+    .footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📋 ZERENE — Master GEO & SEO Audit Checklist</h1>
+      <p class="subtitle">Diagnostic & Optimization Playbook to Elevate Non-Brand Positions (15–85) into Top-5 AI Engine Citations</p>
+    </header>
+
+    <!-- SECTION 1 -->
+    <h2>Phase 1: Technical & Crawlability Audit (AI Accessibility)</h2>
+    <div class="checklist-grid">
+      <div class="checklist-card">
+        <h3>1. Machine-Readable Schema & Tags</h3>
+        <ul class="item-list">
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Verify JSON-LD FAQ Schema</strong>
+              <div class="item-desc">Ensure every key Q&A section includes valid `FAQPage` schema markup so AI scrapers parse exact QA pairs.</div>
+            </div>
+            <span class="badge badge-critical">Critical</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Verify B2B Organization & Product Schema</strong>
+              <div class="item-desc">Check that `Organization`, `Brand`, `Product`, and `Service` schema explicitly define target regions (`areaServed`: `"SA"`, `"AE"`).</div>
+            </div>
+            <span class="badge badge-critical">Critical</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Audit Robots.txt & Meta Snippet Restrictions</strong>
+              <div class="item-desc">Confirm no `nosnippet`, `max-snippet:0`, or User-Agent blocks prohibit GPTBot, PerplexityBot, or Google-Extended crawlers.</div>
+            </div>
+            <span class="badge badge-high">High</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="checklist-card">
+        <h3>2. Page Speed & Rendering Architecture</h3>
+        <ul class="item-list">
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Audit Server-Side Rendering (SSR)</strong>
+              <div class="item-desc">Ensure essential body copy and text blocks are visible in raw HTML source code without requiring heavy JavaScript rendering.</div>
+            </div>
+            <span class="badge badge-high">High</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Mobile Usability & Core Web Vitals</strong>
+              <div class="item-desc">Verify Largest Contentful Paint (LCP < 2.5s) and Cumulative Layout Shift (CLS < 0.1) across all GCC mobile networks.</div>
+            </div>
+            <span class="badge badge-medium">Medium</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <h2>Phase 2: On-Page GEO & Content Architecture Audit</h2>
+    <div class="checklist-grid">
+      <div class="checklist-card">
+        <h3>3. Prompt-Heading Verbatim Alignment</h3>
+        <ul class="item-list">
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Verbatim H1/H2 User Prompt Match</strong>
+              <div class="item-desc">Check if main section headers mirror long-tail GSC questions (e.g., `<h2>How Does Rose Essential Oil Work?</h2>`).</div>
+            </div>
+            <span class="badge badge-critical">Critical</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>High-Impression GSC Query Targeting</strong>
+              <div class="item-desc">Align pages targeting high-impression terms currently sitting past Page 2 (`how does rose oil work` - 194 imp, `mandarin orange essential oil` - 185 imp).</div>
+            </div>
+            <span class="badge badge-critical">Critical</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="checklist-card">
+        <h3>4. Fact-Density & Structural Extraction</h3>
+        <ul class="item-list">
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>40-Word Direct Answer Blocks</strong>
+              <div class="item-desc">Ensure a 2–3 sentence declarative summary block sits directly underneath every H2 question header.</div>
+            </div>
+            <span class="badge badge-critical">Critical</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Quantitative Data & Scientific Citations</strong>
+              <div class="item-desc">Verify that claims contain hard numbers (e.g., clinical cortisol reduction %, MOQs starting at 50 units) rather than vague adjectives.</div>
+            </div>
+            <span class="badge badge-high">High</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Comparison Tables & Ordered Bullet Lists</strong>
+              <div class="item-desc">Format product/benefit comparisons into HTML Markdown tables and extraction-friendly bulleted lists.</div>
+            </div>
+            <span class="badge badge-high">High</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <h2>Phase 3: Off-Page Entity Consensus & Citation Audit</h2>
+    <div class="checklist-grid">
+      <div class="checklist-card">
+        <h3>5. Third-Party Brand & Entity Validation</h3>
+        <ul class="item-list">
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>GCC Directory Listings Audit</strong>
+              <div class="item-desc">Ensure Zerene is actively listed on Saudi & UAE B2B procurement portals and hospitality directories.</div>
+            </div>
+            <span class="badge badge-high">High</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Press & Editorial Co-Mentions</strong>
+              <div class="item-desc">Verify external web articles associate "Zerene" with "B2B luxury corporate gifting Saudi Arabia".</div>
+            </div>
+            <span class="badge badge-high">High</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="checklist-card">
+        <h3>6. Localized Arabic Intent Audit</h3>
+        <ul class="item-list">
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Top-5 Arabic Query Page Optimization</strong>
+              <div class="item-desc">Audit the landing page for `أين أجد معطر غرفة برائحة اللافندر والإيلانغ يلانغ؟` (Pos 3.83, 77 imp) to ensure direct purchase CTAs.</div>
+            </div>
+            <span class="badge badge-critical">Critical</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Bilingual Parallel Content Structure</strong>
+              <div class="item-desc">Ensure English B2B pages have native Arabic counterparts targeting regional search intent in KSA & UAE.</div>
+            </div>
+            <span class="badge badge-medium">Medium</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Zerene Master GEO & SEO Audit Checklist — Generated for Team Implementation
+    </footer>
+  </div>
+</body>
+</html>

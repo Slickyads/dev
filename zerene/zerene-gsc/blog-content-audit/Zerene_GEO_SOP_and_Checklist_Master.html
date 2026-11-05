@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene - GEO & AI Engine Optimization SOP & Checklist</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --fg: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --accent-light: #0c4a6e;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #020617;
+      color: var(--fg);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    h1 {
+      font-size: 2.25rem;
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+    }
+    .subtitle {
+      color: var(--accent);
+      font-size: 1.15rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 3rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+    }
+    .sop-step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .step-number {
+      background: var(--accent);
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 1.2rem;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .step-content h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    .step-content p {
+      margin: 0 0 0.75rem 0;
+      color: var(--fg);
+      font-size: 0.95rem;
+    }
+    .step-content ul {
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .step-content li {
+      margin-bottom: 0.35rem;
+    }
+    .step-content li strong {
+      color: var(--fg);
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: #1e3a8a;
+      color: #bfdbfe;
+      margin-bottom: 0.5rem;
+    }
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .checklist-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .checklist-card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .item-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .item-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.925rem;
+      color: #e2e8f0;
+    }
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--accent);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .item-desc {
+      color: var(--muted);
+      font-size: 0.825rem;
+      margin-top: 0.2rem;
+    }
+    .priority-badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-left: auto;
+    }
+    .badge-critical { background: #7f1d1d; color: #fecaca; }
+    .badge-high { background: #78350f; color: #fef3c7; }
+    .badge-medium { background: #1e3a8a; color: #bfdbfe; }
+    .footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📋 ZERENE — Master GEO & SEO Optimization SOP & Checklist</h1>
+      <p class="subtitle">Complete Standard Operating Procedure & Technical Audit Checklist for Generative Engine Citation & Search Dominance</p>
+    </header>
+
+    <!-- PART 1: SOP -->
+    <h2>Part 1: Standard Operating Procedure (SOP) Workflow</h2>
+    <p>Follow this exact 11-step sequential workflow to optimize content, earn AI citations (ChatGPT Search, Perplexity, Google AI Overviews), and convert B2B buyers across KSA and UAE.</p>
+
+    <div class="sop-step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <span class="badge">Phase 1: Research & Setup</span>
+        <h3>Define Ideal Customer Profile (ICP) & Regional Tiers</h3>
+        <p>Identify target B2B buyer personas (Hospitality procurement heads, hotel operators, corporate VIP gifting managers) in Riyadh, Jeddah, and Dubai.</p>
+        <ul>
+          <li><strong>Action:</strong> Define commercial tiers (Executive Gifting, Hotel Room Sprays, Prayer Room Scenting).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <span class="badge">Phase 1: Research & Setup</span>
+        <h3>Audit Search Console & Test Target AI Prompts</h3>
+        <p>Audit Google Search Console for non-brand informational terms sitting in positions 15–85, and test target prompts in ChatGPT Search & Perplexity.</p>
+        <ul>
+          <li><strong>Action:</strong> Record missing citations and competitor source URLs in the master audit file.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <span class="badge">Phase 1: Research & Setup</span>
+        <h3>Map Bilingual GEO Keyword Architecture</h3>
+        <p>Map English and Arabic keywords across commercial B2B, AI citation, and local GCC search intent clusters.</p>
+        <ul>
+          <li><strong>Action:</strong> Assign primary & secondary keywords to target page slugs in both languages.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <span class="badge">Phase 2: Content Creation & Optimization</span>
+        <h3>Draft Fact-Dense Bilingual Content (CSQAF Framework)</h3>
+        <p>Draft single-page bilingual content (English & Arabic side-by-side or parallel sections) featuring verbatim heading matches and hard data points.</p>
+        <ul>
+          <li><strong>Action:</strong> Insert 40-word direct summary answer blocks immediately beneath all H2 question headers.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <span class="badge">Phase 2: Content Creation & Optimization</span>
+        <h3>Implement Structured Schema & Trigger LLM Crawlers</h3>
+        <p>Ensure technical accessibility for crawlers (GPTBot, PerplexityBot, Google-Extended) and embed machine-readable markup.</p>
+        <ul>
+          <li><strong>Action:</strong> Implement JSON-LD <code>FAQPage</code>, <code>Organization</code>, and <code>Product</code> schema. Request recrawl via Search Console.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="step-number">6</div>
+      <div class="step-content">
+        <span class="badge">Phase 2: Content Creation & Optimization</span>
+        <h3>Build Third-Party Entity Consensus</h3>
+        <p>Establish external brand validation so AI search engines recognize Zerene as an authoritative B2B fragrance entity.</p>
+        <ul>
+          <li><strong>Action:</strong> Secure listings on GCC B2B portals, hospitality supplier directories, and trade PR outlets.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="step-number">7</div>
+      <div class="step-content">
+        <span class="badge">Phase 3: Auditing & Refreshes</span>
+        <h3>Perform Live AI Citation Audits</h3>
+        <p>Test target prompts weekly in Perplexity and ChatGPT Search to inspect footnote citation links (<code>[1]</code>, <code>[2]</code>).</p>
+        <ul>
+          <li><strong>Action:</strong> Track domain citation rate and identify uncited pages needing optimization.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="step-number">8</div>
+      <div class="step-content">
+        <span class="badge">Phase 3: Auditing & Refreshes</span>
+        <h3>Execute Rapid 24–48h Content Refreshes</h3>
+        <p>Update uncited pages with explicit procurement metrics, MOQ specifications, and verbatim header matching.</p>
+        <ul>
+          <li><strong>Action:</strong> Resubmit updated URLs via Google Search Console URL inspection for immediate recrawl.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="step-number">9</div>
+      <div class="step-content">
+        <span class="badge">Phase 3: Auditing & Refreshes</span>
+        <h3>Run Automated Weekly Share of Voice (SoV) Tracking</h3>
+        <p>Run automated Python API tracking scripts to measure Zerene's citation percentage across 35 GCC prompts.</p>
+        <ul>
+          <li><strong>Action:</strong> Benchmark performance against the target 35% Generative Share of Voice standard.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="step-number">10</div>
+      <div class="step-content">
+        <span class="badge">Phase 4: Knowledge & Lead Conversion</span>
+        <h3>Maintain Centralized FAQ & Knowledge Base</h3>
+        <p>Maintain a centralized repository of long-tail Q&A pairs wrapped in parallel bilingual JSON-LD schema.</p>
+        <ul>
+          <li><strong>Action:</strong> Update FAQ hub regularly based on incoming Search Console impression data.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sop-step">
+      <div class="step-number">11</div>
+      <div class="step-content">
+        <span class="badge">Phase 4: Knowledge & Lead Conversion</span>
+        <h3>Capture B2B Lead Signals & Close Pipeline Revenue</h3>
+        <p>Convert AI search traffic and citation arrivals into active B2B quote inquiries and closed deals.</p>
+        <ul>
+          <li><strong>Action:</strong> Place direct B2B quote forms and WhatsApp partnership buttons above the fold. Track traffic via UTM parameters.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PART 2: AUDIT CHECKLIST -->
+    <h2>Part 2: Master GEO & SEO Technical Audit Checklist</h2>
+
+    <div class="checklist-grid">
+      <div class="checklist-card">
+        <h3>1. Technical & AI Accessibility</h3>
+        <ul class="item-list">
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Verify JSON-LD FAQ Schema</strong>
+              <div class="item-desc">Ensure key Q&A sections include valid `FAQPage` schema so scrapers parse exact QA pairs.</div>
+            </div>
+            <span class="priority-badge badge-critical">Critical</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Audit Robots.txt & Meta Snippets</strong>
+              <div class="item-desc">Confirm no `nosnippet` or User-Agent rules block GPTBot, PerplexityBot, or Google-Extended.</div>
+            </div>
+            <span class="priority-badge badge-high">High</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Server-Side Rendering (SSR)</strong>
+              <div class="item-desc">Ensure core text definitions exist in raw HTML without requiring heavy JS rendering.</div>
+            </div>
+            <span class="priority-badge badge-high">High</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="checklist-card">
+        <h3>2. On-Page GEO Architecture</h3>
+        <ul class="item-list">
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Verbatim Header Alignment</strong>
+              <div class="item-desc">Check if H1/H2 headers verbatim match target prompts (e.g., `<h2>How Does Rose Essential Oil Work?</h2>`).</div>
+            </div>
+            <span class="priority-badge badge-critical">Critical</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>40-Word Summary Answer Blocks</strong>
+              <div class="item-desc">Place a 2–3 sentence direct declarative summary box immediately beneath each H2 header.</div>
+            </div>
+            <span class="priority-badge badge-critical">Critical</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Fact Density & Statistical Data</strong>
+              <div class="item-desc">Include explicit metrics (MOQ 50 units, IFRA safety standards, clinical study numbers).</div>
+            </div>
+            <span class="priority-badge badge-high">High</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="checklist-card">
+        <h3>3. Bilingual & Off-Page Validation</h3>
+        <ul class="item-list">
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Bilingual HTML Direction (dir/lang)</strong>
+              <div class="item-desc">Wrap English in `dir="ltr"` and Arabic in `dir="rtl"` for clean font rendering and AI parsing.</div>
+            </div>
+            <span class="priority-badge badge-critical">Critical</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>GCC Third-Party Directory Listings</strong>
+              <div class="item-desc">Ensure Zerene is listed on Saudi & UAE B2B procurement portals to build external web consensus.</div>
+            </div>
+            <span class="priority-badge badge-high">High</span>
+          </li>
+          <li>
+            <div class="checkbox"></div>
+            <div>
+              <strong>Above-the-Fold Lead CTAs</strong>
+              <div class="item-desc">Verify direct B2B quote request forms and WhatsApp buttons are visible above the fold.</div>
+            </div>
+            <span class="priority-badge badge-high">High</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Zerene Master GEO & SEO SOP & Audit Checklist — Team Execution Deliverable
+    </footer>
+  </div>
+</body>
+</html>

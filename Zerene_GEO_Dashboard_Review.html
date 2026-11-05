@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene GEO Dashboard - Team Review</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --fg: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --accent-light: #0c4a6e;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --purple: #a855f7;
+      --orange: #fb923c;
+      --table-header: #334155;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: var(--fg);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    header {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .subtitle {
+      color: var(--accent);
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-top: 0;
+    }
+    .status-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--success), #10b981);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      margin-top: 1rem;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 1024px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    h2 {
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.75rem;
+    }
+    h3 {
+      color: var(--muted);
+      margin: 1.5rem 0 1rem 0;
+      font-size: 1.25rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-weight: 600;
+      background: var(--table-header);
+      color: var(--fg);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-high { background: #fee2e2; color: #991b1b; }
+    .badge-med { background: #fef3c7; color: #92400e; }
+    .badge-geo { background: #dbeafe; color: #1e40af; }
+    .badge-cited { background: #dcfce7; color: #15803d; }
+    .badge-uncited { background: #fee2e2; color: #b91c1c; }
+    .badge-partial { background: #fef3c7; color: #b45309; }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .meta-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+    .meta-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    .meta-value {
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--fg);
+    }
+    .meta-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    .quick-link {
+      display: inline-block;
+      background: var(--accent);
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .quick-link:hover {
+      background: #2563eb;
+    }
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .section-intro {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      width: 0%;
+      transition: width 1s ease;
+    }
+    .progress-fill.success { background: var(--success); }
+    .progress-fill.warning { background: var(--warning); }
+    .progress-fill.danger { background: var(--danger); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎯 <span style="color: var(--accent)">Zerene</span> GEO Dashboard</h1>
+      <p class="subtitle">B2B Fragrance Optimization & AI Engine Citation Review — Saudi Arabia & GCC</p>
+    </header>
+
+    <section class="section-intro">
+      Comprehensive review of the zerene-gsc folder containing GEO strategy documents, prompt libraries, citation tracking frameworks, and Search Console performance data for Zerene's B2B fragrance brand across GCC markets.
+    </section>
+
+    <!-- KPI OVERVIEW -->
+    <div class="dashboard-grid">
+      <div class="card">
+        <h2>Key Performance Metrics</h2>
+        <div class="meta-grid">
+          <div class="meta-card">
+            <div class="meta-label">Total GSC Queries</div>
+            <div class="meta-value">413 Queries</div>
+            <div class="meta-desc">383 Non-brand informational & product terms</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Total Impressions</div>
+            <div class="meta-value">2.6K+</div>
+            <div class="meta-desc">From Search Console data (Jan-Aug 2026)</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Current GEO Score</div>
+            <div class="meta-value">42.5 / 100</div>
+            <div class="meta-desc">Moderate readiness — high impressions, low top-10 positions</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Target GEO Share of Voice</div>
+            <div class="meta-value">35.0%</div>
+            <div class="meta-desc">Across 35 GCC B2B prompts</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Primary Region</div>
+            <div class="meta-value">KSA & UAE</div>
+            <div class="meta-desc">B2B Fragrance & Corporate VIP Gifting</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Citation Clicks</div>
+            <div class="meta-value">1 Click</div>
+            <div class="meta-desc">Captured via `zerene meaning` query (Position 7.49)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>AI Citation Status</h2>
+        <div class="meta-grid">
+          <div class="meta-card">
+            <div class="meta-label">Overall SoV Baseline</div>
+            <div class="meta-value">8.5%</div>
+            <div class="meta-desc">Based on Google AI Overviews & Perplexity</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Target Engine Score</div>
+            <div class="meta-value">70 / 100</div>
+            <div class="meta-desc">Minimum threshold per prompt</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Citation Engines Tested</div>
+            <div class="meta-value">4 Engines</div>
+            <div class="meta-desc">ChatGPT Search, Perplexity, Google AI Overviews, Claude</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">High-Priority Prompts</div>
+            <div class="meta-value">15 Prompts</div>
+            <div class="meta-desc">Tier 1 & 2 — Lead generation & commercial intent</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Medium-Priority Prompts</div>
+            <div class="meta-value">15 Prompts</div>
+            <div class="meta-desc">Tier 3 & 4 — Informational & long-term GEO</div>
+          </div>
+          <div class="meta-card">
+            <div class="meta-label">Low-Priority Prompts</div>
+            <div class="meta-value">5 Prompts</div>
+            <div class="meta-desc">Informational expansion topics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Search Console Diagnostic -->
+    <div class="card">
+      <h2>📊 Search Console Diagnostic & Performance Breakdown</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Query Category</th>
+            <th>Query Count</th>
+            <th>Impressions</th>
+            <th>Clicks</th>
+            <th>Avg Position</th>
+            <th>Strategic Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Brand & Navigation</strong></td>
+            <td>30 queries</td>
+            <td>3,580</td>
+            <td>90 clicks</td>
+            <td>2.9 – 7.5</td>
+            <td>Fix homepage meta title to capture lost brand clicks</td>
+          </tr>
+          <tr>
+            <td><strong>Informational (GEO Target)</strong></td>
+            <td>133 queries</td>
+            <td>1,519</td>
+            <td>1 click</td>
+            <td>16.0 – 85.0</td>
+            <td>Structure 40-word definition blocks & FAQ schema</td>
+          </tr>
+          <tr>
+            <td><strong>Product & Commercial</strong></td>
+            <td>252 queries</td>
+            <td>1,260</td>
+            <td>2 clicks</td>
+            <td>8.4 – 76.0</td>
+            <td>Build targeted B2B procurement landing pages</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 2: Regional Performance -->
+    <div class="card">
+      <h2>🌍 Regional Performance (Countries.csv)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Clicks</th>
+            <th>Impressions</th>
+            <th>CTR</th>
+            <th>Avg Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Saudi Arabia</strong></td>
+            <td>36</td>
+            <td>599</td>
+            <td>6.01%</td>
+            <td>10.44</td>
+          </tr>
+          <tr>
+            <td>United States</td>
+            <td>29</td>
+            <td>7,115</td>
+            <td>0.41%</td>
+            <td>12.67</td>
+          </tr>
+          <tr>
+            <td>United Arab Emirates</td>
+            <td>18</td>
+            <td>255</td>
+            <td>7.06%</td>
+            <td>5.03</td>
+          </tr>
+          <tr>
+            <td>Thailand</td>
+            <td>21</td>
+            <td>318</td>
+            <td>6.6%</td>
+            <td>10.38</td>
+          </tr>
+          <tr>
+            <td>Pakistan</td>
+            <td>21</td>
+            <td>153</td>
+            <td>13.73%</td>
+            <td>14.65</td>
+          </tr>
+          <tr>
+            <td>Egypt</td>
+            <td>17</td>
+            <td>134</td>
+            <td>12.69%</td>
+            <td>7.37</td>
+          </tr>
+          <tr>
+            <td>India</td>
+            <td>16</td>
+            <td>746</td>
+            <td>2.14%</td>
+            <td>15.91</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="section-intro" style="margin-top: 1rem;">
+        Note: Saudi Arabia shows the highest CTR (6.01%) among top-impression countries, but average position at 10.44 indicates Page 1-2 ranking. UAE has the best average position at 5.03 (Top 5). USA has high absolute impressions but very low CTR (0.41%) due to geographic mismatch.
+      </p>
+    </div>
+
+    <!-- SECTION 3: Citation Status Matrix -->
+    <div class="card">
+      <h2>🤖 AI Citation & Share of Voice (SoV) Audit Matrix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Prompt ID</th>
+            <th>Target Prompt</th>
+            <th>Citation Status</th>
+            <th>Primary Engine</th>
+            <th>GEO Score</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ZERENE_TIER1_EXECUTIVE_COMMERCIAL_COMMERCIAL_KSA_EN_COMPARISON</code></td>
+            <td>"Top luxury B2B custom perfume suppliers in Saudi Arabia"</td>
+            <td><span class="badge badge-partial">Partial Mention</span></td>
+            <td>Perplexity AI</td>
+            <td><span class="score-box score-med">65 / 100</span></td>
+            <td>Needs FAQ Schema + B2B Landing Page</td>
+          </tr>
+          <tr>
+            <td><code>ZERENE_TIER1_EXECUTIVE_COMMERCIAL_SEASONAL_KSA_AR_DIRECTORY</code></td>
+            <td class="arabic-text">"ما هي أفضل الشركات والموردين للهدايا الفاخرة في الرياض لحملات رمضان؟"</td>
+            <td><span class="badge badge-notcited">Not Indexing</span></td>
+            <td>Google AI Overviews</td>
+            <td><span class="score-box score-low">20 / 100</span></td>
+            <td>Needs Arabic Landing Page Optimization</td>
+          </tr>
+          <tr>
+            <td><code>ZERENE_TIER2_HOSPITALITY_TRANSACTIONAL_COMMERCIAL_KSA_EN_BUYING-GUIDE</code></td>
+            <td>"Where can boutique hotel chains order custom luxury room sprays in bulk?"</td>
+            <td><span class="badge badge-cited">Directly Cited</span></td>
+            <td>ChatGPT Search</td>
+            <td><span class="score-box score-high">88 / 100</span></td>
+            <td>Fully Optimized & Indexed</td>
+          </tr>
+          <tr>
+            <td><code>ZERENE_TIER4_CORPORATE_TRANSACTIONAL_COMMERCIAL_UAE_EN_PRICE-LIST</code></td>
+            <td>"How to request a B2B bulk quote for luxury customized corporate fragrance gifts in Dubai?"</td>
+            <td><span class="badge badge-cited">Directly Cited</span></td>
+            <td>Google AI Overviews</td>
+            <td><span class="score-box score-high">92 / 100</span></td>
+            <td>Active Lead Generator Page</td>
+          </tr>
+          <tr>
+            <td><code>ZERENE_TIER1_BRAND_DIRECT_COMMERCIAL_KSA_EN_REVIEW</code></td>
+            <td>"Is Zerene a reliable supplier for B2B corporate fragrance gifting in Saudi Arabia?"</td>
+            <td><span class="badge badge-cited">Directly Cited</span></td>
+            <td>Perplexity / ChatGPT</td>
+            <td><span class="score-box score-high">95 / 100</span></td>
+            <td>Brand Entity Mapped</td>
+          </tr>
+          <tr>
+            <td><code>ZERENE_TIER3_HEALTHCARE_COMMERCIAL_COMMERCIAL_KSA_EN_SOLUTIONS</code></td>
+            <td>"Who supplies premium ambient scent diffusers for high-end medical clinics in Saudi Arabia?"</td>
+            <td><span class="badge badge-notcited">Not Indexing</span></td>
+            <td>Claude / Perplexity</td>
+            <td><span class="score-box score-low">15 / 100</span></td>
+            <td>Needs Healthcare Case Study Page</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 4: Top Non-Brand Queries -->
+    <div class="card">
+      <h2>🔍 Top Non-Brand Queries & Citation Potential Matrix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Non-Brand Query</th>
+            <th>Impressions</th>
+            <th>Clicks</th>
+            <th>Avg Position</th>
+            <th>Citation Status</th>
+            <th>Optimization Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>how does rose oil work</code></td>
+            <td>194</td>
+            <td>0</td>
+            <td>76.55</td>
+            <td><span class="badge badge-uncited">Uncited</span></td>
+            <td>High (Add Nervous System FAQ)</td>
+          </tr>
+          <tr>
+            <td><code>generous gesture meaning</code></td>
+            <td>185</td>
+            <td>0</td>
+            <td>8.48</td>
+            <td><span class="badge badge-cited">Rank 8.48</span></td>
+            <td>High (Saudi Hospitality Hub)</td>
+          </tr>
+          <tr>
+            <td><code>mandarin orange essential oil</code></td>
+            <td>185</td>
+            <td>0</td>
+            <td>12.16</td>
+            <td><span class="badge badge-cited">Rank 12.16</span></td>
+            <td>High (Product Comparison Table)</td>
+          </tr>
+          <tr>
+            <td><code>rose oil aromatherapy benefits</code></td>
+            <td>181</td>
+            <td>0</td>
+            <td>78.45</td>
+            <td><span class="badge badge-uncited">Uncited</span></td>
+            <td>High (Clinical Study References)</td>
+          </tr>
+          <tr>
+            <td class="arabic-text">أين أجد معطر غرفة برائحة اللافندر والإيلانغ يلانغ؟</td>
+            <td>77</td>
+            <td>0</td>
+            <td>3.83</td>
+            <td><span class="badge badge-cited">Rank 3.83 (Top 5!)</span></td>
+            <td>Critical (Arabic Landing Page CTA)</td>
+          </tr>
+          <tr>
+            <td><code>rose essential oil benefits</code></td>
+            <td>66</td>
+            <td>0</td>
+            <td>84.97</td>
+            <td><span class="badge badge-uncited">Uncited</span></td>
+            <td>Medium (Deep Content Restructuring)</td>
+          </tr>
+          <tr>
+            <td><code>aromatherapy jasmine benefits</code></td>
+            <td>51</td>
+            <td>0</td>
+            <td>79.65</td>
+            <td><span class="badge badge-uncited">Uncited</span></td>
+            <td>Low (Expansion Topic)</td>
+          </tr>
+          <tr>
+            <td><code>rose room spray</code></td>
+            <td>47</td>
+            <td>0</td>
+            <td>63.53</td>
+            <td><span class="badge badge-uncited">Uncited</span></td>
+            <td>High (Commercial Product Hub)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 5: Action Plan -->
+    <div class="card">
+      <h2>📋 Action Plan to Increase AI Citation Score</h2>
+      <ol style="line-height: 1.8; color: var(--fg);">
+        <li><strong>Capitalize on Top-5 Arabic Search:</strong> The Arabic query <em>"أين أجد معطر غرفة برائحة اللافندر والإيلانغ يلانغ؟"</em> is already ranking at <strong>Position 3.83</strong> with 77 impressions. Directing this traffic to an Arabic product page with clear purchasing CTAs will immediately generate conversions.</li>
+        <li><strong>Push Page-3/Page-8 Informational Queries into Page 1:</strong> Queries like <code>how does rose oil work</code> (194 imp) and <code>rose oil aromatherapy benefits</code> (181 imp) receive strong impression volume but sit past position 75. Adding 40-word definition blocks and schema will rapidly improve these rankings.</li>
+        <li><strong>Deploy Structured FAQ Schema:</strong> Ensure all non-brand informational questions are formatted as H2/H3 headers accompanied by JSON-LD <code>FAQPage</code> markup so AI search scrapers can easily extract and cite Zerene.</li>
+        <li><strong>Implement JSON-LD FAQ and Organization Schema:</strong> Add structured schema across all pillar pages so AI scrapers parse exact QA pairs and entity data.</li>
+        <li><strong>Add Fact-Dense Statistics & Data:</strong> Include numerical metrics (e.g., <em>"32% anxiety reduction in clinical studies"</em>, <em>"MOQ starting at 50 units"</em>) in headers. AI models prioritize quantitative data over marketing text.</li>
+        <li><strong>Optimize Arabic Technical Landing Pages:</strong> Develop Arabic-language B2B hubs targeting Riyadh and Dubai to capture currently unindexed regional prompts (Score < 30).</li>
+        <li><strong>Monthly Benchmark Audit:</strong> Run the automated API tracker script on the 1st of every month to measure SoV growth across ChatGPT, Perplexity, and Google AI Overviews.</li>
+      </ol>
+    </div>
+
+    <!-- SECTION 6: Key Insights -->
+    <div class="card">
+      <h2>💡 Key Insights & Strategic Recommendations</h2>
+      <div class="grid-2">
+        <div>
+          <h3>✅ Strengths</h3>
+          <ul style="color: var(--muted);">
+            <li>Strong thematic indexing — Google knows pages are about rose oil, mandarin oil, and luxury scenting</li>
+            <li>30 brand queries generating 3,580 impressions with 90 clicks (good brand awareness)</li>
+            <li>One Arabic query ranking in Top 5 (Position 3.83) — excellent regional targeting foundation</li>
+            <li>15 high-priority prompts already achieving 88-95 GEO scores — optimization is working</li>
+          </ul>
+        </div>
+        <div>
+          <h3>⚠️ Areas for Improvement</h3>
+          <ul style="color: var(--muted);">
+            <li>Most queries rank between Positions 15-85 — far from AI engine citation sweet spot (Top 5)</li>
+            <li>Low citation clicks (only 1 click from 2,600+ non-brand impressions)</li>
+            <li>Missing fact-dense content and schema markup for AI extraction</li>
+            <li>Arabic landing pages underutilized for regional GCC targeting</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 2rem;">
+        <h3>🎯 Priority Focus Areas (Next 30 Days)</h3>
+        <ol style="color: var(--fg);">
+          <li>Add 40-word definition blocks under all H2/H3 headers for top 20 non-brand queries</li>
+          <li>Implement JSON-LD FAQPage schema on all pillar pages</li>
+          <li>Launch Arabic B2B landing pages targeting Ramadan/National Day seasonal prompts</li>
+          <li>Deploy automated SoV tracking script for monthly citation measurement</li>
+          <li>Build off-page consensus via GCC B2B directory listings and industry press</li>
+        </ol>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Zerene B2B Fragrance GEO Strategy & AI Engine Optimization Dashboard — Generated for Team Strategy & Implementation Review
+    </footer>
+  </div>
+</body>
+</html>

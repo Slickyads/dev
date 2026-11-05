@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene - GEO & AI Engine Optimization Strategy</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --fg: #1a1a1a;
+      --muted: #666;
+      --border: #e0e0e0;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --success: #059669;
+      --warning: #d97706;
+      --info: #0284c7;
+      --table-header: #f1f5f9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --fg: #f3f4f6;
+        --muted: #9ca3af;
+        --border: #374151;
+        --card-bg: #1f2937;
+        --accent: #60a5fa;
+        --accent-light: #1e3a5f;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --info: #38bdf8;
+        --table-header: #374151;
+      }
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--fg);
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+    }
+    h3 {
+      font-size: 1.15rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .meta-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .meta-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    .meta-value {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-weight: 600;
+      background: var(--table-header);
+      color: var(--fg);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-high { background: #fee2e2; color: #991b1b; }
+    .badge-med { background: #fef3c7; color: #92400e; }
+    .badge-geo { background: #dbeafe; color: #1e40af; }
+    @media (prefers-color-scheme: dark) {
+      .badge-high { background: #7f1d1d; color: #fecaca; }
+      .badge-med { background: #78350f; color: #fef3c7; }
+      .badge-geo { background: #1e3a8a; color: #bfdbfe; }
+    }
+    code {
+      background: var(--table-header);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.85rem;
+    }
+    pre {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.85rem;
+    }
+    .prompt-box {
+      background: var(--card-bg);
+      border-left: 4px solid var(--accent);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1rem;
+    }
+    .prompt-id {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      font-family: monospace;
+    }
+    .prompt-text {
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎯 ZERENE — GEO Strategy & AI Prompt Library</h1>
+      <p class="subtitle">B2B Fragrance E-commerce Strategy for Search Console Optimization & AI Engine Citations (Saudi Arabia, UAE & GCC)</p>
+    </header>
+
+    <section class="meta-grid">
+      <div class="meta-card">
+        <div class="meta-label">Total Impressions</div>
+        <div class="meta-value">6,213</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Total Clicks</div>
+        <div class="meta-value">92</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Primary Region</div>
+        <div class="meta-value">Saudi Arabia / GCC</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Core Target Goal</div>
+        <div class="meta-value">B2B Lead Gen & AI Citations</div>
+      </div>
+    </section>
+
+    <!-- SECTION 1 -->
+    <h2>1. Search Console Diagnostic & Performance Breakdown</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Query Category</th>
+          <th>Query Count</th>
+          <th>Impressions</th>
+          <th>Clicks</th>
+          <th>Avg Position</th>
+          <th>Strategic Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Brand & Navigation</strong></td>
+          <td>30 queries</td>
+          <td>3,580</td>
+          <td>90 clicks</td>
+          <td>2.9 – 7.5</td>
+          <td>Capture lost brand clicks (Title/Meta updates)</td>
+        </tr>
+        <tr>
+          <td><strong>Informational (GEO Target)</strong></td>
+          <td>133 queries</td>
+          <td>1,519</td>
+          <td>1 click</td>
+          <td>16.0 – 85.0</td>
+          <td>Structure for AI answer engine extraction</td>
+        </tr>
+        <tr>
+          <td><strong>Product & Commercial</strong></td>
+          <td>252 queries</td>
+          <td>1,260</td>
+          <td>2 clicks</td>
+          <td>8.4 – 76.0</td>
+          <td>Create tailored B2B landing pages & quotes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- SECTION 2 -->
+    <h2>2. Technical Strategy for AI Engine Citations</h2>
+    <p>AI Answer Engines (Google AI Overviews, Perplexity, ChatGPT Search, Claude) index content using <strong>Entity Mapping</strong>, <strong>Fact Density</strong>, and <strong>Structured Consensus</strong>.</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+      <div class="meta-card">
+        <h3>1. Schema Markup</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Implement <code>Organization</code>, <code>Brand</code>, <code>Product</code>, <code>Service</code>, and <code>FAQPage</code> JSON-LD schema across all pages.</p>
+      </div>
+      <div class="meta-card">
+        <h3>2. CSQAF Content Framework</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Include citations, statistics over vague claims, SME quotations, and 40-word concise definition blocks.</p>
+      </div>
+      <div class="meta-card">
+        <h3>3. Structural Parsing</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Utilize clear HTML comparison tables, bullet points, and explicit H2/H3 long-tail question headers.</p>
+      </div>
+      <div class="meta-card">
+        <h3>4. Off-Page Consensus</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Publish case studies, press releases, and corporate directories to establish third-party brand validation.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <h2>3. Prompt Schema & Identification Standard</h2>
+    <p>All prompts follow the standardized identification naming convention for tracking and deployment:</p>
+    <pre>ZERENE_[TIER]_[CATEGORY]_[INTENT]_[ICP-SIGNAL]_[MARKET]_[LANGUAGE]_[CONTENT-TYPE]</pre>
+
+    <!-- SECTION 4 -->
+    <h2>4. GEO Prompt Library</h2>
+
+    <h3>🟢 High-Priority Prompts (Lead Generation & Commercial Intent)</h3>
+    
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_EXECUTIVE_COMMERCIAL_COMMERCIAL_KSA_EN_COMPARISON <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"What are the top luxury B2B custom perfume suppliers in Saudi Arabia for corporate VIP gifting with low MOQs and custom packaging?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_EXECUTIVE_COMMERCIAL_SEASONAL_KSA_AR_DIRECTORY <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"ما هي أفضل الشركات والموردين للهدايا الفاخرة والعطور الخاصة بالشركات في الرياض لحملات رمضان واليوم الوطني؟"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_HOSPITALITY_TRANSACTIONAL_COMMERCIAL_KSA_EN_BUYING-GUIDE <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"Where can boutique hotel chains in Saudi Arabia order custom luxury room sprays and reed diffusers in bulk with white-label branding?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_HOSPITALITY_COMMERCIAL_CULTURAL_GCC_AR_PRODUCT-LIST <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"كيف تختار أفضل معطرات المجالس والفنادق الفاخرة بالروائح العربية (العود والعنبر واللافندر) للمؤسسات في الخليج؟"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER3_HEALTHCARE_COMMERCIAL_COMMERCIAL_KSA_EN_SOLUTIONS <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"Who supplies premium, hypoallergenic ambient scent diffusers and essential oils for high-end medical clinics and wellness spas in Saudi Arabia?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER4_CORPORATE_TRANSACTIONAL_COMMERCIAL_UAE_EN_PRICE-LIST <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"How to request a B2B bulk quote for luxury customized corporate fragrance gifts in Dubai and Saudi Arabia?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_BRAND_DIRECT_COMMERCIAL_KSA_EN_REVIEW <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"Is Zerene a reliable supplier for B2B corporate fragrance gifting and luxury hospitality scents in Saudi Arabia?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_HOSPITALITY_COMMERCIAL_COMPARISON_KSA_AR_COMPARISON <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"مقارنة بين أفضل شركات الحلول العطرية والتسويق بالرائحة للفنادق والمطاعم في السعودية."</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER4_CORPORATE_INFORMATIONAL_COMMERCIAL_GCC_EN_CASE-STUDY <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"Which luxury fragrance brands in the GCC offer tailored ambient aroma solutions for corporate headquarters and architectural projects?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_EXECUTIVE_TRANSACTIONAL_SEASONAL_KSA_AR_REQUEST-QUOTE <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"كيف يمكن للشركات الحصول على تسعيرة بالجملة لتقديم هدايا عطرية فاخرة للعملاء كبار الشخصيات (VIP) في المملكة العربية السعودية؟"</div>
+    </div>
+
+    <h3>🟡 Medium-Priority Prompts (Commercial Content & Category Intent)</h3>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_HOSPITALITY_INFORMATIONAL_COMMERCIAL_KSA_EN_GUIDE <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"How does scent marketing improve guest experience and retention in luxury Saudi hotels?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_EXECUTIVE_INFORMATIONAL_CULTURAL_GCC_EN_BEST-PRACTICES <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"What fragrance notes (Oud, Amber, Taif Rose) are most effective for VIP corporate gifts in Gulf business culture?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER3_HEALTHCARE_INFORMATIONAL_COMMERCIAL_KSA_EN_FAQ <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"What are the safety standards and IFRA certifications required for luxury scent diffusers in wellness clinics?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER4_CORPORATE_INFORMATIONAL_COMMERCIAL_GCC_AR_ARTICLE <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"كيف تؤثر الرائحة والمكملات العطرية في تصميم المكاتب والشركات الفاخرة لزيادة الإنتاجية؟"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_HOSPITALITY_INFORMATIONAL_COMPARISON_KSA_EN_COMPARISON <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"Cold-air diffusion vs cold spray scent machines for luxury hotel lobbies: which is better?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_EXECUTIVE_COMMERCIAL_SEASONAL_KSA_EN_CHECKLIST <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"What is the lead time and procurement strategy for ordering executive luxury gifts for Saudi National Day?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_HOSPITALITY_COMMERCIAL_CULTURAL_KSA_AR_GUIDE <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"دليل اختيار المعطرات والزيوت العطرية المناسبة للمجالس والمساحات الكبيرة في السعودية."</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER3_HEALTHCARE_INFORMATIONAL_COMMERCIAL_UAE_EN_ARTICLE <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"Benefits of using therapeutic grade Lavender and Ylang-Ylang ambient scenting in high-end clinic waiting rooms."</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER4_CORPORATE_COMMERCIAL_COMPARISON_GCC_EN_BUYER-GUIDE <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"Mandarin orange essential oil vs Rose essential oil for corporate scent branding: notes and coverage."</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_EXECUTIVE_INFORMATIONAL_COMMERCIAL_KSA_EN_TEMPLATE <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"How to design customized perfume box packaging with brand logo for high-end client appreciation gifts."</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_HOSPITALITY_INFORMATIONAL_COMMERCIAL_KSA_AR_EXPLAINER <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"أهمية العطور الفاخرة والتسويق الحسي في تصميم هوية الفنادق والمنتجعات."</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER3_HEALTHCARE_COMMERCIAL_COMMERCIAL_GCC_EN_PRODUCT-LIST <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"Top eco-friendly and natural B2B diffuser oils available for bulk purchase in the Middle East."</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER4_CORPORATE_INFORMATIONAL_CULTURAL_KSA_EN_ARTICLE <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"Understanding the cultural etiquette of giving luxury perfumes and agarwood oils in Saudi business meetings."</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_BRAND_INFORMATIONAL_COMMERCIAL_GLOBAL_EN_OVERVIEW <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"What is Zerene fragrance brand and what B2B scent solutions do they offer in Saudi Arabia?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_HOSPITALITY_INFORMATIONAL_COMMERCIAL_UAE_AR_GUIDE <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"طرق معالجة الروائح الكريهة وتعطير الفنادق والمطاعم بأسلوب فاخر ومستدام."</div>
+    </div>
+
+    <h3>🔵 Long-Term GEO Prompts (AI Answer Engine & Informational Optimization)</h3>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER4_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_EXPLAINER <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"How does rose essential oil work on the human nervous system to reduce stress?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER4_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_DEFINITION <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"What is sensory branding and how do luxury companies use scent memory to build loyalty?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_NONBRAND_INFORMATIONAL_CULTURAL_KSA_EN_GLOSSARY <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"What does 'generous gesture' mean in Saudi hospitality culture and gift-giving context?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER3_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_RESEARCH <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"What is the scientific evidence behind lavender essential oil for stress relief and relaxation?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_GUIDE <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"How is natural rose essential oil made, extracted, and distilled for commercial use?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER4_NONBRAND_INFORMATIONAL_DIRECT_GCC_EN_EXPLAINER <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"What is Agarwood (Oud) and what are its key uses in luxury lifestyle products?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER3_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_BENEFITS <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"What are the health and wellness benefits of Mandarin orange essential oil in aromatherapy?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_NONBRAND_INFORMATIONAL_CULTURAL_KSA_AR_EXPLAINER <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"ما معنى كلمة زيرين وما هي أصول الرائحة الشرقية الفاخرة؟"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER4_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_COMPARISON <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"What are the primary differences between natural essential oils and synthetic fragrance oils for ambient room diffusion?"</div>
+    </div>
+
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_NONBRAND_INFORMATIONAL_CULTURAL_GCC_AR_GUIDE <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"كيفية استخدام زيت العود الطبيعي في تعطير الفنادق والمساحات الكبيرة بشكل دائم."</div>
+    </div>
+
+    <footer class="footer">
+      Zerene B2B Fragrance GEO Strategy & Prompt Documentation — Generated for Team Sharing
+    </footer>
+  </div>
+</body>
+</html>

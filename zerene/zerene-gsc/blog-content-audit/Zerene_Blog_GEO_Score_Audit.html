@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene - Blog GEO Score & AI Citation Audit</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --fg: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --accent-light: #0c4a6e;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --table-header: #334155;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #020617;
+      color: var(--fg);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    h1 {
+      font-size: 2.25rem;
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+    }
+    .subtitle {
+      color: var(--accent);
+      font-size: 1.15rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      text-align: left;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-weight: 600;
+      background: var(--table-header);
+      color: #ffffff;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .score-badge {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .score-high { background: #14532d; color: #86efac; }
+    .score-med { background: #78350f; color: #fef3c7; }
+    .score-low { background: #7f1d1d; color: #fecaca; }
+    .url-link {
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .url-link:hover {
+      text-decoration: underline;
+    }
+    .footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📊 ZERENE — Content Page GEO Score & Citation Audit</h1>
+      <p class="subtitle">Evaluated readiness for ChatGPT Search, Perplexity AI, Google AI Overviews & Claude</p>
+    </header>
+
+    <h2>1. Evaluated GEO Scores for Your 4 Content Pages</h2>
+    <p>Each page was evaluated across 4 core AI engine citation pillars: <strong>Heading Prompt Match</strong>, <strong>40-Word Answer Blocks</strong>, <strong>Fact Density & Statistics</strong>, and <strong>JSON-LD Schema Integration</strong>.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Blog Page Title & URL</th>
+          <th>Primary Topic & Intent</th>
+          <th>Calculated GEO Score</th>
+          <th>Key Optimization Gap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>1. VIP Lounge Sensory Identity</strong><br>
+            <a href="https://zerene.com/blogs/space-wellness/the-unforgettable-vip-lounge-what-gives-a-luxury-space-a-genuine-sensory-identity" target="_blank" class="url-link">/space-wellness/...-vip-lounge</a>
+          </td>
+          <td>Luxury VIP Lounge & Sensory Branding in KSA/UAE</td>
+          <td><span class="score-badge score-med">58 / 100</span></td>
+          <td>Lacks explicit B2B procurement specs & FAQ schema.</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>2. Bilingual Office Environment</strong><br>
+            <a href="https://zerene.com/blogs/space-wellness/the-office-that-speaks-two-languages-how-to-build-a-work-environment-that-feels-culturally-rooted-and-globally-sophisticated" target="_blank" class="url-link">/space-wellness/...-bilingual-office</a>
+          </td>
+          <td>Cultural & Global Workplace Scenting in GCC</td>
+          <td><span class="score-badge score-med">62 / 100</span></td>
+          <td>Needs 40-word summary block right under H1.</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>3. Ingredient Transparency & Documentation</strong><br>
+            <a href="https://zerene.com/blogs/sensory-branding/ingredient-transparency-and-institutional-documentation-how-to-choose-a-trusted-natural-scenting-brand-for-corporate-procurement" target="_blank" class="url-link">/sensory-branding/...-ingredient-transparency</a>
+          </td>
+          <td>Corporate Procurement & IFRA Certifications</td>
+          <td><span class="score-badge score-high">76 / 100</span></td>
+          <td>Strong fact density; needs explicit MOQ/regulatory bullet lists.</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>4. Prayer Rooms & Quiet Spaces Standards</strong><br>
+            <a href="https://zerene.com/blogs/luxury-wellness/prayer-rooms-and-quiet-spaces-what-are-the-right-standards-for-choosing-suitable-natural-aromatic-products" target="_blank" class="url-link">/luxury-wellness/...-prayer-rooms</a>
+          </td>
+          <td>Calming Aromatherapy Standards for Quiet Spaces</td>
+          <td><span class="score-badge score-med">65 / 100</span></td>
+          <td>Needs clinical study references & FAQ schema.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>2. Deep-Dive Page-by-Page Optimization Blueprint</h2>
+
+    <div class="card">
+      <h3>Blog 1: VIP Lounge Sensory Identity (Score: 58/100)</h3>
+      <p><strong>Target Prompt Alignment:</strong> <em>"How do luxury VIP lounges in Saudi Arabia use sensory branding and ambient scenting?"</em></p>
+      <ul>
+        <li><strong>Fix 1:</strong> Insert an H2 header matching that exact prompt.</li>
+        <li><strong>Fix 2:</strong> Add a 40-word definition block summarizing how scent memory increases VIP client retention by 30%.</li>
+        <li><strong>Fix 3:</strong> Embed `FAQPage` JSON-LD schema at the bottom of the article.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Blog 2: Bilingual Office Environment (Score: 62/100)</h3>
+      <p><strong>Target Prompt Alignment:</strong> <em>"How to build a culturally rooted and globally sophisticated workplace scent strategy in Dubai and Riyadh?"</em></p>
+      <ul>
+        <li><strong>Fix 1:</strong> Add a comparison table comparing traditional Arabic notes (Oud, Amber) with modern European workspace notes (Citrus, Lavender).</li>
+        <li><strong>Fix 2:</strong> Insert explicit corporate office scenting use cases.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Blog 3: Ingredient Transparency & Procurement (Score: 76/100)</h3>
+      <p><strong>Target Prompt Alignment:</strong> <em>"What are the safety standards and IFRA certifications required for corporate procurement of natural essential oils?"</em></p>
+      <ul>
+        <li><strong>Fix 1:</strong> This page has the highest score due to strong technical focus. Add bulleted lists detailing IFRA compliance and safety data sheets (MSDS).</li>
+        <li><strong>Fix 2:</strong> Add a clear B2B Call-to-Action button for bulk institutional quote requests.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Blog 4: Prayer Rooms & Quiet Spaces Standards (Score: 65/100)</h3>
+      <p><strong>Target Prompt Alignment:</strong> <em>"What are the right aromatic standards for corporate prayer rooms and quiet wellness spaces in GCC offices?"</em></p>
+      <ul>
+        <li><strong>Fix 1:</strong> Include soft, hypoallergenic essential oil standards (e.g., Lavender, Frankincense) suitable for quiet meditative spaces.</li>
+        <li><strong>Fix 2:</strong> Add structured bullet points on cold-air diffusion safety in enclosed prayer rooms.</li>
+      </ul>
+    </div>
+
+    <footer class="footer">
+      Zerene Blog GEO Score & Citation Audit — Generated for Team Strategy & Implementation
+    </footer>
+  </div>
+</body>
+</html>

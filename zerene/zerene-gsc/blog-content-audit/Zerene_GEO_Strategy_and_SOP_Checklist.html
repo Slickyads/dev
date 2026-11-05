@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene - GEO Optimization & SOP Checklist</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --fg: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --accent-light: #0c4a6e;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #020617;
+      color: var(--fg);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    h1 {
+      font-size: 2.25rem;
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+    }
+    .subtitle {
+      color: var(--accent);
+      font-size: 1.15rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #ffffff;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .solution-box {
+      background: #0f172a;
+      border-left: 4px solid var(--accent);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+    }
+    .solution-box strong {
+      color: var(--accent);
+    }
+    .checklist-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    .item-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .item-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+    .checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--accent);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .item-title {
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .item-desc {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-top: 0.2rem;
+    }
+    code {
+      background: var(--border);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+    .footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎯 ZERENE — Generative Engine Optimization (GEO) Strategy & SOP Checklist</h1>
+      <p class="subtitle">Content Structuring Framework and Writer Guidelines for AI Citation and Search Engine Ranking</p>
+    </header>
+
+    <!-- SECTION 1: STRATEGY & SOLUTIONS -->
+    <h2>1. GEO Content Optimization Solutions</h2>
+
+    <!-- PILLAR 2 -->
+    <div class="card">
+      <h3>2. Deploy 40-Word "Answer Blocks" Immediately Under Headers</h3>
+      <p style="color: var(--muted); margin: 0.5rem 0;">LLM web scrapers scan the top portion of content sections looking for concise, definitive definitions they can paste directly into response footnotes.</p>
+      <div class="solution-box">
+        <strong>The Solution:</strong> Right beneath every major <code>&lt;h2&gt;</code> question header, place a 2–3 sentence declarative summary block (approx. 40 words) that directly answers the question before expanding into longer narrative paragraphs or tables.
+      </div>
+    </div>
+
+    <!-- PILLAR 3 -->
+    <div class="card">
+      <h3>3. Infuse Fact Density and Verifiable Data</h3>
+      <p style="color: var(--muted); margin: 0.5rem 0;">AI models heavily favor content containing hard metrics, statistics, and clinical data because it establishes factual authority.</p>
+      <div class="solution-box">
+        <strong>The Solution:</strong> Avoid generic marketing adjectives. Embed hard numbers into your blog posts—such as Minimum Order Quantities (MOQ starting at 50 units), IFRA compliance standards, GSO regulations, or scent memory retention percentages (e.g., boosting brand recall by 30%).
+      </div>
+    </div>
+
+    <!-- PILLAR 4 -->
+    <div class="card">
+      <h3>4. Implement Machine-Readable JSON-LD Schema</h3>
+      <p style="color: var(--muted); margin: 0.5rem 0;">Search and AI bots rely heavily on structured code markup to understand the relationship between questions, answers, and your brand entity.</p>
+      <div class="solution-box">
+        <strong>The Solution:</strong> Add <code>Article</code>, <code>Product</code>, and <code>FAQPage</code> JSON-LD schema markup to every blog page. This acts as a direct machine-readable roadmap that tells AI parsers: <em>"Here are the exact questions answered on this page, and our URL is the primary source."</em>
+      </div>
+    </div>
+
+    <!-- PILLAR 5 -->
+    <div class="card">
+      <h3>5. Combine English and Arabic on a Single Page (Bilingual Strategy)</h3>
+      <p style="color: var(--muted); margin: 0.5rem 0;">For your GCC market (Saudi Arabia and the UAE), capturing both English and Arabic search intent is critical.</p>
+      <div class="solution-box">
+        <strong>The Solution:</strong> Structure your blog pages to support parallel bilingual sections or side-by-side grids (using proper <code>dir="ltr"</code> and <code>dir="rtl"</code> attributes). When you include both English and Arabic Q&A pairs inside your JSON-LD schema on the same URL, AI models can extract the matching language snippet regardless of whether the user queries in English or Arabic.
+      </div>
+    </div>
+
+    <!-- PILLAR 6 -->
+    <div class="card">
+      <h3>6. Build Third-Party Web Consensus (Off-Page Signals)</h3>
+      <p style="color: var(--muted); margin: 0.5rem 0;">AI engines do not trust a domain in isolation; they cross-reference external web mentions to verify entity credibility before showing a citation link.</p>
+      <div class="solution-box">
+        <strong>The Solution:</strong> Ensure Zerene is co-mentioned across regional GCC hospitality supplier directories, LinkedIn trade articles, and local PR outlets so AI crawlers find external validation backing up your brand.
+      </div>
+    </div>
+
+    <!-- SECTION 2: SOP CHECKLIST -->
+    <h2>📋 Standard Operating Procedure (SOP) Checklist for Content Writers</h2>
+    <p style="color: var(--muted);">To ensure every new blog post you write follows this formula, use this standardized workflow:</p>
+
+    <div class="checklist-card">
+      <ul class="item-list">
+        <li>
+          <div class="checkbox"></div>
+          <div>
+            <div class="item-title">Keyword & Prompt Brief</div>
+            <div class="item-desc">Assign 1 primary commercial keyword and 1 informational AI prompt (in both English and Arabic) from your bilingual keyword matrix before writing begins.</div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div>
+            <div class="item-title">Heading Alignment</div>
+            <div class="item-desc">Ensure the <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code> headers mirror the exact user prompts verbatim.</div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div>
+            <div class="item-title">Answer Blocks</div>
+            <div class="item-desc">Write concise 40-word summary blocks directly under each heading for direct LLM citation extraction.</div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div>
+            <div class="item-title">Fact Density Check</div>
+            <div class="item-desc">Ensure hard procurement metrics (MOQs, IFRA, GSO) or scientific data points are present throughout the copy.</div>
+          </div>
+        </li>
+        <li>
+          <div class="checkbox"></div>
+          <div>
+            <div class="item-title">Schema Integration</div>
+            <div class="item-desc">Embed <code>FAQPage</code> and <code>Article</code> JSON-LD schema into the page code before publishing.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <footer class="footer">
+      Zerene GEO Optimization Strategy & SOP Checklist — Content Implementation Guide
+    </footer>
+  </div>
+</body>
+</html>

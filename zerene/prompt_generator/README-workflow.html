@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zerene GEO Prompt Workflow</title>
+<style>
+  :root { font-family: system-ui, -apple-system, sans-serif; line-height: 1.5; color: #111; }
+  body { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+  h1 { font-size: 1.75rem; border-bottom: 2px solid #333; padding-bottom: 0.5rem; }
+  h2 { font-size: 1.25rem; margin-top: 1.5rem; }
+  h3 { font-size: 1rem; color: #333; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.9rem; }
+  th, td { border: 1px solid #ccc; padding: 0.4rem 0.6rem; text-align: left; }
+  th { background: #f4f4f4; }
+  code { font-family: ui-monospace, SFMono-Regular, monospace; background: #f4f4f4; padding: 0.1rem 0.3rem; border-radius: 3px; }
+  pre { background: #f4f4f4; padding: 1rem; border-radius: 5px; overflow-x: auto; font-size: 0.85rem; }
+  .flow { font-family: ui-monospace, monospace; white-space: pre; background: #f4f4f4; padding: 1rem; border-radius: 5px; margin: 1rem 0; }
+  .badge { display: inline-block; background: #e8e8e8; padding: 0.1rem 0.5rem; border-radius: 4px; font-size: 0.85rem; margin-right: 0.4rem; }
+  ul { padding-left: 1.2rem; }
+  .warning { background: #fff3cd; border: 1px solid #ffecb5; padding: 1rem; border-radius: 5px; margin: 1rem 0; }
+  .legacy { color: #666; font-style: italic; }
+</style>
+</head>
+<body>
+
+<h1>Zerene GEO Prompt Workflow</h1>
+
+<p>This folder contains the n8n workflow for generating a GEO (Generative Engine Optimization) and SEO prompt library for <strong>Zerene</strong>, a B2B fragrance e-commerce brand based in Saudi Arabia.</p>
+
+<h2>Current Architecture (v2 — Consolidated n8n Workflow)</h2>
+
+<p><strong>Single workflow file:</strong> <code>n8n_workflows/geo_prompt_generator_form.n8n.json</code></p>
+
+<h3>Flow</h3>
+<pre class="flow">GEO Form (n8n Form Trigger)
+    │
+    ▼
+Fetch Website (HTTP Request — scrapes title, meta, content)
+    │
+    ▼
+Build Analysis Request (Code node — structures prompt for Gemini)
+    │
+    ▼
+Gemini 1 — Analysis (generates profile, 3 opportunities, N keywords)
+    │
+    ▼
+Parse Profile (Code node — validates, structures, adds IDs)
+    │
+    ├──▶ Emit Opportunities → Save Opportunities (Google Sheets: "opportunities" tab)
+    │
+    ├──▶ Emit Keywords → Save Keywords (Google Sheets: "keywords" tab)
+    │
+    ▼
+Build Prompt Request (Code node — builds prompt-writing prompt for Gemini)
+    │
+    ▼
+Gemini 2 — Write Prompts (generates buyer-facing AI prompts)
+    │
+    ▼
+Parse Prompts (Code node — merges, adds fallback for failures)
+    │
+    ▼
+Emit Prompts → Save Prompts (Google Sheets: "prompts" tab)
+    │
+    ▼
+Show Results (Form node — renders prompts with badges + sheet link)</pre>
+
+<div class="warning"><strong>Model:</strong> Both Gemini nodes use <code>gemini-3.8-flash</code> — the correct model for this API endpoint (which provides higher free-tier rate limits than standard Gemini). If you still hit rate limits, the OpenAI fallback nodes (<code>gpt-4o-mini</code>) are wired in and ready.</div>
+
+<h3>Key Features</h3>
+<table>
+  <tr><th>Feature</th><th>Description</th></tr>
+  <tr><td>Form Trigger</td><td>Shareable Production URL — no landing page, CORS, or webhook setup needed</td></tr>
+  <tr><td>Website Scraping</td><td>Fetches and parses actual site content (title, meta description, visible text)</td></tr>
+  <tr><td>AI-Driven Analysis</td><td>Gemini 1 generates profile, 3 opportunities, and keywords dynamically from site content</td></tr>
+  <tr><td>Structured Slot System</td><td>4 prompt categories with deterministic distribution: Brand Direct Queries (20%), KSA Category Intent (30%), Executive Gifting (20%), Problem-Solution (remainder)</td></tr>
+  <tr><td>Tier-Specific Guidance</td><td>4 tiers with buyer personas and topics (Executive Gifting, Hospitality/Majlis, Healthcare/Spas, Corporate Wellness)</td></tr>
+  <tr><td>Market & Language Support</td><td>Markets: KSA, UAE, GCC, Global | Languages: English, Arabic, English + Arabic</td></tr>
+  <tr><td>Safe Fallback</td><td>Gemini 2 failure gracefully produces draft prompts marked "Needs rewrite"</td></tr>
+  <tr><td>Results Page</td><td>Renders all prompts with priority/category/language badges + direct Google Sheet link</td></tr>
+  <tr><td>Single Google Sheet</td><td>ID: <code>1yAJ1LwDG3KI_aAQGKNnu2adc0SzSUdZI2EAPK4aWdRQ</code> with 3 tabs: <code>opportunities</code>, <code>keywords</code>, <code>prompts</code></td></tr>
+</table>
+
+<h3>Setup</h3>
+<ol>
+  <li><strong>Google Sheet tabs/headers</strong> — Run the Apps Script for tabs/headers.</li>
+  <li><strong>Gemini API Key</strong> — Create HTTP Header Auth credential in n8n: name <code>Gemini_geo_prompts</code>, header <code>x-goog-api-key</code> = your Gemini API key.</li>
+  <li><strong>Activate the workflow</strong> — The form trigger exposes a Production URL you can share.</li>
+</ol>
+
+<h3>Form Fields</h3>
+<table>
+  <tr><th>Field</th><th>Type</th><th>Required</th><th>Options</th></tr>
+  <tr><td>Website URL</td><td>Text</td><td>Yes</td><td><code>https://yourbrand.com</code></td></tr>
+  <tr><td>Brand Name</td><td>Text</td><td>No</td><td>—</td></tr>
+  <tr><td>Tier</td><td>Dropdown</td><td>Yes</td><td>Tier 1–4</td></tr>
+  <tr><td>Market</td><td>Dropdown</td><td>Yes</td><td>KSA, UAE, GCC, Global</td></tr>
+  <tr><td>Language</td><td>Dropdown</td><td>Yes</td><td>English, Arabic, English + Arabic</td></tr>
+  <tr><td>Number of prompts</td><td>Dropdown</td><td>Yes</td><td>10, 25</td></tr>
+</table>
+
+<h3>Output Data Model</h3>
+
+<h4><code>opportunities</code> tab</h4>
+<table>
+  <tr><th>Column</th><th>Description</th></tr>
+  <tr><td><code>opportunity_id</code></td><td><code>${runId}-O1/2/3</code></td></tr>
+  <tr><td><code>theme</code></td><td>Opportunity theme</td></tr>
+  <tr><td><code>buyer_intent</code></td><td>What the buyer wants</td></tr>
+  <tr><td><code>audience</code></td><td>Target buyer roles</td></tr>
+  <tr><td><code>market</code> / <code>language</code></td><td>From form</td></tr>
+  <tr><td><code>search_query</code></td><td>Representative query</td></tr>
+  <tr><td><code>seasonal</code> / <code>cultural</code></td><td>Timing & cultural angles</td></tr>
+  <tr><td><code>competitor</code></td><td>Competitor <strong>types</strong> (never company names)</td></tr>
+  <tr><td><code>gap</code></td><td>Content/visibility gap</td></tr>
+</table>
+
+<h4><code>keywords</code> tab</h4>
+<table>
+  <tr><th>Column</th><th>Description</th></tr>
+  <tr><td><code>keyword_id</code></td><td><code>KW-${BRAND}-T${tierNum}-${CATCODE}-${INTENT}-${MARKET}-${LANG}-${NN}-${runId}</code></td></tr>
+  <tr><td><code>keyword</code></td><td>Natural search phrase (3–8 words)</td></tr>
+  <tr><td><code>keyword_intent</code></td><td>Informational / Commercial / Transactional</td></tr>
+  <tr><td><code>icp_search_type</code></td><td>Commercial / Seasonal / Cultural / Comparison / Direct answer</td></tr>
+  <tr><td><code>prompt_category</code></td><td>Brand Direct / KSA Category Intent / Executive Gifting / Problem-Solution</td></tr>
+  <tr><td><code>segment</code></td><td>Brand / Category benchmark / Non-brand</td></tr>
+  <tr><td><code>priority</code></td><td>High / Medium / Long-term</td></tr>
+  <tr><td><code>opportunity_id</code></td><td>Links to opportunity</td></tr>
+</table>
+
+<h4><code>prompts</code> tab</h4>
+<table>
+  <tr><th>Column</th><th>Description</th></tr>
+  <tr><td><code>prompt_id</code></td><td><code>${slug}-T${tierNum}-${CATCODE}-${INTENT}-${MARKET}-${AR/EN}-${NN}-${runId}</code></td></tr>
+  <tr><td><code>prompt_text</code></td><td>What a buyer types into an AI engine (1–2 sentences, natural language)</td></tr>
+  <tr><td><code>status</code></td><td><code>Pending scan</code> (AI-generated) or <code>Needs rewrite</code> (fallback)</td></tr>
+  <tr><td>All keyword fields</td><td>Carried through for traceability</td></tr>
+</table>
+
+<h3>Prompt Categories & Rules</h3>
+<table>
+  <tr><th>Category</th><th>Keyword Must Include</th><th>Prompt Angle</th></tr>
+  <tr><td>Brand Direct Queries</td><td>Brand name</td><td>Reputation, products, ordering, comparison</td></tr>
+  <tr><td>KSA Category Intent</td><td>Market location — <strong>no brand</strong></td><td>Category benchmark question</td></tr>
+  <tr><td>Executive Gifting</td><td>Decision-maker / VIP / seasonal-cultural — <strong>no brand</strong></td><td>Gifting for executives</td></tr>
+  <tr><td>Problem-Solution</td><td>Buyer problem/need — <strong>no brand</strong></td><td>"How to solve X?"</td></tr>
+</table>
+
+<h2>Legacy (v1 — Manual Markdown Workflow)</h2>
+<p class="legacy">The following files document the previous manual multi-step process and are kept for reference:</p>
+<ul class="legacy">
+  <li><code>00-shared-context.md</code> — Shared brand context</li>
+  <li><code>01-opportunity-analysis.md</code> — Manual opportunity analysis</li>
+  <li><code>02-keyword-dataset.md</code> — Deterministic keyword generation</li>
+  <li><code>03a-high-priority-prompts.md</code> / <code>03b-medium-priority-prompts.md</code> / <code>03c-long-term-geo-prompts.md</code> — Batched prompt generation</li>
+  <li><code>04-quality-control-export.md</code> — QC checklist</li>
+</ul>
+<p class="legacy">These are <strong>superseded</strong> by the consolidated n8n workflow above.</p>
+
+<h3>Token-Saving Principles (Preserved)</h3>
+<ul>
+  <li>Reuse shared context instead of repeating full workflow.</li>
+  <li>Generate prompts in batches (10 or 25 via form).</li>
+  <li>Do not invent search volume, keyword difficulty, AI prompt volume, or visibility metrics — mark as <code>[TO VERIFY]</code>.</li>
+  <li>Quality control after human review of generated batches.</li>
+</ul>
+
+<h3>Prompt Template (for reference — n8n handles this)</h3>
+<p class="legacy">Each ready-to-use prompt includes:</p>
+<ul class="legacy">
+  <li>Specialist role (Zerene B2B fragrance e-commerce brand)</li>
+  <li>Zerene brand context from website</li>
+  <li>Audience and buying stage</li>
+  <li>Offer tier</li>
+  <li>Prompt category</li>
+  <li>Target AI prompt / search query</li>
+  <li>Primary keyword + secondary keywords</li>
+  <li>Market and language</li>
+  <li>Content type and output format</li>
+  <li>GEO requirements</li>
+  <li>Internal linking plan</li>
+  <li>Schema recommendations</li>
+  <li>Request a Quote instruction + CTA URL</li>
+  <li><strong>No invented facts, testimonials, client names, certifications, prices, statistics, or claims</strong></li>
+  <li>Missing information marked <code>[TO VERIFY]</code></li>
+</ul>
+
+<h3>Output Quantity</h3>
+<p>Configurable via form:</p>
+<ul>
+  <li><strong>10 prompts</strong> (default)</li>
+  <li><strong>25 prompts</strong> (larger batch)</li>
+</ul>
+<p>Distribution across 4 categories is deterministic (see Slot System above).</p>
+
+</body>
+</html>

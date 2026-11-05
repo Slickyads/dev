@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene - Master GEO & AI Engine Optimization Blueprint</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --fg: #f8fafc;
+      --muted: #94a3b8;
+      --border: #334155;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --accent-light: #0c4a6e;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --table-header: #334155;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #020617;
+      color: var(--fg);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    h1 {
+      font-size: 2.25rem;
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+    }
+    .subtitle {
+      color: var(--accent);
+      font-size: 1.15rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 3rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+    }
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .meta-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+    .meta-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    .meta-value {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+    .meta-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-weight: 600;
+      background: var(--table-header);
+      color: #ffffff;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-high { background: #7f1d1d; color: #fecaca; }
+    .badge-med { background: #78350f; color: #fef3c7; }
+    .badge-geo { background: #1e3a8a; color: #bfdbfe; }
+    .badge-cited { background: #14532d; color: #86efac; }
+    .badge-uncited { background: #7f1d1d; color: #fca5a5; }
+
+    .prompt-box {
+      background: var(--card-bg);
+      border-left: 4px solid var(--accent);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1rem;
+    }
+    .prompt-id {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+      font-family: monospace;
+    }
+    .prompt-text {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #f1f5f9;
+    }
+    pre {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+    }
+    code {
+      background: var(--border);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+    .arabic-text {
+      direction: rtl;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎯 ZERENE — Master GEO & AI Engine Optimization Blueprint</h1>
+      <p class="subtitle">Complete B2B Strategy, Prompt Library, Keyword Matrix, Citation Audit & Share of Voice Tracker (Saudi Arabia, UAE & GCC)</p>
+    </header>
+
+    <!-- KPI OVERVIEW -->
+    <section class="meta-grid">
+      <div class="meta-card">
+        <div class="meta-label">Calculated GEO Score</div>
+        <div class="meta-value">42.5 / 100</div>
+        <div class="meta-desc">High impressions (2.6K+), ranking positions 15–85</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Target GEO Share of Voice</div>
+        <div class="meta-value">35.0%</div>
+        <div class="meta-desc">Goal across 35 GCC B2B Prompts</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Total GSC Queries Analyzed</div>
+        <div class="meta-value">413 Queries</div>
+        <div class="meta-desc">383 Non-brand informational & product terms</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Primary Region</div>
+        <div class="meta-value">KSA & UAE</div>
+        <div class="meta-desc">B2B Fragrance & Corporate VIP Gifting</div>
+      </div>
+    </section>
+
+    <!-- SECTION 1 -->
+    <h2>1. Search Console Diagnostic & Performance Breakdown</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Query Category</th>
+          <th>Query Count</th>
+          <th>Impressions</th>
+          <th>Clicks</th>
+          <th>Avg Position</th>
+          <th>Strategic Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Brand & Navigation</strong></td>
+          <td>30 queries</td>
+          <td>3,580</td>
+          <td>90 clicks</td>
+          <td>2.9 – 7.5</td>
+          <td>Fix homepage meta title to capture lost brand clicks</td>
+        </tr>
+        <tr>
+          <td><strong>Informational (GEO Target)</strong></td>
+          <td>133 queries</td>
+          <td>1,519</td>
+          <td>1 click</td>
+          <td>16.0 – 85.0</td>
+          <td>Structure 40-word definition blocks & FAQ schema</td>
+        </tr>
+        <tr>
+          <td><strong>Product & Commercial</strong></td>
+          <td>252 queries</td>
+          <td>1,260</td>
+          <td>2 clicks</td>
+          <td>8.4 – 76.0</td>
+          <td>Build targeted B2B procurement landing pages</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- SECTION 2 -->
+    <h2>2. Root Cause Diagnostic: Why Links Aren't Showing in AI Engines</h2>
+    <div class="meta-card" style="margin-bottom: 1.5rem;">
+      <p style="margin-top: 0;">Although Google indexes 383 non-brand queries for Zerene, AI engines (ChatGPT, Perplexity, Google AI Overviews) are not citing the site due to three primary barriers:</p>
+      <ul style="color: var(--muted);">
+        <li><strong style="color: var(--fg);">1. Position Deficit (Positions 15 to 85):</strong> AI engines pull citations overwhelmingly from top-5 search results.</li>
+        <li><strong style="color: var(--fg);">2. Machine-Readable Answer Formatting:</strong> Scrapers skip broad marketing paragraphs in favor of direct 40-word definitions and statistics.</li>
+        <li><strong style="color: var(--fg);">3. Off-Page Consensus:</strong> AI models cross-reference external GCC business directories and press mentions to verify entity trust.</li>
+      </ul>
+    </div>
+
+    <!-- SECTION 3 -->
+    <h2>3. 5-Step Action Plan to Win Direct AI Citations</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+      <div class="meta-card">
+        <h3>Step 1: Header Alignment</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Update page H1/H2 headers to verbatim match user prompts (e.g., <em>"Custom Luxury Room Sprays in Bulk for Boutique Hotels"</em>).</p>
+      </div>
+      <div class="meta-card">
+        <h3>Step 2: 40-Word Answer Blocks</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Place concise, definitive Q&A summaries directly under headers for instant LLM extraction.</p>
+      </div>
+      <div class="meta-card">
+        <h3>Step 3: JSON-LD FAQ Schema</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Add structured <code>FAQPage</code> and <code>Product</code> JSON-LD schema to communicate source data to crawlers.</p>
+      </div>
+      <div class="meta-card">
+        <h3>Step 4: Fact Density & Stats</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Include explicit procurement specs (MOQ starting at 50 units, clinical study stats) to boost AI preference.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <h2>4. GEO Prompt Library (35 Standardized Prompts)</h2>
+
+    <h3>🟢 High-Priority Prompts (B2B Lead Generation)</h3>
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER1_EXECUTIVE_COMMERCIAL_COMMERCIAL_KSA_EN_COMPARISON <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"What are the top luxury B2B custom perfume suppliers in Saudi Arabia for corporate VIP gifting with low MOQs and custom packaging?"</div>
+    </div>
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_HOSPITALITY_TRANSACTIONAL_COMMERCIAL_KSA_EN_BUYING-GUIDE <span class="badge badge-high">High Priority</span></div>
+      <div class="prompt-text">"Where can boutique hotel chains in Saudi Arabia order custom luxury room sprays and reed diffusers in bulk with white-label branding?"</div>
+    </div>
+
+    <h3>🟡 Medium-Priority Prompts (Commercial Content)</h3>
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER2_HOSPITALITY_INFORMATIONAL_COMMERCIAL_KSA_EN_GUIDE <span class="badge badge-med">Medium Priority</span></div>
+      <div class="prompt-text">"How does scent marketing improve guest experience and retention in luxury Saudi hotels?"</div>
+    </div>
+
+    <h3>🔵 Long-Term GEO Prompts (AI Answer Engine)</h3>
+    <div class="prompt-box">
+      <div class="prompt-id">ZERENE_TIER4_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_EXPLAINER <span class="badge badge-geo">Long-Term GEO</span></div>
+      <div class="prompt-text">"How does rose essential oil work on the human nervous system to reduce stress?"</div>
+    </div>
+
+    <!-- SECTION 5 -->
+    <h2>5. Targeted GEO Keywords Matrix</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Target Keyword / Phrase</th>
+          <th>Language</th>
+          <th>Cluster / Intent</th>
+          <th>Target Optimization</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>custom perfume suppliers Saudi Arabia</code></td>
+          <td>English</td>
+          <td>B2B Corporate Gifting</td>
+          <td><span class="badge badge-high">High Commercial</span></td>
+        </tr>
+        <tr>
+          <td class="arabic-text">معطرات الفنادق الفاخرة السعودية</td>
+          <td>Arabic</td>
+          <td>Luxury Hotel Scenting</td>
+          <td><span class="badge badge-high">High Commercial</span></td>
+        </tr>
+        <tr>
+          <td><code>how does rose essential oil work</code></td>
+          <td>English</td>
+          <td>Rose / Floral Oils</td>
+          <td><span class="badge badge-geo">AI Citation</span></td>
+        </tr>
+        <tr>
+          <td class="arabic-text">أين أجد معطر غرفة برائحة اللافندر والإيلانغ يلانغ؟</td>
+          <td>Arabic</td>
+          <td>GCC Room Sprays</td>
+          <td><span class="badge badge-cited">Rank 3.83 (Top 5)</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <footer class="footer">
+      Zerene B2B Fragrance — Master GEO Strategy & AI Optimization Blueprint
+    </footer>
+  </div>
+</body>
+</html>

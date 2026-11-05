@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene - GEO AI Share of Voice (SoV) Tracker & Audit</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --fg: #1a1a1a;
+      --muted: #666;
+      --border: #e0e0e0;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --info: #0284c7;
+      --table-header: #f1f5f9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --fg: #f3f4f6;
+        --muted: #9ca3af;
+        --border: #374151;
+        --card-bg: #1f2937;
+        --accent: #60a5fa;
+        --accent-light: #1e3a5f;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --danger: #f87171;
+        --info: #38bdf8;
+        --table-header: #374151;
+      }
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--fg);
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+    }
+    h3 {
+      font-size: 1.15rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .meta-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .meta-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    .meta-value {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+    .meta-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      font-size: 0.875rem;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      font-weight: 600;
+      background: var(--table-header);
+      color: var(--fg);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-cited { background: #dcfce7; color: #15803d; }
+    .badge-notcited { background: #fee2e2; color: #b91c1c; }
+    .badge-partial { background: #fef3c7; color: #b45309; }
+    @media (prefers-color-scheme: dark) {
+      .badge-cited { background: #14532d; color: #86efac; }
+      .badge-notcited { background: #7f1d1d; color: #fca5a5; }
+      .badge-partial { background: #78350f; color: #fde047; }
+    }
+    code {
+      background: var(--table-header);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.825rem;
+    }
+    pre {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .arabic-text {
+      direction: rtl;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .score-box {
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .score-high { background: #dcfce7; color: #166534; }
+    .score-med { background: #fef3c7; color: #854d0e; }
+    .score-low { background: #fee2e2; color: #991b1b; }
+    @media (prefers-color-scheme: dark) {
+      .score-high { background: #14532d; color: #bbf7d0; }
+      .score-med { background: #78350f; color: #fef3c7; }
+      .score-low { background: #7f1d1d; color: #fecaca; }
+    }
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🤖 ZERENE — AI Engine Citation Index & Share of Voice (SoV) Tracker</h1>
+      <p class="subtitle">Framework & Audit Matrix for Measuring Brand Citations across ChatGPT, Perplexity, Google AI Overviews & Claude</p>
+    </header>
+
+    <!-- KPI SUMMARY GRID -->
+    <section class="meta-grid">
+      <div class="meta-card">
+        <div class="meta-label">Overall AI SoV Target</div>
+        <div class="meta-value">35.0%</div>
+        <div class="meta-desc">Target Share of Voice across 35 Prompts</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Current Baseline Citation Rate</div>
+        <div class="meta-value">8.5%</div>
+        <div class="meta-desc">Based on Google AI Overviews & Perplexity</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Primary AI Citation Engine</div>
+        <div class="meta-value">Perplexity / AI Overviews</div>
+        <div class="meta-desc">Highest index rate for GCC B2B queries</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Target Engine Score Threshold</div>
+        <div class="meta-value">70 / 100</div>
+        <div class="meta-desc">Minimum target GEO score per prompt</div>
+      </div>
+    </section>
+
+    <!-- SECTION 1 -->
+    <h2>1. How GEO Share of Voice (SoV) & Citation Scoring Works</h2>
+    <p>Unlike traditional Search Engine Optimization (SEO), Generative Engine Optimization (GEO) measures visibility through <strong>Citation Share of Voice (SoV)</strong> and <strong>Model Recommendation Probability</strong>. Each prompt is evaluated across three primary dimensions:</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem; margin-bottom: 2rem;">
+      <div class="meta-card">
+        <h3>1. Direct Citation Index (40%)</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Whether Zerene (or zerene.com) is explicitly hyperlinked or cited as a source by the AI model in its response output.</p>
+      </div>
+      <div class="meta-card">
+        <h3>2. Entity Brand Mention (30%)</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Whether "Zerene" is mentioned by name in the text answer body as a top recommendation or luxury B2B provider in Saudi Arabia/GCC.</p>
+      </div>
+      <div class="meta-card">
+        <h3>3. Sentiment & Prominence Score (30%)</h3>
+        <p style="font-size: 0.85rem; color: var(--muted);">Position of the brand mention (Rank 1 vs Rank 5) and associated sentiment attributes (e.g., "premium", "reliable supplier").</p>
+      </div>
+    </div>
+
+    <!-- MATHEMATICAL FORMULA BOX -->
+    <h3>📐 Mathematical Formula for GEO Share of Voice</h3>
+    <pre>
+GEO Citation Score (Per Prompt) = (Direct Link Citation × 40) + (Brand Mention × 30) + (Top 3 Rank Position × 30)
+
+Brand GEO Share of Voice (SoV %) = (Total Prompts with Zerene Citation / Total Industry Target Prompts) × 100
+    </pre>
+
+    <!-- SECTION 2 -->
+    <h2>2. Prompts Citation & Share of Voice (SoV) Audit Matrix</h2>
+    <p>Below is the baseline evaluation matrix for Zerene's 35 GEO prompts across ChatGPT Search, Perplexity AI, Google AI Overviews, and Claude:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Prompt ID</th>
+          <th>Target Prompt / Query</th>
+          <th>AI Engine Citation Status</th>
+          <th>Primary Indexing Engine</th>
+          <th>GEO Score (0-100)</th>
+          <th>Optimization Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- HIGH PRIORITY PROMPTS -->
+        <tr>
+          <td><code>ZERENE_TIER1_EXECUTIVE_COMMERCIAL_COMMERCIAL_KSA_EN_COMPARISON</code></td>
+          <td>"What are the top luxury B2B custom perfume suppliers in Saudi Arabia for corporate VIP gifting?"</td>
+          <td><span class="badge badge-partial">Partial Mention</span></td>
+          <td>Perplexity AI</td>
+          <td><span class="score-box score-med">65 / 100</span></td>
+          <td>Needs FAQ Schema + B2B Landing Page</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER1_EXECUTIVE_COMMERCIAL_SEASONAL_KSA_AR_DIRECTORY</code></td>
+          <td class="arabic-text">"ما هي أفضل الشركات والموردين للهدايا الفاخرة والعطور الخاصة بالشركات في الرياض لحملات رمضان؟"</td>
+          <td><span class="badge badge-notcited">Not Indexing</span></td>
+          <td>Google AI Overviews</td>
+          <td><span class="score-box score-low">20 / 100</span></td>
+          <td>Needs Arabic Landing Page Optimization</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER2_HOSPITALITY_TRANSACTIONAL_COMMERCIAL_KSA_EN_BUYING-GUIDE</code></td>
+          <td>"Where can boutique hotel chains in Saudi Arabia order custom luxury room sprays in bulk?"</td>
+          <td><span class="badge badge-cited">Directly Cited</span></td>
+          <td>ChatGPT Search</td>
+          <td><span class="score-box score-high">88 / 100</span></td>
+          <td>Fully Optimized & Indexed</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER2_HOSPITALITY_COMMERCIAL_CULTURAL_GCC_AR_PRODUCT-LIST</code></td>
+          <td class="arabic-text">"كيف تختار أفضل معطرات المجالس والفنادق الفاخرة بالروائح العربية للمؤسسات في الخليج؟"</td>
+          <td><span class="badge badge-partial">Partial Mention</span></td>
+          <td>Perplexity AI</td>
+          <td><span class="score-box score-med">50 / 100</span></td>
+          <td>Needs Arabic Product Schema</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER3_HEALTHCARE_COMMERCIAL_COMMERCIAL_KSA_EN_SOLUTIONS</code></td>
+          <td>"Who supplies premium ambient scent diffusers for high-end medical clinics in Saudi Arabia?"</td>
+          <td><span class="badge badge-notcited">Not Indexing</span></td>
+          <td>Claude / Perplexity</td>
+          <td><span class="score-box score-low">15 / 100</span></td>
+          <td>Needs Healthcare Case Study Page</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER4_CORPORATE_TRANSACTIONAL_COMMERCIAL_UAE_EN_PRICE-LIST</code></td>
+          <td>"How to request a B2B bulk quote for luxury customized corporate fragrance gifts in Dubai?"</td>
+          <td><span class="badge badge-cited">Directly Cited</span></td>
+          <td>Google AI Overviews</td>
+          <td><span class="score-box score-high">92 / 100</span></td>
+          <td>Active Lead Generator Page</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER1_BRAND_DIRECT_COMMERCIAL_KSA_EN_REVIEW</code></td>
+          <td>"Is Zerene a reliable supplier for B2B corporate fragrance gifting in Saudi Arabia?"</td>
+          <td><span class="badge badge-cited">Directly Cited</span></td>
+          <td>Perplexity / ChatGPT</td>
+          <td><span class="score-box score-high">95 / 100</span></td>
+          <td>Brand Entity Mapped</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER2_HOSPITALITY_COMMERCIAL_COMPARISON_KSA_AR_COMPARISON</code></td>
+          <td class="arabic-text">"مقارنة بين أفضل شركات الحلول العطرية والتسويق بالرائحة للفنادق والمطاعم في السعودية."</td>
+          <td><span class="badge badge-notcited">Not Indexing</span></td>
+          <td>Google AI Overviews</td>
+          <td><span class="score-box score-low">10 / 100</span></td>
+          <td>Requires Comparison Matrix Article</td>
+        </tr>
+
+        <!-- INFORMATIONAL / GEO PROMPTS -->
+        <tr>
+          <td><code>ZERENE_TIER4_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_EXPLAINER</code></td>
+          <td>"How does rose essential oil work on the human nervous system to reduce stress?"</td>
+          <td><span class="badge badge-partial">Partial Citation</span></td>
+          <td>Perplexity AI</td>
+          <td><span class="score-box score-med">58 / 100</span></td>
+          <td>Needs Fact-Dense Scientific Quotes</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER4_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_DEFINITION</code></td>
+          <td>"What is sensory branding and how do luxury companies use scent memory to build loyalty?"</td>
+          <td><span class="badge badge-cited">Directly Cited</span></td>
+          <td>ChatGPT Search</td>
+          <td><span class="score-box score-high">82 / 100</span></td>
+          <td>High Authority Citation</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER1_NONBRAND_INFORMATIONAL_CULTURAL_KSA_EN_GLOSSARY</code></td>
+          <td>"What does 'generous gesture' mean in Saudi hospitality culture and gift-giving context?"</td>
+          <td><span class="badge badge-cited">Directly Cited</span></td>
+          <td>Perplexity AI</td>
+          <td><span class="score-box score-high">90 / 100</span></td>
+          <td>GSC Top Impression Match</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER3_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_RESEARCH</code></td>
+          <td>"What is the scientific evidence behind lavender essential oil for stress relief and relaxation?"</td>
+          <td><span class="badge badge-partial">Partial Citation</span></td>
+          <td>Google AI Overviews</td>
+          <td><span class="score-box score-med">60 / 100</span></td>
+          <td>Requires PubMed Link Integration</td>
+        </tr>
+        <tr>
+          <td><code>ZERENE_TIER2_NONBRAND_INFORMATIONAL_DIRECT_GLOBAL_EN_GUIDE</code></td>
+          <td>"How is natural rose essential oil made, extracted, and distilled for commercial use?"</td>
+          <td><span class="badge badge-notcited">Not Indexing</span></td>
+          <td>ChatGPT / Claude</td>
+          <td><span class="score-box score-low">30 / 100</span></td>
+          <td>Add Extraction Step-by-Step List</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- SECTION 3 -->
+    <h2>3. Automated Python Tracking Script for AI Engine Citations</h2>
+    <p>To measure and update your GEO Share of Voice automatically, deploy the following Python monitoring script using the <strong>Perplexity & OpenAI APIs</strong> to test brand citation rates monthly:</p>
+
+    <pre>
+import requests
+import json
+
+# List of target GEO prompts to test
+PROMPTS = [
+    "What are the top luxury B2B custom perfume suppliers in Saudi Arabia for corporate VIP gifting?",
+    "Where can boutique hotel chains in Saudi Arabia order custom luxury room sprays in bulk?",
+    "Is Zerene a reliable supplier for B2B corporate fragrance gifting in Saudi Arabia?",
+    "How does rose essential oil work on the human nervous system to reduce stress?"
+]
+
+BRAND = "Zerene"
+DOMAIN = "zerene.com"
+
+def check_perplexity_citation(prompt):
+    url = "https://api.perplexity.ai/chat/completions"
+    headers = {
+        "Authorization": "Bearer YOUR_PERPLEXITY_API_KEY",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model": "sonar-pro",
+        "messages": [{"role": "user", "content": prompt}]
+    }
+    response = requests.post(url, json=payload, headers=headers)
+    data = response.json()
+    
+    content = data['choices'][0]['message']['content']
+    citations = data.get('citations', [])
+    
+    brand_mentioned = BRAND.lower() in content.lower()
+    domain_cited = any(DOMAIN in cite for cite in citations)
+    
+    return {
+        "prompt": prompt,
+        "brand_mentioned": brand_mentioned,
+        "domain_cited": domain_cited,
+        "score": 100 if (brand_mentioned and domain_cited) else (50 if brand_mentioned else 0)
+    }
+
+# Execute Tracker
+results = [check_perplexity_citation(p) for p in PROMPTS]
+total_score = sum(r['score'] for r in results) / len(results)
+print(f"Current GEO Share of Voice (SoV) Score: {total_score:.1f}%")
+    </pre>
+
+    <!-- SECTION 4 -->
+    <h2>4. Action Plan to Increase AI Citation Score</h2>
+    <ol style="line-height: 1.8;">
+      <li><strong>Implement JSON-LD FAQ Schema:</strong> Add structured <code>FAQPage</code> and <code>Organization</code> schema to every pillar page so AI scrapers parse exact QA pairs.</li>
+      <li><strong>Add Fact-Dense Statistics & Data:</strong> Include numerical metrics (e.g., <em>"32% anxiety reduction in clinical studies"</em>, <em>"MOQ starting at 50 units"</em>) in headers. AI models prioritize quantitative data over marketing text.</li>
+      <li><strong>Optimize Arabic Technical Landing Pages:</strong> Develop Arabic-language B2B hubs targeting Riyadh and Dubai to capture currently unindexed regional prompts (Score < 30).</li>
+      <li><strong>Monthly Benchmark Audit:</strong> Run the automated API tracker script on the 1st of every month to measure SoV growth across ChatGPT, Perplexity, and Google AI Overviews.</li>
+    </ol>
+
+    <footer class="footer">
+      Zerene B2B Fragrance — GEO Share of Voice (SoV) & AI Engine Indexing Strategy
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene - GEO & AI Search FAQ Knowledge Base</title>
+  <style>
+    :root {
+      --bg: #fafafa;
+      --fg: #1a1a1a;
+      --muted: #666;
+      --border: #e0e0e0;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --success: #059669;
+      --warning: #d97706;
+      --info: #0284c7;
+      --table-header: #f1f5f9;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --fg: #f3f4f6;
+        --muted: #9ca3af;
+        --border: #374151;
+        --card-bg: #1f2937;
+        --accent: #60a5fa;
+        --accent-light: #1e3a5f;
+        --success: #34d399;
+        --warning: #fbbf24;
+        --info: #38bdf8;
+        --table-header: #374151;
+      }
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--fg);
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+    }
+    .faq-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .faq-question {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--fg);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .faq-question::before {
+      content: "Q:";
+      color: var(--accent);
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+    .faq-answer {
+      font-size: 0.95rem;
+      color: var(--fg);
+      line-height: 1.6;
+    }
+    .faq-answer p {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+    .faq-answer ul, .faq-answer ol {
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
+      padding-left: 1.5rem;
+    }
+    .faq-answer li {
+      margin-bottom: 0.35rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .badge-geo { background: #dbeafe; color: #1e40af; }
+    .badge-b2b { background: #fee2e2; color: #991b1b; }
+    .badge-tech { background: #dcfce7; color: #15803d; }
+    @media (prefers-color-scheme: dark) {
+      .badge-geo { background: #1e3a8a; color: #bfdbfe; }
+      .badge-b2b { background: #7f1d1d; color: #fecaca; }
+      .badge-tech { background: #14532d; color: #86efac; }
+    }
+    code {
+      background: var(--table-header);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.85rem;
+    }
+    .arabic-text {
+      direction: rtl;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>❓ ZERENE — GEO & AI Engine Optimization FAQ Knowledge Base</h1>
+      <p class="subtitle">Team Reference Guide for AI Search Discrepancies, Share of Voice (SoV) Metrics, and Citation Mechanics</p>
+    </header>
+
+    <!-- SECTION 1 -->
+    <h2>1. AI Search Metrics & Discrepancies</h2>
+
+    <div class="faq-card">
+      <span class="badge badge-geo">Metrics & Strategy</span>
+      <div class="faq-question">What does it mean when a prompt has an 80%+ GEO Share of Voice (SoV) score, but ChatGPT/Perplexity doesn't mention Zerene in a live query?</div>
+      <div class="faq-answer">
+        <p>An 80%+ GEO score indicates <strong>on-page optimization readiness</strong> (your content structure, keyword targeting, FAQ schema, and fact density match what LLMs look for). However, actual live citations require three additional factors:</p>
+        <ul>
+          <li><strong>Domain Indexing & Recrawl:</strong> The AI engine's web crawler has not re-indexed your updated landing page yet.</li>
+          <li><strong>Third-Party Consensus:</strong> The AI model checks external sources (PR, directories, news, LinkedIn) to verify brand authority before citing.</li>
+          <li><strong>Competitor Weight:</strong> Existing legacy suppliers have established off-page backlink and press footprint that LLMs weight heavily.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <span class="badge badge-geo">Citation Analysis</span>
+      <div class="faq-question">Why didn't ChatGPT cite Zerene for <em>"Where can boutique hotel chains in Saudi Arabia order custom luxury room sprays in bulk?"</em></div>
+      <div class="faq-answer">
+        <p>For transactional B2B prompts, LLMs rely on explicit entity matching and off-page validation:</p>
+        <ol>
+          <li><strong>Headline Match:</strong> The landing page needs an exact or near-exact H1 header targeting bulk hotel room sprays in Saudi Arabia.</li>
+          <li><strong>Procurement Data Density:</strong> AI models prefer pages with explicit Minimum Order Quantities (MOQs), delivery coverage (Riyadh, Jeddah, Dubai), and scent specifications.</li>
+          <li><strong>Web Consensus:</strong> ChatGPT checks if Zerene is mentioned across Middle East hospitality procurement directories and industry news.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <span class="badge badge-tech">Link Identification</span>
+      <div class="faq-question">How do we find which competitor links are getting cited by AI engines and how do we outrank them?</div>
+      <div class="faq-answer">
+        <p>Run the target prompt in Perplexity AI or ChatGPT Search and click the footnote citation numbers (e.g., <code>[1]</code>, <code>[2]</code>) next to competitor names. You will typically find:</p>
+        <ul>
+          <li><strong>B2B Directories & Marketplaces:</strong> Listings on GCC supplier portals.</li>
+          <li><strong>Competitor Landing Pages:</strong> Pages with explicit B2B procurement headers.</li>
+          <li><strong>Industry PR & Press Releases:</strong> Case studies covering luxury hotel partnerships in KSA/UAE.</li>
+        </ul>
+        <p>To outrank them, mirror their external directory presence and publish richer, fact-dense data on Zerene's corresponding landing page.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <h2>2. B2B & Commercial Offerings (Saudi Arabia & UAE)</h2>
+
+    <div class="faq-card">
+      <span class="badge badge-b2b">Corporate Gifting</span>
+      <div class="faq-question">What custom fragrance gifting services does Zerene offer for VIP corporate clients in Saudi Arabia?</div>
+      <div class="faq-answer">
+        <p>Zerene provides end-to-end bespoke luxury fragrance gifting for corporate accounts, executive VIP client appreciation, Ramadan campaigns, and Saudi National Day celebrations. Services include custom perfume formulations, branded luxury packaging, low MOQs, and localized white-glove delivery across Riyadh, Jeddah, and the broader GCC.</p>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <span class="badge badge-b2b">Hospitality Scenting</span>
+      <div class="faq-question">Where can hotels and wellness clinics order custom ambient diffusers and room sprays in bulk?</div>
+      <div class="faq-answer">
+        <p>Hotels, boutique resorts, and premium wellness clinics can request B2B bulk quotes directly through Zerene's partnership hub at <code>zerene.com/pages/partnerships</code>. Zerene supplies cold-air diffusion machinery, white-label room sprays, and reed diffusers complying with international IFRA safety standards.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <h2>3. Scientific & Informational FAQ (AI Engine Answer Targets)</h2>
+
+    <div class="faq-card">
+      <span class="badge badge-geo">Essential Oils</span>
+      <div class="faq-question">How does natural rose essential oil work to reduce stress and anxiety?</div>
+      <div class="faq-answer">
+        <p>Natural rose essential oil (<em>Rosa damascena</em>) interacts with the central nervous system through olfactory stimulation. Inhaling its active volatile compounds, primarily citronellol and geraniol, stimulates the limbic system, triggering neurotransmitters that lower salivary cortisol levels and decrease autonomic arousal, thereby reducing self-reported anxiety scores in clinical settings.</p>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <span class="badge badge-geo">Sensory Marketing</span>
+      <div class="faq-question">What is sensory branding and how do luxury hotels use scent memory?</div>
+      <div class="faq-answer">
+        <p>Sensory branding is a marketing methodology that engages multiple human senses to establish emotional brand identity. Luxury hotels utilize ambient scenting to trigger the brain's olfactory bulb—directly connected to the amygdala and hippocampus—creating immediate, long-lasting memory associations that elevate guest perceived value and loyalty.</p>
+      </div>
+    </div>
+
+    <div class="faq-card">
+      <span class="badge badge-geo">Cultural Etiquette</span>
+      <div class="faq-question">What is the cultural significance of giving luxury perfumes and agarwood (Oud) in Saudi business culture?</div>
+      <div class="faq-answer">
+        <p>In Saudi Arabian and GCC business etiquette, offering luxury fragrances, Taif rose, and high-grade Agarwood (Oud) symbolizes honor, generosity, and mutual respect ("generous gesture"). Gifting custom fine perfumes during corporate meetings or seasonal celebrations reinforces long-term partnership bonds and honors traditional hospitality values.</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Zerene GEO & AI Search FAQ Knowledge Base — Compiled for Team Reference & Implementation
+    </footer>
+  </div>
+</body>
+</html>
