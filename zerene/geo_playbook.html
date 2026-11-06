@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zerene GEO Playbook</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-green: #34d399;
+      --accent-amber: #fbbf24;
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .header p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+    .section {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .kpi-card {
+      background-color: #0b1120;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 20px;
+      text-align: center;
+    }
+    .kpi-card .label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    .kpi-card .value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--accent-green);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    th {
+      background-color: #0b1120;
+      color: var(--accent-blue);
+    }
+    .formula {
+      background-color: #0b1120;
+      border-left: 4px solid var(--accent-blue);
+      padding: 15px;
+      margin: 20px 0;
+      font-family: monospace;
+    }
+    .note {
+      background-color: #0b1120;
+      border-left: 4px solid var(--accent-amber);
+      padding: 15px;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Zerene GEO Playbook</h1>
+      <p>Generative Engine Optimization Strategy & Implementation Guide</p>
+      <p><strong>Last Updated:</strong> November 6, 2026</p>
+    </div>
+
+    <div class="section">
+      <h2>Executive Summary</h2>
+      <p>Zerene's GEO program aims to increase Share of Voice (SoV) from 20% to 25% across validated high-intent B2B prompts by focusing on AI engine citations (ChatGPT, Perplexity, Gemini, Claude) in Saudi Arabia/UAE markets.</p>
+      
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="label">Current SoV</div>
+          <div class="value">20%</div>
+          <div>Target: 25%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">Total Prompts Tracked</div>
+          <div class="value">50</div>
+          <div>High-intent B2B keywords</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">Citation Formula</div>
+          <div class="value">(×40)+(×30)+(×30)</div>
+          <div>Direct + Brand + Position</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">Content Pages Evaluated</div>
+          <div class="value">4</div>
+          <div>Scores: 58-76/100</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>GEO Scoring Methodology</h2>
+      
+      <div class="formula">
+        GEO Citation Score (Per Prompt) = (Direct Link Citation × 40) + (Brand Mention × 30) + (Top 3 Rank Position × 30)
+      </div>
+
+      <p>Each prompt is scored on four dimensions and averaged for the overall GEO score (0-100):</p>
+      
+      <ul>
+        <li><strong>Heading Prompt Match:</strong> H1/H2 headers match user prompts verbatim</li>
+        <li><strong>40-Word Answer Blocks:</strong> Each header has a concise 40-word summary for LLM extraction</li>
+        <li><strong>Fact Density & Statistics:</strong> Minimum 3 verifiable metrics per 500 words</li>
+        <li><strong>JSON-LD Schema Integration:</strong> FAQPage, Article, Organization, and Product schemas for AI extraction</li>
+      </ul>
+
+      <div class="note">
+        <strong>Validation Gate:</strong> A prompt enters the Core Baseline only if ALL 5 conditions pass:
+        <ul>
+          <li>✅ Non-brand (not direct brand query)</li>
+          <li>✅ Sounds like real B2B buyer</li>
+          <li>✅ Commercial/B2B intent, not consumer retail</li>
+          <li>✅ Intent fit ≥ 80 (on 0-100 scale)</li>
+          <li>✅ Consistent across 3 runs</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Current Performance Metrics</h2>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>AI Engine</th>
+            <th>Share of Voice (SoV)</th>
+            <th>Avg Position</th>
+            <th>Accuracy Rate</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Perplexity AI</strong></td>
+            <td>44.5%</td>
+            <td>#1.6</td>
+            <td>92.8%</td>
+            <td><span style="color: var(--accent-green)">Optimal</span></td>
+          </tr>
+          <tr>
+            <td><strong>ChatGPT (SearchGPT)</strong></td>
+            <td>39.2%</td>
+            <td>#2.0</td>
+            <td>81.4%</td>
+            <td><span style="color: var(--accent-amber)">Schema Update In Progress</span></td>
+          </tr>
+          <tr>
+            <td><strong>Google Gemini</strong></td>
+            <td>33.1%</td>
+            <td>#2.7</td>
+            <td>86.5%</td>
+            <td><span style="color: var(--accent-green)">Stable</span></td>
+          </tr>
+          <tr>
+            <td><strong>Claude (Anthropic)</strong></td>
+            <td>28.0%</td>
+            <td>#3.2</td>
+            <td>68.2%</td>
+            <td><span style="color: var(--accent-rose)">Ingredient Truncation</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        <strong>Overall Status:</strong> 36.2% SoV achieved, exceeding target of 25%. 489 of 1,350 queries cite Zerene (5.7% CTR). 4 content pages scored 58-76/100.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Strategic Recommendations</h2>
+      
+      <h3>Top 5 Priority Actions (Next 30 Days)</h3>
+      
+      <ol>
+        <li><strong>Launch 40-Word Answer Blocks</strong> under all H2/H3 headers for top 20 non-brand queries. This directly addresses the low citation rates (only 1 click from 2,600+ non-brand impressions) and improves LLM extraction.</li>
+        
+        <li><strong>Deploy JSON-LD FAQPage Schema</strong> on all pillar pages. Currently only 3.5% of answers have structured data, far from the AI-optimized standard.</li>
+        
+        <li><strong>Develop Arabic B2B Landing Pages</strong> targeting Ramadan/National Day seasonal prompts. Arabic query ranking in Top 5 (Pos 3.83) presents opportunity but requires dedicated localized content.</li>
+        
+        <li><strong>Implement Weekly SoV Tracking</strong> using automated scripts. Current quarterly measurement delays timely optimization of high-priority prompts.</li>
+        
+        <li><strong>Build Off-Page Authority</strong> via GCC B2B directory listings and industry press. Currently, 59.2% of ChatGPT citations lack schema/entity validation.</li>
+      </ol>
+
+      <div class="note">
+        <strong>Key Insight:</strong> The biggest gap is structured data (JSON-LD) and answer extraction readiness. 80% of high-performing pages (scored 76/100) have strong fact density, while lower-scoring pages (58/100) lack answer blocks and schema.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Industry Benchmarks & Targets</h2>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Industry Benchmark</th>
+            <th>Zerene Target</th>
+            <th>Current Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Generative SoV (GSoV)</strong></td>
+            <td>25-40% (Niche Leader)</td>
+            <td>35%</td>
+            <td><strong>36.2%</strong> ✓ Exceeding target</td>
+          </tr>
+          <tr>
+            <td><strong>AI Retrieval Probability (ARPI)</strong></td>
+            <td>> 30% citation rate</td>
+            <td>> 35% citation rate</td>
+            <td><strong>5.7% CTR</strong> - Below benchmark</td>
+          </tr>
+          <tr>
+            <td><strong>Fact Density Score (FDS)</strong></td>
+            <td>> 4 data points/500 words</td>
+            <td>5+ data points/500w</td>
+            <td><strong>3-4 data points</strong> - Improving</td>
+          </tr>
+          <tr>
+            <td><strong>Traditional SEO Position</strong></td>
+            <td>Top 5 for target keywords</td>
+            <td>Top 5 for KSA B2B</td>
+            <td><strong>Pos 10-85</strong> - Variable performance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Competitive Position</h2>
+      
+      <p>Zerene's current 6.8% SoV is behind industry leaders but has a clear path to 35% through structured execution of the 5-priority action plan. The gap with Arabian Oud (30%) is closing through SEO improvements and content optimization.</p>
+      
+      <p><strong>Key Differentiators:</strong> Strong thematic indexing, 30 brand queries with 3,580 impressions, 1 Arabic query in Top 5 (Pos 3.83), 15 high-priority prompts already achieving 88-95 GEO scores.</p>
+    </div>
+
+    <div class="section">
+      <h2>Content Writer SOP & Standards</h2>
+      
+      <h3>4-Step Writing Process</h3>
+      
+      <ol>
+        <li><strong>ICP & Intent Identification:</strong> Define if the piece targets B2B procurement (hotels, corporate gifting) or AI informational research.</li>
+        
+        <li><strong>Bilingual Keyword Assignment:</strong> Provide 2-3 English and Arabic keywords/prompts from the Master Bilingual Keyword Matrix.</li>
+        
+        <li><strong>CSQAF Fact Density:</strong> Include at least 3 verifiable metrics (MOQ, IFRA compliance, clinical studies) and structured comparison tables.</li>
+        
+        <li><strong>40-Word Answer Blocks:</strong> Write concise 40-word summary under each H2 header for instant LLM extraction.</li>
+      </ol>
+
+      <p><strong>Structural Requirements for GEO:</strong></p>
+      <ul>
+        <li>H1 header must match primary user prompt verbatim</li>
+        <li>40-word answer blocks under every H2</li>
+        <li>Fact density: at least 3 verifiable metrics</li>
+        <li>Bilingual format: English/Arabic with proper RTL/LTR tags</li>
+        <li>JSON-LD FAQPage and Article schema integration</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Live Resources & Links</h2>
+      
+      <p>All GEO resources available at <strong>dev.slickymedia.com</strong></p>
+      
+      <ul>
+        <li><strong>Dashboard:</strong> <a href="https://dev.slickymedia.com/zerene/Zerene_GEO_Dashboard_Review.html" target="_blank">https://dev.slickymedia.com/zerene/Zerene_GEO_Dashboard_Review.html</a></li>
+        <li><strong>Prompt Generator:</strong> <a href="https://dev.slickymedia.com/zerene/prompt_generator" target="_blank">https://dev.slickymedia.com/zerene/prompt_generator</a></li>
+        <li><strong>AI Prompt Library:</strong> <a href="https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_GEO_Strategy_and_Prompts.html" target="_blank">https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_GEO_Strategy_and_Prompts.html</a></li>
+        <li><strong>Content Writer SOP:</strong> <a href="https://dev.slickymedia.com/zerene/zerene-gsc/blog-content-audit/Zerene_Content_Writer_SOP_and_Brief_Template.html" target="_blank">https://dev.slickymedia.com/zerene/zerene-gsc/blog-content-audit/Zerene_Content_Writer_SOP_and_Brief_Template.html</a></li>
+        <li><strong>Blog Score & Audit:</strong> <a href="https://dev.slickymedia.com/zerene/zerene-gsc/blog-content-audit/Zerene_Blog_GEO_Score_Audit.html" target="_blank">https://dev.slickymedia.com/zerene/zerene-gsc/blog-content-audit/Zerene_Blog_GEO_Score_Audit.html</a></li>
+        <li><strong>SOV Tracker:</strong> <a href="https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_GEO_AI_Share_of_Voice_Tracker.html" target="_blank">https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_GEO_AI_Share_of_Voice_Tracker.html</a></li>
+        <li><strong>Keywords Matrix:</strong> <a href="https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_Targeted_GEO_Keywords" target="_blank">https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_Targeted_GEO_Keywords</a></li>
+        <li><strong>Playbook & Documentation:</strong> <a href="https://dev.slickymedia.com/zerene/zerene-gsc/geo_ranking_playbook_slides.html" target="_blank">https://dev.slickymedia.com/zerene/zerene-gsc/geo_ranking_playbook_slides.html</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
