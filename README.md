@@ -78,3 +78,26 @@ No build/test commands — this is a documentation- and research-focused project
 - **Mention rate** = runs where Zerene named ÷ successful runs
 - **Citation rate** = runs where zerene.com cited ÷ successful runs
 - **Share of Voice** = Zerene mentions ÷ total brand mentions across all brands in the same runs
+
+## Live Links (Validated Nov 6, 2026 — all return HTTP 200)
+
+All resources hosted on `dev.slickymedia.com`. Links were tested via curl with redirect following.
+
+| Resource | URL | Status |
+|----------|-----|--------|
+| Dashboard Review | `https://dev.slickymedia.com/zerene/Zerene_GEO_Dashboard_Review.html` | ✅ Working (root) |
+| Dashboard Review (zerene-gsc) | `https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_GEO_Dashboard_Review.html` | ✅ Working (recommended) |
+| GEO Prompt Generator (n8n form) | `https://dev.slickymedia.com/zerene/prompt_generator` | ✅ Working |
+| Prompt Template | `https://dev.slickymedia.com/zerene/prompt_generator/Updated_Prompt_Template` | ✅ Working |
+| AI Prompt Library | `https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_GEO_Strategy_and_Prompts.html` | ✅ Working (redirects) |
+| GEO Targeting Matrix | `https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_Targeted_GEO_Keywords` | ✅ Working |
+| Content Writer SOP & Brief Template | `https://dev.slickymedia.com/zerene/zerene-gsc/blog-content-audit/Zerene_Content_Writer_SOP_and_Brief_Template` | ✅ Working |
+| GEO Strategy & SOP Checklist | `https://dev.slickymedia.com/zerene/zerene-gsc/blog-content-audit/Zerene_GEO_Strategy_and_SOP_Checklist.html` | ✅ Working |
+| Blog Score & Audit | `https://dev.slickymedia.com/zerene/zerene-gsc/blog-content-audit/Zerene_Blog_GEO_Score_Audit.html` | ✅ Working (trailing slash needed) |
+| SOV Tracker | `https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_GEO_AI_Share_of_Voice_Tracker.html` | ✅ Working (trailing slash needed) |
+| FAQ Knowledge Base | `https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_GEO_FAQ_Knowledge_Base.html` | ✅ Working (trailing slash needed) |
+| GEO Playbook Slides | `https://dev.slickymedia.com/zerene/zerene-gsc/geo_ranking_playbook_slides.html` | ✅ Working |
+| Industry Benchmarks | `https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_GEO_Benchmarking_Framework.html` | ✅ Working (trailing slash needed) |
+| Master GEO Blueprint | `https://dev.slickymedia.com/zerene/zerene-gsc/Zerene_Master_GEO_Blueprint.html` | ✅ Working (trailing slash needed) |
+
+**Note:** URLs ending in `.html` returned `308` and redirected to extension-less paths (e.g., `/zerene/zerene-gsc/Zerene_GEO_Strategy_and_Prompts.html` → `/zerene/zerene-gsc/Zerene_GEO_Strategy_and_Prompts`). The prompt generator root also returned `308` (redirects to trailing-slash version). All resolved to HTTP 200 after redirect resolution.
